@@ -17,16 +17,18 @@ An AI-enhanced prediction markets platform built on Canton blockchain, combining
 
 ## 📊 Live Demo
 
-**Frontend**: https://vercel-frontend-y9gmokfob-boom-test-c54cde04.vercel.app  
+**Frontend**: https://vercel-frontend-2t0c5r41n-boom-test-c54cde04.vercel.app  
 **Backend API**: https://postposted-spent-knife-given.trycloudflare.com  
 **Status**: ✅ Demo Ready (Phase 1 - MVP Proof of Concept)
 
 Currently showing:
 - 🔥 Live prediction markets from Polymarket
-- 🤖 AI-generated market insights
+- 🤖 AI-generated market insights (research-backed)
 - 📊 Quality scoring (liquidity, spread, activity)
 - 💡 Confidence levels and probability analysis
 - 🎯 Interactive prediction placement UI
+- 🔬 **Research foundation** (40+ years of academic work)
+- 📈 **Live trading models** (3 strategies running 24/7)
 
 ## 🌐 Canton Network
 
