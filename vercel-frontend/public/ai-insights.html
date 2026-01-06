@@ -344,11 +344,21 @@
             try {
                 document.getElementById('insightsLoading').style.display = 'block';
 
-                // Fetch markets and generate insights
-                const response = await fetch(`${API_BASE}/api/ai/market-analysis?limit=20`);
+                // Fetch top quality markets (these become our insights)
+                const response = await fetch(`${API_BASE}/api/quality/top-markets?limit=20`);
                 const data = await response.json();
                 
-                allInsights = data.analyses || [];
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                
+                // Transform markets into insights format
+                allInsights = (data.markets || []).map(m => ({
+                    market: m,
+                    analysis: generateInsightText(m),
+                    timestamp: data.timestamp
+                }));
+                
                 displayInsights();
                 
                 document.getElementById('insightsLoading').style.display = 'none';
@@ -358,6 +368,40 @@
                 document.getElementById('insightsLoading').innerHTML = 
                     '<p style="color: #ef4444;">Failed to load AI insights. Please try again.</p>';
             }
+        }
+
+        function generateInsightText(market) {
+            const prob = parseFloat(market.price || 0.5);
+            const quality = market.quality?.total_score || 0;
+            const volume = market.volume_24h || 0;
+            
+            let insight = `Market analysis for "${market.question}": `;
+            
+            if (quality > 70) {
+                insight += `This is a high-quality market with a quality score of ${quality.toFixed(0)}/100. `;
+            } else if (quality > 50) {
+                insight += `This is a moderate-quality market with a quality score of ${quality.toFixed(0)}/100. `;
+            } else {
+                insight += `This market has limited liquidity with a quality score of ${quality.toFixed(0)}/100. `;
+            }
+            
+            if (volume > 10000) {
+                insight += `Strong trading activity with $${formatVolume(volume)} in 24h volume. `;
+            } else if (volume > 1000) {
+                insight += `Moderate trading activity with $${formatVolume(volume)} in 24h volume. `;
+            } else {
+                insight += `Low trading activity with $${formatVolume(volume)} in 24h volume. `;
+            }
+            
+            if (prob > 0.7) {
+                insight += `Current consensus strongly favors YES at ${(prob * 100).toFixed(1)}%. `;
+            } else if (prob < 0.3) {
+                insight += `Current consensus strongly favors NO at ${((1-prob) * 100).toFixed(1)}%. `;
+            } else {
+                insight += `Market shows uncertainty with ${(prob * 100).toFixed(1)}% YES probability. `;
+            }
+            
+            return insight;
         }
 
         function displayInsights(filter = 'all') {
@@ -387,29 +431,27 @@
                             ${insight.analysis || 'Analyzing market conditions and historical patterns...'}
                         </div>
 
-                        ${insight.similar_markets && insight.similar_markets.length > 0 ? `
-                            <div class="rag-section">
-                                <div class="rag-title">📚 Similar Historical Events (RAG)</div>
-                                <div class="rag-events">
-                                    ${insight.similar_markets.slice(0, 3).map(m => `
-                                        <div class="rag-event">${m.question || m}</div>
-                                    `).join('')}
-                                </div>
+                        <div class="rag-section">
+                            <div class="rag-title">📊 Market Quality Breakdown</div>
+                            <div class="rag-events">
+                                <div class="rag-event">Liquidity: ${insight.market?.quality?.liquidity_score?.toFixed(0) || 0}/35</div>
+                                <div class="rag-event">Spread: ${insight.market?.quality?.spread_score?.toFixed(0) || 0}/25</div>
+                                <div class="rag-event">Activity: ${insight.market?.quality?.activity_score?.toFixed(0) || 0}/25</div>
                             </div>
-                        ` : ''}
+                        </div>
 
                         <div class="insight-meta">
                             <div class="insight-meta-item">
                                 <span>📊</span>
-                                <span>Probability: ${((insight.market?.outcome_prices?.[0] || 0.5) * 100).toFixed(1)}%</span>
+                                <span>Probability: ${((insight.market?.price || 0.5) * 100).toFixed(1)}%</span>
                             </div>
                             <div class="insight-meta-item">
                                 <span>💰</span>
-                                <span>Volume: $${formatVolume(insight.market?.volume || 0)}</span>
+                                <span>24h Volume: $${formatVolume(insight.market?.volume_24h || 0)}</span>
                             </div>
                             <div class="insight-meta-item">
-                                <span>🕐</span>
-                                <span>${new Date(insight.timestamp || Date.now()).toLocaleDateString()}</span>
+                                <span>⭐</span>
+                                <span>Quality: ${insight.market?.quality?.total_score?.toFixed(0) || 0}/100</span>
                             </div>
                         </div>
                     </div>
@@ -418,11 +460,11 @@
         }
 
         function getConfidenceLevel(insight) {
-            const prob = insight.market?.outcome_prices?.[0] || 0.5;
-            const volume = insight.market?.volume || 0;
+            const prob = insight.market?.price || 0.5;
+            const quality = insight.market?.quality?.total_score || 0;
             
-            if ((prob > 0.7 || prob < 0.3) && volume > 100000) return 'High';
-            if ((prob > 0.6 || prob < 0.4) && volume > 10000) return 'Medium';
+            if ((prob > 0.7 || prob < 0.3) && quality > 70) return 'High';
+            if ((prob > 0.6 || prob < 0.4) && quality > 50) return 'Medium';
             return 'Low';
         }
 

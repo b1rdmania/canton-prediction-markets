@@ -555,12 +555,16 @@
                 document.getElementById('marketsLoading').style.display = 'block';
                 document.getElementById('marketsGrid').style.display = 'none';
 
-                // Fetch markets from API
-                const response = await fetch(`${API_BASE}/api/markets/all`);
+                // Fetch markets from quality API (returns markets with scores)
+                const response = await fetch(`${API_BASE}/api/quality/top-markets?limit=12`);
                 const data = await response.json();
                 
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                
                 currentMarkets = data.markets || [];
-                displayMarkets(currentMarkets.slice(0, 12)); // Show top 12 markets
+                displayMarkets(currentMarkets);
                 
                 document.getElementById('marketsLoading').style.display = 'none';
                 document.getElementById('marketsGrid').style.display = 'grid';
@@ -574,10 +578,10 @@
         function displayMarkets(markets) {
             const grid = document.getElementById('marketsGrid');
             grid.innerHTML = markets.map(market => `
-                <div class="market-card" onclick="openPredictionModal('${market.condition_id}')">
-                    <div class="market-badge">${market.end_date_iso ? 'ACTIVE' : 'UPCOMING'}</div>
+                <div class="market-card" onclick="openPredictionModal('${market.market_id}')">
+                    <div class="market-badge">ACTIVE</div>
                     <div class="market-title">${market.question}</div>
-                    <div class="market-probability">${(parseFloat(market.outcome_prices?.[0] || 0.5) * 100).toFixed(1)}%</div>
+                    <div class="market-probability">${(parseFloat(market.price || 0.5) * 100).toFixed(1)}%</div>
                     
                     <div class="ai-insight">
                         <div class="ai-label">🤖 AI Insight</div>
@@ -586,20 +590,20 @@
 
                     <div class="market-stats">
                         <div class="stat">
-                            <div class="stat-label">Volume</div>
-                            <div class="stat-value">$${formatVolume(market.volume || 0)}</div>
+                            <div class="stat-label">Quality Score</div>
+                            <div class="stat-value">${market.quality?.total_score?.toFixed(0) || 0}</div>
                         </div>
                         <div class="stat">
-                            <div class="stat-label">Liquidity</div>
-                            <div class="stat-value">$${formatVolume(market.liquidity || 0)}</div>
+                            <div class="stat-label">24h Volume</div>
+                            <div class="stat-value">$${formatVolume(market.volume_24h || 0)}</div>
                         </div>
                         <div class="stat">
-                            <div class="stat-label">Traders</div>
-                            <div class="stat-value">${market.participant_count || 0}</div>
+                            <div class="stat-label">Confidence</div>
+                            <div class="stat-value">${getConfidenceBadge(market.price)}</div>
                         </div>
                     </div>
 
-                    <button class="btn btn-primary btn-full" onclick="event.stopPropagation(); openPredictionModal('${market.condition_id}')">
+                    <button class="btn btn-primary btn-full" onclick="event.stopPropagation(); openPredictionModal('${market.market_id}')">
                         Place Prediction →
                     </button>
                 </div>
@@ -607,10 +611,24 @@
         }
 
         function getAIInsight(market) {
-            const prob = parseFloat(market.outcome_prices?.[0] || 0.5);
-            if (prob > 0.7) return "High confidence market. AI analysis suggests strong consensus toward YES.";
-            if (prob < 0.3) return "High confidence market. AI analysis suggests strong consensus toward NO.";
-            return "Uncertain market. AI detects mixed signals and potential volatility.";
+            const prob = parseFloat(market.price || 0.5);
+            const quality = market.quality?.total_score || 0;
+            
+            if (quality > 70) {
+                if (prob > 0.7) return "High quality market with strong YES consensus. Good liquidity and tight spread.";
+                if (prob < 0.3) return "High quality market with strong NO consensus. Good liquidity and tight spread.";
+                return "High quality market with uncertainty. Active trading and good data.";
+            }
+            if (prob > 0.7) return "Strong consensus toward YES. Monitor for volatility.";
+            if (prob < 0.3) return "Strong consensus toward NO. Monitor for volatility.";
+            return "Uncertain market. Mixed signals detected.";
+        }
+
+        function getConfidenceBadge(price) {
+            const prob = parseFloat(price || 0.5);
+            if (prob > 0.7 || prob < 0.3) return "High";
+            if (prob > 0.6 || prob < 0.4) return "Med";
+            return "Low";
         }
 
         function formatVolume(value) {
@@ -620,7 +638,7 @@
         }
 
         function openPredictionModal(marketId) {
-            const market = currentMarkets.find(m => m.condition_id === marketId);
+            const market = currentMarkets.find(m => m.market_id === marketId);
             if (!market) return;
 
             selectedMarket = market;
@@ -632,13 +650,13 @@
                         <div>
                             <div style="font-size: 0.875rem; color: #6b7280;">Current Probability</div>
                             <div style="font-size: 1.5rem; font-weight: bold; color: var(--canton-blue);">
-                                ${(parseFloat(market.outcome_prices?.[0] || 0.5) * 100).toFixed(1)}%
+                                ${(parseFloat(market.price || 0.5) * 100).toFixed(1)}%
                             </div>
                         </div>
                         <div>
-                            <div style="font-size: 0.875rem; color: #6b7280;">Total Volume</div>
+                            <div style="font-size: 0.875rem; color: #6b7280;">24h Volume</div>
                             <div style="font-size: 1.5rem; font-weight: bold; color: #1a1a1a;">
-                                $${formatVolume(market.volume || 0)}
+                                $${formatVolume(market.volume_24h || 0)}
                             </div>
                         </div>
                     </div>
@@ -660,7 +678,7 @@
             if (!selectedMarket) return;
 
             const prediction = {
-                market_id: selectedMarket.condition_id,
+                market_id: selectedMarket.market_id,
                 market_question: selectedMarket.question,
                 outcome: document.getElementById('predictionOutcome').value,
                 amount: parseFloat(document.getElementById('predictionAmount').value),
@@ -670,8 +688,8 @@
 
             console.log('Submitting prediction:', prediction);
             
-            // TODO: Submit to Canton smart contract via backend
-            alert(`Prediction submitted!\n\nMarket: ${prediction.market_question}\nOutcome: ${prediction.outcome.toUpperCase()}\nAmount: $${prediction.amount}\n\nThis will be processed via Canton DAML smart contract.`);
+            // For demo: Show success message
+            alert(`✅ Prediction Recorded!\n\nMarket: ${prediction.market_question}\nOutcome: ${prediction.outcome.toUpperCase()}\nAmount: $${prediction.amount}\nConfidence: ${prediction.confidence}/10\n\n(Canton DAML integration coming in Phase 2)`);
             
             closePredictionModal();
         }
