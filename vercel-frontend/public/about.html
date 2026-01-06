@@ -4,366 +4,639 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Canton Prediction Markets</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --off-white: #F7F7F7;
+            --near-black: #1B1C1C;
+            --coral: #E8846B;
+            --light-gray: #E8E8E8;
+            --medium-gray: #6B6B6B;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
+            font-family: 'Noto Sans', sans-serif;
+            background-color: var(--off-white);
+            color: var(--near-black);
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .header {
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-        }
-
-        .header-content {
-            max-width: 1400px;
-            margin: 0 auto;
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--off-white);
+            border: 1px solid var(--near-black);
+            padding: 0 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 64px;
         }
 
-        .logo {
-            font-size: 1.5rem;
+        .nav-logo {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--near-black);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-link {
+            font-family: 'Cousine', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--near-black);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .nav-link:hover {
+            opacity: 0.6;
+        }
+
+        .nav-link.active {
+            border-bottom: 2px solid var(--coral);
+            padding-bottom: 4px;
+        }
+
+        .nav-cta {
+            font-family: 'Cousine', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: var(--coral);
+            color: var(--near-black);
+            border: 1px solid var(--near-black);
+            padding: 12px 24px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--near-black);
+            color: var(--white);
+        }
+
+        /* Hero */
+        .page-hero {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 100px 48px 80px;
+        }
+
+        .page-hero h1 {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: clamp(42px, 5vw, 64px);
+            font-weight: 400;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 32px;
+        }
+
+        .page-hero p {
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--medium-gray);
+            margin-bottom: 32px;
+        }
+
+        .section-label {
+            font-family: 'Cousine', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-label::before {
+            content: '+';
+            color: var(--coral);
             font-weight: bold;
         }
 
-        .nav {
-            display: flex;
-            gap: 1.5rem;
+        /* Mission Box */
+        .mission-box {
+            background: var(--near-black);
+            color: var(--white);
+            padding: 40px;
+            margin-bottom: 80px;
         }
 
-        .nav a {
-            color: #fff;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
+        .mission-box strong {
+            color: var(--coral);
+            font-family: 'Cousine', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
-        .nav a:hover {
-            background: rgba(255, 255, 255, 0.1);
+        .mission-box p {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-top: 12px;
         }
 
-        .nav a.active {
-            background: #0066cc;
-        }
-
-        .container {
+        /* Content Section */
+        .content-section {
             max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 2rem;
+            margin: 0 auto;
+            padding: 0 48px 80px;
         }
 
-        .section {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 2rem;
+        .content-section h2 {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 28px;
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-bottom: 24px;
         }
 
-        .section h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+        .content-section p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--medium-gray);
+            margin-bottom: 20px;
         }
 
-        .section h2 {
-            font-size: 1.8rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
+        .content-section h3 {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            text-transform: uppercase;
+            margin-top: 32px;
+            margin-bottom: 16px;
         }
 
-        .section h3 {
-            font-size: 1.3rem;
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .section p {
-            line-height: 1.8;
-            opacity: 0.95;
-            margin-bottom: 1rem;
-        }
-
-        .section ul {
+        .content-section ul {
             list-style: none;
-            padding-left: 0;
+            margin-bottom: 24px;
         }
 
-        .section li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
+        .content-section li {
+            padding: 12px 0;
+            padding-left: 28px;
             position: relative;
+            font-size: 15px;
+            color: var(--medium-gray);
+            border-bottom: 1px solid var(--light-gray);
         }
 
-        .section li:before {
-            content: "→";
+        .content-section li:last-child {
+            border-bottom: none;
+        }
+
+        .content-section li::before {
+            content: '\2713';
             position: absolute;
             left: 0;
+            color: var(--coral);
         }
 
-        .highlight-box {
-            background: rgba(255, 255, 255, 0.15);
-            border-left: 4px solid #0066cc;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 1.5rem 0;
+        .content-section li strong {
+            color: var(--near-black);
         }
 
+        .content-section a {
+            color: var(--coral);
+            text-decoration: none;
+        }
+
+        .content-section a:hover {
+            text-decoration: underline;
+        }
+
+        /* Tech Grid */
         .tech-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: 32px 0;
         }
 
         .tech-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1rem;
-            border-radius: 8px;
+            background: var(--white);
+            border: 1px solid var(--near-black);
+            padding: 24px 16px;
             text-align: center;
         }
 
         .tech-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
+            width: 40px;
+            height: 40px;
+            background: var(--coral);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 18px;
         }
 
-        a {
-            color: #a8edea;
-            text-decoration: none;
+        .tech-item strong {
+            display: block;
+            font-family: 'Cousine', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
         }
 
-        a:hover {
-            text-decoration: underline;
+        .tech-item span {
+            font-size: 12px;
+            color: var(--medium-gray);
         }
 
+        /* Timeline */
         .timeline {
             position: relative;
-            padding-left: 2rem;
-            margin: 2rem 0;
+            padding-left: 32px;
+            margin: 32px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: var(--light-gray);
         }
 
         .timeline-item {
             position: relative;
-            padding-bottom: 2rem;
+            padding-bottom: 32px;
         }
 
-        .timeline-item:before {
-            content: "";
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
             position: absolute;
-            left: -1.5rem;
-            top: 0.5rem;
+            left: -26px;
+            top: 6px;
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: #0066cc;
+            background: var(--coral);
         }
 
-        .timeline-item:after {
-            content: "";
-            position: absolute;
-            left: -1.45rem + 6px;
-            top: 1.2rem;
-            width: 2px;
-            height: calc(100% - 1.2rem);
-            background: rgba(255, 255, 255, 0.3);
+        .timeline-item strong {
+            font-family: 'Cousine', monospace;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            display: block;
+            margin-bottom: 4px;
         }
 
-        .timeline-item:last-child:after {
-            display: none;
+        .timeline-item p {
+            font-size: 14px;
+            color: var(--medium-gray);
+            margin: 0;
+        }
+
+        /* Divider */
+        .divider {
+            border-top: 1px solid var(--near-black);
+            margin: 80px 0;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: var(--light-gray);
+            border: 1px solid var(--near-black);
+            padding: 32px;
+            margin: 32px 0;
+        }
+
+        .highlight-box strong {
+            font-family: 'Cousine', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--coral);
+        }
+
+        .highlight-box p {
+            margin-top: 8px;
+            margin-bottom: 0;
+        }
+
+        .highlight-box a {
+            display: inline-block;
+            margin-top: 16px;
+            font-family: 'Cousine', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: var(--near-black);
+            color: var(--white);
+            padding: 12px 24px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .highlight-box a:hover {
+            background: var(--coral);
+            color: var(--near-black);
+            text-decoration: none;
+        }
+
+        /* Disclaimer */
+        .disclaimer {
+            background: var(--white);
+            border: 1px solid var(--near-black);
+            padding: 24px;
+            margin-top: 48px;
+        }
+
+        .disclaimer p {
+            font-size: 13px;
+            color: var(--medium-gray);
+            margin: 0;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--near-black);
+            padding: 48px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        footer p {
+            font-family: 'Cousine', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--medium-gray);
+        }
+
+        footer p + p {
+            margin-top: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .page-hero,
+            .content-section {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .mission-box {
+                padding: 24px;
+            }
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">🏛️ Canton Prediction Markets</div>
-            <nav class="nav">
-                <a href="index.html">Markets</a>
-                <a href="ai-insights.html">AI Insights</a>
-                <a href="research.html">Research</a>
-                <a href="trading-models/system.html">Trading Models</a>
-                <a href="about.html" class="active">About</a>
-            </nav>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">canton</a>
+        <div class="nav-links">
+            <a href="about.html" class="nav-link active">About</a>
+            <a href="ai-insights.html" class="nav-link">Products</a>
+            <a href="research.html" class="nav-link">Research</a>
+            <a href="trading-models/system.html" class="nav-link">Trading Models</a>
+            <a href="index.html#markets" class="nav-cta">View Markets</a>
         </div>
-    </header>
+    </nav>
 
-    <div class="container">
-        <div class="section">
-            <h1>About Canton Prediction Markets</h1>
+    <!-- Hero -->
+    <section class="page-hero">
+        <div class="section-label">About</div>
+        <h1>CANTON PREDICTION MARKETS.</h1>
+        <p>
+            An AI-enhanced prediction markets platform built on the Canton blockchain, combining the power of
+            DAML smart contracts, real-world market data, and cutting-edge AI analysis to create a
+            transparent, privacy-preserving prediction market ecosystem.
+        </p>
+
+        <div class="mission-box">
+            <strong>Mission</strong>
             <p>
-                An AI-enhanced prediction markets platform built on the Canton blockchain, combining the power of 
-                DAML smart contracts, real-world market data, and cutting-edge AI analysis to create a 
-                transparent, privacy-preserving prediction market ecosystem.
-            </p>
-
-            <div class="highlight-box">
-                <strong>Mission:</strong> To democratize access to prediction markets while leveraging AI and blockchain 
+                To democratize access to prediction markets while leveraging AI and blockchain
                 technology to provide unparalleled insights and security for participants.
+            </p>
+        </div>
+    </section>
+
+    <!-- What We Do -->
+    <section class="content-section">
+        <div class="section-label">Overview</div>
+        <h2>WHAT WE DO.</h2>
+        <p>Canton Prediction Markets brings together three powerful technologies:</p>
+
+        <ul>
+            <li><strong>Canton Blockchain</strong> - Privacy-preserving, Swiss-compliant distributed ledger</li>
+            <li><strong>Real-Time Market Data</strong> - Aggregated from Kalshi and Polymarket</li>
+            <li><strong>AI-Powered Insights</strong> - Research-backed analysis with RAG-enhanced context</li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <div class="section-label">Architecture</div>
+        <h2>HOW IT'S BUILT.</h2>
+
+        <h3>Smart Contracts (DAML)</h3>
+        <p>All predictions are executed through DAML smart contracts deployed on the Canton network:</p>
+        <ul>
+            <li>Immutable record of all predictions</li>
+            <li>Automatic resolution based on real-world outcomes</li>
+            <li>Privacy-preserving transactions</li>
+            <li>Swiss regulatory compliance</li>
+        </ul>
+
+        <h3>AI Analysis Engine</h3>
+        <p>Our AI system provides intelligent insights backed by 40+ years of research:</p>
+        <ul>
+            <li><strong>Market Summaries</strong> - Concise explanations of each prediction event</li>
+            <li><strong>Probability Estimates</strong> - AI-assisted likelihood calculations</li>
+            <li><strong>Historical Context (RAG)</strong> - Retrieves similar past events from vector database</li>
+            <li><strong>Confidence Scoring</strong> - Evaluates data quality and consistency</li>
+        </ul>
+
+        <h3>Market Data Integration</h3>
+        <p>We aggregate real-time data from leading prediction market platforms:</p>
+
+        <div class="tech-grid">
+            <div class="tech-item">
+                <div class="tech-icon">K</div>
+                <strong>Kalshi</strong>
+                <span>CFTC-regulated</span>
             </div>
-
-            <h2>🎯 What We Do</h2>
-            <p>
-                Canton Prediction Markets brings together three powerful technologies:
-            </p>
-            <ul>
-                <li><strong>Canton Blockchain</strong> - Privacy-preserving, Swiss-compliant distributed ledger</li>
-                <li><strong>Real-Time Market Data</strong> - Aggregated from Kalshi and Polymarket</li>
-                <li><strong>AI-Powered Insights</strong> - Grok API with RAG-enhanced analysis</li>
-            </ul>
-
-            <h2>🏗️ Architecture</h2>
-            
-            <h3>Smart Contracts (DAML)</h3>
-            <p>
-                All predictions are executed through DAML smart contracts deployed on the Canton network. 
-                This ensures:
-            </p>
-            <ul>
-                <li>Immutable record of all predictions</li>
-                <li>Automatic resolution based on real-world outcomes</li>
-                <li>Privacy-preserving transactions</li>
-                <li>Swiss regulatory compliance</li>
-            </ul>
-
-            <h3>AI Analysis Engine</h3>
-            <p>
-                Our AI system uses Grok (xAI) to provide intelligent insights:
-            </p>
-            <ul>
-                <li><strong>Market Summaries</strong> - Concise explanations of each prediction event</li>
-                <li><strong>Probability Estimates</strong> - AI-assisted likelihood calculations</li>
-                <li><strong>Historical Context (RAG)</strong> - Retrieves similar past events from vector database</li>
-                <li><strong>Confidence Scoring</strong> - Evaluates data quality and consistency</li>
-            </ul>
-
-            <h3>Market Data Integration</h3>
-            <p>
-                We aggregate real-time data from leading prediction market platforms:
-            </p>
-            <div class="tech-grid">
-                <div class="tech-item">
-                    <div class="tech-icon">📊</div>
-                    <strong>Kalshi</strong>
-                    <div style="font-size: 0.875rem; opacity: 0.8; margin-top: 0.5rem;">CFTC-regulated markets</div>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon">💰</div>
-                    <strong>Polymarket</strong>
-                    <div style="font-size: 0.875rem; opacity: 0.8; margin-top: 0.5rem;">Crypto-based predictions</div>
-                </div>
+            <div class="tech-item">
+                <div class="tech-icon">P</div>
+                <strong>Polymarket</strong>
+                <span>Crypto-based</span>
             </div>
-
-            <h2>📈 Development Roadmap</h2>
-            <p><strong>MVP Timeline: 14 Weeks</strong></p>
-            
-            <div class="timeline">
-                <div class="timeline-item">
-                    <strong>Weeks 1-3: Foundation</strong>
-                    <p>DAML smart contract design and Canton setup</p>
-                </div>
-                <div class="timeline-item">
-                    <strong>Weeks 4-5: Data Integration</strong>
-                    <p>Market data feeds and resolution automation</p>
-                </div>
-                <div class="timeline-item">
-                    <strong>Weeks 6-8: AI Integration</strong>
-                    <p>Grok API, embeddings, and RAG system</p>
-                </div>
-                <div class="timeline-item">
-                    <strong>Weeks 9-11: User Interface</strong>
-                    <p>Frontend development and API connections</p>
-                </div>
-                <div class="timeline-item">
-                    <strong>Weeks 12-14: Testing & Launch</strong>
-                    <p>End-to-end testing and MVP deployment</p>
-                </div>
+            <div class="tech-item">
+                <div class="tech-icon">C</div>
+                <strong>Canton</strong>
+                <span>Blockchain</span>
             </div>
-
-            <h2>🔬 Technology Stack</h2>
-            <div class="tech-grid">
-                <div class="tech-item">
-                    <div class="tech-icon">🏛️</div>
-                    <strong>Canton</strong>
-                    <p style="font-size: 0.875rem; margin-top: 0.5rem;">Blockchain & DAML</p>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon">🤖</div>
-                    <strong>Grok AI</strong>
-                    <p style="font-size: 0.875rem; margin-top: 0.5rem;">xAI Language Model</p>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon">🔍</div>
-                    <strong>Vector DB</strong>
-                    <p style="font-size: 0.875rem; margin-top: 0.5rem;">Pinecone/Weaviate</p>
-                </div>
-                <div class="tech-item">
-                    <div class="tech-icon">⚡</div>
-                    <strong>FastAPI</strong>
-                    <p style="font-size: 0.875rem; margin-top: 0.5rem;">Backend API</p>
-                </div>
+            <div class="tech-item">
+                <div class="tech-icon">AI</div>
+                <strong>Grok AI</strong>
+                <span>Analysis</span>
             </div>
+        </div>
 
-            <h2>🔐 Privacy & Security</h2>
-            <p>
-                Built on Canton's privacy-preserving architecture:
-            </p>
-            <ul>
-                <li>Confidential transactions with selective disclosure</li>
-                <li>No private keys stored on servers</li>
-                <li>Swiss data protection standards</li>
-                <li>Auditable yet private prediction history</li>
-            </ul>
+        <div class="divider"></div>
 
-            <h2>🌍 Swiss Compliance</h2>
-            <p>
-                Canton Prediction Markets is designed with Swiss regulatory framework in mind:
-            </p>
-            <ul>
-                <li>Data sovereignty (Swiss-based infrastructure)</li>
-                <li>FINMA-aware design patterns</li>
-                <li>Privacy by design (GDPR compliant)</li>
-                <li>Transparent governance model</li>
-            </ul>
+        <div class="section-label">Roadmap</div>
+        <h2>DEVELOPMENT TIMELINE.</h2>
+        <p><strong>MVP Timeline: 14 Weeks</strong></p>
 
-            <h2>🔗 Related Projects</h2>
-            <ul>
-                <li><a href="https://github.com/b1rdmania/polymarket-ai-trading" target="_blank">Polymarket AI Trading</a> - AI trading system for Polymarket</li>
-                <li><a href="https://github.com/b1rdmania/aztec-auction-analysis" target="_blank">Aztec Auction Analysis</a> - Privacy-preserving auction research</li>
-            </ul>
-
-            <h2>📚 Documentation</h2>
-            <ul>
-                <li><a href="https://github.com/b1rdmania/canton-prediction-markets/blob/master/MVP_IMPLEMENTATION.md" target="_blank">MVP Implementation Plan</a></li>
-                <li><a href="https://github.com/b1rdmania/canton-prediction-markets/blob/master/README.md" target="_blank">Technical Documentation</a></li>
-                <li><a href="https://canton.network" target="_blank">Canton Network</a></li>
-                <li><a href="https://docs.daml.com" target="_blank">DAML Documentation</a></li>
-            </ul>
-
-            <h2>👥 Team</h2>
-            <p>
-                Built by <a href="https://github.com/b1rdmania" target="_blank">@b1rdmania</a> as part of a research 
-                initiative to explore AI-enhanced prediction markets on privacy-preserving blockchains.
-            </p>
-
-            <div class="highlight-box">
-                <strong>Open Source:</strong> This project is MIT licensed and welcomes contributions from the community.
-                <br><br>
-                <a href="https://github.com/b1rdmania/canton-prediction-markets" target="_blank">→ View on GitHub</a>
+        <div class="timeline">
+            <div class="timeline-item">
+                <strong>Weeks 1-3: Foundation</strong>
+                <p>DAML smart contract design and Canton setup</p>
             </div>
+            <div class="timeline-item">
+                <strong>Weeks 4-5: Data Integration</strong>
+                <p>Market data feeds and resolution automation</p>
+            </div>
+            <div class="timeline-item">
+                <strong>Weeks 6-8: AI Integration</strong>
+                <p>AI API, embeddings, and RAG system</p>
+            </div>
+            <div class="timeline-item">
+                <strong>Weeks 9-11: User Interface</strong>
+                <p>Frontend development and API connections</p>
+            </div>
+            <div class="timeline-item">
+                <strong>Weeks 12-14: Testing & Launch</strong>
+                <p>End-to-end testing and MVP deployment</p>
+            </div>
+        </div>
 
-            <h2>⚠️ Disclaimer</h2>
-            <p style="font-size: 0.875rem; opacity: 0.8;">
-                This platform is for educational and research purposes only. Prediction markets may be subject to 
-                regulatory restrictions in your jurisdiction. Please ensure compliance with local laws before 
+        <div class="divider"></div>
+
+        <div class="section-label">Technology</div>
+        <h2>TECH STACK.</h2>
+
+        <div class="tech-grid">
+            <div class="tech-item">
+                <div class="tech-icon">C</div>
+                <strong>Canton</strong>
+                <span>Blockchain & DAML</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">AI</div>
+                <strong>AI Models</strong>
+                <span>Language Models</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">V</div>
+                <strong>Vector DB</strong>
+                <span>RAG System</span>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">F</div>
+                <strong>FastAPI</strong>
+                <span>Backend API</span>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section-label">Security</div>
+        <h2>PRIVACY & COMPLIANCE.</h2>
+
+        <h3>Privacy-Preserving Architecture</h3>
+        <ul>
+            <li>Confidential transactions with selective disclosure</li>
+            <li>No private keys stored on servers</li>
+            <li>Swiss data protection standards</li>
+            <li>Auditable yet private prediction history</li>
+        </ul>
+
+        <h3>Swiss Compliance</h3>
+        <p>Canton Prediction Markets is designed with Swiss regulatory framework in mind:</p>
+        <ul>
+            <li>Data sovereignty (Swiss-based infrastructure)</li>
+            <li>FINMA-aware design patterns</li>
+            <li>Privacy by design (GDPR compliant)</li>
+            <li>Transparent governance model</li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <div class="section-label">Links</div>
+        <h2>RELATED PROJECTS.</h2>
+        <ul>
+            <li><a href="https://github.com/b1rdmania/polymarket-ai-trading" target="_blank">Polymarket AI Trading</a> - AI trading system for Polymarket</li>
+            <li><a href="https://github.com/b1rdmania/aztec-auction-analysis" target="_blank">Aztec Auction Analysis</a> - Privacy-preserving auction research</li>
+        </ul>
+
+        <h3>Documentation</h3>
+        <ul>
+            <li><a href="https://github.com/b1rdmania/canton-prediction-markets" target="_blank">GitHub Repository</a></li>
+            <li><a href="https://canton.network" target="_blank">Canton Network</a></li>
+            <li><a href="https://docs.daml.com" target="_blank">DAML Documentation</a></li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <div class="section-label">Team</div>
+        <h2>WHO WE ARE.</h2>
+        <p>
+            Built by <a href="https://github.com/b1rdmania" target="_blank">@b1rdmania</a> as part of a research
+            initiative to explore AI-enhanced prediction markets on privacy-preserving blockchains.
+        </p>
+
+        <div class="highlight-box">
+            <strong>Open Source</strong>
+            <p>This project is MIT licensed and welcomes contributions from the community.</p>
+            <a href="https://github.com/b1rdmania/canton-prediction-markets" target="_blank">View on GitHub</a>
+        </div>
+
+        <div class="disclaimer">
+            <p>
+                <strong>Disclaimer:</strong> This platform is for educational and research purposes only. Prediction markets may be subject to
+                regulatory restrictions in your jurisdiction. Please ensure compliance with local laws before
                 participating. This is not financial advice.
             </p>
         </div>
-    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Canton Prediction Markets</p>
+        <p>Built with Canton Network, DAML Smart Contracts, and Research-Backed AI</p>
+    </footer>
 </body>
 </html>
