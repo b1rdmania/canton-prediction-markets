@@ -3,153 +3,366 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trading Strategy | Platform</title>
+    <title>About - Canton Prediction Markets</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+        }
+
+        .nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav a.active {
+            background: #0066cc;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .section p {
+            line-height: 1.8;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+        }
+
+        .section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .section li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .section li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+        }
+
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.15);
+            border-left: 4px solid #0066cc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .tech-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .tech-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: #a8edea;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+
+        .timeline-item:before {
+            content: "";
+            position: absolute;
+            left: -1.5rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #0066cc;
+        }
+
+        .timeline-item:after {
+            content: "";
+            position: absolute;
+            left: -1.45rem + 6px;
+            top: 1.2rem;
+            width: 2px;
+            height: calc(100% - 1.2rem);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .timeline-item:last-child:after {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>trading strategy</h1>
-            <p class="subtitle">MEAN REVERSION IN PREDICTION MARKETS</p>
-        </header>
-
-        <nav>
-            <a href="index.html">Dashboard</a>
-            <a href="signals.html">Signals</a>
-            <a href="ai-insights.html">AI Insights</a>
-            <a href="quality.html">Quality</a>
-            <a href="resolution.html">Resolution</a>
-            <a href="system.html">Trading Models</a>
-            <a href="about.html" class="active">Strategy</a>
-            <a href="research.html">Research</a>
-            <a href="theory.html">Theory</a>
-        </nav>
-
-        <div class="content">
-            <div class="highlight-box">
-                <strong>Core thesis:</strong> Prediction markets show systematic emotional volatility. This creates exploitable arbitrage through mean reversion.
-            </div>
-
-            <h2>Approach</h2>
-            <p>
-                Prediction markets are dominated by retail traders who make decisions based on emotion and recent events rather than statistics. This creates predictable patterns of overreaction and subsequent correction.
-            </p>
-
-            <h3>Mechanism</h3>
-            <p>When news breaks or sentiment shifts rapidly:</p>
-            <ul>
-                <li>Positive news drives buying, prices spike above fair value</li>
-                <li>Negative news drives selling, prices crash below fair value</li>
-                <li>Time passes, emotions fade, prices revert to fundamentals</li>
-            </ul>
-
-            <p>
-                Example: A candidate makes a controversial statement in a debate. Their election probability drops from 65% to 48% in minutes. Historical data shows debate performance has minimal correlation with election outcomes. Within 48 hours, the price reverts to 62%. That 14-point swing is pure emotion.
-            </p>
-
-            <h2>Three Models</h2>
-            <p>We run three parallel models with different risk profiles. All use the same principle: fade emotional extremes.</p>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Model</th>
-                        <th>Min Signal</th>
-                        <th>Max Position</th>
-                        <th>Kelly Fraction</th>
-                        <th>Philosophy</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Conservative</strong></td>
-                        <td>Strong</td>
-                        <td>$200</td>
-                        <td>0.15</td>
-                        <td>Trade only extreme overreactions</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Moderate</strong></td>
-                        <td>Moderate</td>
-                        <td>$500</td>
-                        <td>0.25</td>
-                        <td>Balanced risk and frequency</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Aggressive</strong></td>
-                        <td>Weak</td>
-                        <td>$800</td>
-                        <td>0.35</td>
-                        <td>Higher frequency, more opportunities</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h2>Why This Works</h2>
-
-            <h3>1. Behavioral Finance</h3>
-            <p>Decades of research show retail traders consistently:</p>
-            <ul>
-                <li>Overreact to recent information</li>
-                <li>Overvalue extreme probabilities</li>
-                <li>Let partisan beliefs distort probability assessments</li>
-                <li>Chase momentum and create self-reinforcing spirals</li>
-            </ul>
-
-            <h3>2. Market Structure</h3>
-            <ul>
-                <li>No professional market makers to arbitrage away inefficiencies</li>
-                <li>Retail-dominated participant base (86.4% lose money on Polymarket)</li>
-                <li>Low capital requirements prevent large institutions from entering</li>
-                <li>Political markets especially irrational due to partisan emotions</li>
-            </ul>
-
-            <h3>3. Mean Reversion at Specific Horizons</h3>
-            <p>
-                Berg and Rietz (2018) found that prediction market mispricing mean-reverts most strongly at 7-21 day horizons. This is our target range.
-            </p>
-
-            <h2>What We Avoid</h2>
-            <p>This is not:</p>
-            <ul>
-                <li>Trying to predict election outcomes better than polls</li>
-                <li>Fundamental analysis or political forecasting</li>
-                <li>Long-term position taking</li>
-                <li>Following "smart money" or whale traders</li>
-            </ul>
-
-            <p>This is:</p>
-            <ul>
-                <li>Statistical arbitrage of emotional volatility</li>
-                <li>Systematic mean reversion trading</li>
-                <li>Fading crowd psychology at extremes</li>
-                <li>Risk-managed position sizing using Kelly Criterion</li>
-            </ul>
-
-            <h2>Validation</h2>
-            <p>
-                We are running all three models in paper trading mode for 30 days to:
-            </p>
-            <ul>
-                <li>Validate the strategy works in live markets</li>
-                <li>Determine which risk profile performs best</li>
-                <li>Measure real-world slippage and execution costs</li>
-                <li>Record live market data for future strategy improvements</li>
-            </ul>
-
-            <p>
-                After 30 days, we select the winning model and potentially deploy with real capital. The data decides which parameters work best.
-            </p>
-
-            <div class="highlight-box">
-                <a href="index.html">View live performance</a>
-            </div>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">🏛️ Canton Prediction Markets</div>
+            <nav class="nav">
+                <a href="index.html">Markets</a>
+                <a href="ai-insights.html">AI Insights</a>
+                <a href="about.html" class="active">About</a>
+                <a href="trading-models/system.html">Trading Models →</a>
+            </nav>
         </div>
+    </header>
 
-        <footer>
-            <p>Polymarket API Test Trading Protocol</p>
-            <p><a href="https://github.com/b1rdmania/aztec-auction-analysis">GitHub Repository</a></p>
-        </footer>
+    <div class="container">
+        <div class="section">
+            <h1>About Canton Prediction Markets</h1>
+            <p>
+                An AI-enhanced prediction markets platform built on the Canton blockchain, combining the power of 
+                DAML smart contracts, real-world market data, and cutting-edge AI analysis to create a 
+                transparent, privacy-preserving prediction market ecosystem.
+            </p>
+
+            <div class="highlight-box">
+                <strong>Mission:</strong> To democratize access to prediction markets while leveraging AI and blockchain 
+                technology to provide unparalleled insights and security for participants.
+            </div>
+
+            <h2>🎯 What We Do</h2>
+            <p>
+                Canton Prediction Markets brings together three powerful technologies:
+            </p>
+            <ul>
+                <li><strong>Canton Blockchain</strong> - Privacy-preserving, Swiss-compliant distributed ledger</li>
+                <li><strong>Real-Time Market Data</strong> - Aggregated from Kalshi and Polymarket</li>
+                <li><strong>AI-Powered Insights</strong> - Grok API with RAG-enhanced analysis</li>
+            </ul>
+
+            <h2>🏗️ Architecture</h2>
+            
+            <h3>Smart Contracts (DAML)</h3>
+            <p>
+                All predictions are executed through DAML smart contracts deployed on the Canton network. 
+                This ensures:
+            </p>
+            <ul>
+                <li>Immutable record of all predictions</li>
+                <li>Automatic resolution based on real-world outcomes</li>
+                <li>Privacy-preserving transactions</li>
+                <li>Swiss regulatory compliance</li>
+            </ul>
+
+            <h3>AI Analysis Engine</h3>
+            <p>
+                Our AI system uses Grok (xAI) to provide intelligent insights:
+            </p>
+            <ul>
+                <li><strong>Market Summaries</strong> - Concise explanations of each prediction event</li>
+                <li><strong>Probability Estimates</strong> - AI-assisted likelihood calculations</li>
+                <li><strong>Historical Context (RAG)</strong> - Retrieves similar past events from vector database</li>
+                <li><strong>Confidence Scoring</strong> - Evaluates data quality and consistency</li>
+            </ul>
+
+            <h3>Market Data Integration</h3>
+            <p>
+                We aggregate real-time data from leading prediction market platforms:
+            </p>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon">📊</div>
+                    <strong>Kalshi</strong>
+                    <div style="font-size: 0.875rem; opacity: 0.8; margin-top: 0.5rem;">CFTC-regulated markets</div>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">💰</div>
+                    <strong>Polymarket</strong>
+                    <div style="font-size: 0.875rem; opacity: 0.8; margin-top: 0.5rem;">Crypto-based predictions</div>
+                </div>
+            </div>
+
+            <h2>📈 Development Roadmap</h2>
+            <p><strong>MVP Timeline: 14 Weeks</strong></p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <strong>Weeks 1-3: Foundation</strong>
+                    <p>DAML smart contract design and Canton setup</p>
+                </div>
+                <div class="timeline-item">
+                    <strong>Weeks 4-5: Data Integration</strong>
+                    <p>Market data feeds and resolution automation</p>
+                </div>
+                <div class="timeline-item">
+                    <strong>Weeks 6-8: AI Integration</strong>
+                    <p>Grok API, embeddings, and RAG system</p>
+                </div>
+                <div class="timeline-item">
+                    <strong>Weeks 9-11: User Interface</strong>
+                    <p>Frontend development and API connections</p>
+                </div>
+                <div class="timeline-item">
+                    <strong>Weeks 12-14: Testing & Launch</strong>
+                    <p>End-to-end testing and MVP deployment</p>
+                </div>
+            </div>
+
+            <h2>🔬 Technology Stack</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <div class="tech-icon">🏛️</div>
+                    <strong>Canton</strong>
+                    <p style="font-size: 0.875rem; margin-top: 0.5rem;">Blockchain & DAML</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🤖</div>
+                    <strong>Grok AI</strong>
+                    <p style="font-size: 0.875rem; margin-top: 0.5rem;">xAI Language Model</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">🔍</div>
+                    <strong>Vector DB</strong>
+                    <p style="font-size: 0.875rem; margin-top: 0.5rem;">Pinecone/Weaviate</p>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon">⚡</div>
+                    <strong>FastAPI</strong>
+                    <p style="font-size: 0.875rem; margin-top: 0.5rem;">Backend API</p>
+                </div>
+            </div>
+
+            <h2>🔐 Privacy & Security</h2>
+            <p>
+                Built on Canton's privacy-preserving architecture:
+            </p>
+            <ul>
+                <li>Confidential transactions with selective disclosure</li>
+                <li>No private keys stored on servers</li>
+                <li>Swiss data protection standards</li>
+                <li>Auditable yet private prediction history</li>
+            </ul>
+
+            <h2>🌍 Swiss Compliance</h2>
+            <p>
+                Canton Prediction Markets is designed with Swiss regulatory framework in mind:
+            </p>
+            <ul>
+                <li>Data sovereignty (Swiss-based infrastructure)</li>
+                <li>FINMA-aware design patterns</li>
+                <li>Privacy by design (GDPR compliant)</li>
+                <li>Transparent governance model</li>
+            </ul>
+
+            <h2>🔗 Related Projects</h2>
+            <ul>
+                <li><a href="https://github.com/b1rdmania/polymarket-ai-trading" target="_blank">Polymarket AI Trading</a> - AI trading system for Polymarket</li>
+                <li><a href="https://github.com/b1rdmania/aztec-auction-analysis" target="_blank">Aztec Auction Analysis</a> - Privacy-preserving auction research</li>
+            </ul>
+
+            <h2>📚 Documentation</h2>
+            <ul>
+                <li><a href="https://github.com/b1rdmania/canton-prediction-markets/blob/master/MVP_IMPLEMENTATION.md" target="_blank">MVP Implementation Plan</a></li>
+                <li><a href="https://github.com/b1rdmania/canton-prediction-markets/blob/master/README.md" target="_blank">Technical Documentation</a></li>
+                <li><a href="https://canton.network" target="_blank">Canton Network</a></li>
+                <li><a href="https://docs.daml.com" target="_blank">DAML Documentation</a></li>
+            </ul>
+
+            <h2>👥 Team</h2>
+            <p>
+                Built by <a href="https://github.com/b1rdmania" target="_blank">@b1rdmania</a> as part of a research 
+                initiative to explore AI-enhanced prediction markets on privacy-preserving blockchains.
+            </p>
+
+            <div class="highlight-box">
+                <strong>Open Source:</strong> This project is MIT licensed and welcomes contributions from the community.
+                <br><br>
+                <a href="https://github.com/b1rdmania/canton-prediction-markets" target="_blank">→ View on GitHub</a>
+            </div>
+
+            <h2>⚠️ Disclaimer</h2>
+            <p style="font-size: 0.875rem; opacity: 0.8;">
+                This platform is for educational and research purposes only. Prediction markets may be subject to 
+                regulatory restrictions in your jurisdiction. Please ensure compliance with local laws before 
+                participating. This is not financial advice.
+            </p>
+        </div>
     </div>
 </body>
 </html>

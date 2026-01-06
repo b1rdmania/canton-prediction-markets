@@ -6,12 +6,14 @@ AI-assisted prediction market trading protocol for Canton blockchain and Swiss-b
 
 ## 🎯 Overview
 
-A production-ready AI trading system designed for Canton/Swiss blockchain prediction markets, leveraging:
-- **Mean reversion models** from 40 years of prediction market research
-- **Three parallel trading strategies** (Conservative, Moderate, Aggressive)
-- **Paper trading mode** for risk-free testing
-- **Real-time AI analysis** using OpenAI GPT-4o-mini
-- **Canton blockchain integration**
+An AI-enhanced prediction markets platform built on Canton blockchain, combining:
+- **DAML smart contracts** for secure, privacy-preserving predictions
+- **Real-time market data** from Kalshi and Polymarket
+- **Grok AI integration** for market summaries and probability analysis
+- **RAG system** with vector database for historical context
+- **Swiss regulatory compliance** and data protection standards
+
+**Plus**: Advanced trading models (mean reversion strategies) available in the [Trading Models](vercel-frontend/public/trading-models/) section
 
 ## 🌐 Canton Network
 
@@ -94,6 +96,7 @@ docker compose up -d
 
 ## 📚 Documentation
 
+- **[MVP Implementation Plan](MVP_IMPLEMENTATION.md)** ← Start here!
 - [Deployment Guide](DEPLOYMENT.md)
 - [Docker Guide](DOCKER_GUIDE.md)
 - [Paper Trading Start](PAPER_TRADING_START.md)
