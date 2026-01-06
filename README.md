@@ -111,7 +111,8 @@ docker compose up -d
 
 ## 📚 Documentation
 
-- **[MVP Implementation Plan](MVP_IMPLEMENTATION.md)** ← Start here!
+- **[Project Status](PROJECT_STATUS.md)** ← Current status & what we've built!
+- **[MVP Implementation Plan](MVP_IMPLEMENTATION.md)** ← 14-week roadmap
 - [Deployment Guide](DEPLOYMENT.md)
 - [Docker Guide](DOCKER_GUIDE.md)
 - [Paper Trading Start](PAPER_TRADING_START.md)
