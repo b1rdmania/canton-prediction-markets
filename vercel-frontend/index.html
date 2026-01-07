@@ -93,33 +93,21 @@
     <section class="section section--no-padding-top">
         <div class="container">
             <div class="stats-dashboard">
-                <div class="stat-card">
-                    <div class="stat-card__icon" style="color: var(--color-info)">📊</div>
-                    <div class="stat-card__content">
-                        <div class="stat-card__label">Live Markets</div>
-                        <div class="stat-card__value" id="totalMarkets">--</div>
-                    </div>
+                <div class="stat-card stat-card--minimal">
+                    <div class="stat-card__label">Live Markets</div>
+                    <div class="stat-card__value" id="totalMarkets">--</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-card__icon" style="color: var(--color-success)">💰</div>
-                    <div class="stat-card__content">
-                        <div class="stat-card__label">24H Volume</div>
-                        <div class="stat-card__value" id="totalVolume">--</div>
-                    </div>
+                <div class="stat-card stat-card--minimal">
+                    <div class="stat-card__label">24H Volume</div>
+                    <div class="stat-card__value" id="totalVolume">--</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-card__icon" style="color: var(--color-politics)">🎯</div>
-                    <div class="stat-card__content">
-                        <div class="stat-card__label">Your Predictions</div>
-                        <div class="stat-card__value" id="totalPredictions">0</div>
-                    </div>
+                <div class="stat-card stat-card--minimal">
+                    <div class="stat-card__label">Your Predictions</div>
+                    <div class="stat-card__value" id="totalPredictions">0</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-card__icon" style="color: var(--color-warning)">⭐</div>
-                    <div class="stat-card__content">
-                        <div class="stat-card__label">Avg Quality</div>
-                        <div class="stat-card__value" id="avgQuality">--</div>
-                    </div>
+                <div class="stat-card stat-card--minimal">
+                    <div class="stat-card__label">Avg Quality</div>
+                    <div class="stat-card__value" id="avgQuality">--</div>
                 </div>
             </div>
         </div>
@@ -136,41 +124,37 @@
 
             <div class="grid grid--4col grid--cards">
                 <!-- Feature Card 1 -->
-                <article style="background: var(--color-bg-tertiary); border: var(--border-thin); padding: var(--space-2xl); position: relative;">
-                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--color-border);"></div>
-                    <div style="color: var(--color-accent-primary); font-size: 32px; margin-bottom: 16px;">📊</div>
-                    <h3 class="card-title" style="margin-bottom: 12px;">Quality Scoring</h3>
-                    <p class="text-body">
+                <article class="feature-card">
+                    <span class="feature-card__number">01</span>
+                    <h3 class="feature-card__title">Quality Scoring</h3>
+                    <p class="feature-card__text">
                         Every market is evaluated on liquidity, spread, activity, and time to resolution.
                     </p>
                 </article>
 
                 <!-- Feature Card 2 -->
-                <article style="background: var(--color-bg-tertiary); border: var(--border-thin); padding: var(--space-2xl); position: relative;">
-                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--color-border);"></div>
-                    <div style="color: var(--color-accent-primary); font-size: 32px; margin-bottom: 16px;">🤖</div>
-                    <h3 class="card-title" style="margin-bottom: 12px;">AI Insights</h3>
-                    <p class="text-body">
+                <article class="feature-card">
+                    <span class="feature-card__number">02</span>
+                    <h3 class="feature-card__title">AI Insights</h3>
+                    <p class="feature-card__text">
                         Heuristic analysis identifies value opportunities and market anomalies.
                     </p>
                 </article>
 
                 <!-- Feature Card 3 -->
-                <article style="background: var(--color-bg-tertiary); border: var(--border-thin); padding: var(--space-2xl); position: relative;">
-                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--color-border);"></div>
-                    <div style="color: var(--color-accent-primary); font-size: 32px; margin-bottom: 16px;">🎯</div>
-                    <h3 class="card-title" style="margin-bottom: 12px;">Track Predictions</h3>
-                    <p class="text-body">
+                <article class="feature-card">
+                    <span class="feature-card__number">03</span>
+                    <h3 class="feature-card__title">Track Predictions</h3>
+                    <p class="feature-card__text">
                         Monitor your predictions and see how they perform against market resolution.
                     </p>
                 </article>
 
                 <!-- Feature Card 4 -->
-                <article style="background: var(--color-bg-tertiary); border: var(--border-thin); padding: var(--space-2xl); position: relative;">
-                    <div style="position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--color-border);"></div>
-                    <div style="color: var(--color-accent-primary); font-size: 32px; margin-bottom: 16px;">📈</div>
-                    <h3 class="card-title" style="margin-bottom: 12px;">Live Data</h3>
-                    <p class="text-body">
+                <article class="feature-card">
+                    <span class="feature-card__number">04</span>
+                    <h3 class="feature-card__title">Live Data</h3>
+                    <p class="feature-card__text">
                         Real-time market data from Polymarket, updated continuously.
                     </p>
                 </article>
@@ -249,44 +233,20 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer footer--simple">
         <div class="container">
-            <div class="footer__content">
+            <div class="footer__row">
                 <div class="footer__brand">
                     <div class="footer__logo">angle on canton</div>
-                    <p class="footer__copyright">
-                        © 2026 Angle on Canton.<br>
-                        All rights reserved.
-                    </p>
+                    <p class="footer__copyright">© 2026 Angle on Canton</p>
                 </div>
-                <div class="footer__menu">
-                    <div class="footer__menu-col">
-                        <div class="footer__menu-title">Menu</div>
-                        <a href="#markets" class="footer__menu-link">Markets</a>
-                        <a href="ai-insights.html" class="footer__menu-link">AI Chat</a>
-                        <a href="research.html" class="footer__menu-link">Research</a>
-                        <a href="about.html" class="footer__menu-link">About</a>
-                    </div>
-                    <div class="footer__menu-col">
-                        <div class="footer__menu-title">Features</div>
-                        <a href="#markets" class="footer__menu-link">Quality Scoring</a>
-                        <a href="ai-insights.html" class="footer__menu-link">AI Insights</a>
-                        <a href="#predictions" class="footer__menu-link">Track Predictions</a>
-                    </div>
-                    <div class="footer__menu-col">
-                        <div class="footer__menu-title">Research</div>
-                        <a href="research.html" class="footer__menu-link">Methodology</a>
-                        <a href="research.html" class="footer__menu-link">Academic Papers</a>
-                        <a href="research.html" class="footer__menu-link">Trading Models</a>
-                    </div>
-                    <div class="footer__menu-col">
-                        <div class="footer__menu-title">About</div>
-                        <a href="about.html" class="footer__menu-link">Canton Vision</a>
-                        <a href="about.html" class="footer__menu-link">Roadmap</a>
-                    </div>
+                <div class="footer__links">
+                    <a href="#markets" class="footer__link">Markets</a>
+                    <a href="ai-insights.html" class="footer__link">AI Chat</a>
+                    <a href="research.html" class="footer__link">Research</a>
+                    <a href="about.html" class="footer__link">About</a>
                 </div>
             </div>
-            <div class="footer__wordmark">angle on canton</div>
         </div>
     </footer>
 
@@ -326,9 +286,6 @@
         </div>
     </div>
 
-    <!-- AI Chat Widget -->
-    <script src="js/chat-widget.js"></script>
-
     <script>
         const API_BASE = 'https://postposted-spent-knife-given.trycloudflare.com';
         let currentMarkets = [];
@@ -340,9 +297,6 @@
         document.getElementById('confidenceLevel')?.addEventListener('input', (e) => {
             document.getElementById('confidenceValue').textContent = e.target.value;
         });
-
-        // Initialize chat widget
-        const chatWidget = new ChatWidget();
 
         // Fetch markets on load
         async function fetchMarkets() {

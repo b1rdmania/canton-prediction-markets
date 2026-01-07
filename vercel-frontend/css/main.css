@@ -34,6 +34,7 @@
 @import url('./components/divider.css');
 @import url('./components/footer.css');
 @import url('./components/chat-widget.css');
+@import url('./components/feature-card.css');
 
 /* 7. Utilities */
 @import url('./06-utilities.css');

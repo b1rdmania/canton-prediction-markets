@@ -21,6 +21,13 @@
     border: var(--border-thin);
 }
 
+/* Minimal variant - no icons, cleaner look */
+.stat-card--minimal {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+}
+
 .stat-card__icon {
     font-size: 32px;
     flex-shrink: 0;

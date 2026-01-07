@@ -106,13 +106,15 @@
     --space-3xl: 48px;
     --space-4xl: 80px;
     --space-5xl: 120px;
+    --space-6xl: 160px;
+    --space-7xl: 200px;
 
     /* Component-Specific Spacing */
     --padding-card: var(--space-2xl);           /* 32px */
     --padding-section: var(--space-3xl);        /* 48px */
     --padding-nav: var(--space-3xl);            /* 48px horizontal */
-    --margin-section: var(--space-4xl);         /* 80px between sections */
-    --margin-hero: var(--space-5xl);            /* 120px hero padding */
+    --margin-section: var(--space-5xl);         /* 120px between sections */
+    --margin-hero: var(--space-6xl);            /* 160px hero padding */
     --gap-grid: var(--space-4xl);               /* 80px grid gap */
     --gap-nav: 40px;                            /* 40px nav link gap */
     --gap-card-grid: var(--space-xl);           /* 24px card grid */

@@ -1,0 +1,49 @@
+/* ============================================
+   FEATURE CARD COMPONENT
+   Clean, minimal feature cards like Sciemo
+   ============================================ */
+
+.feature-card {
+    background: var(--color-bg-primary);
+    border: var(--border-thin);
+    padding: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.feature-card__number {
+    font-family: var(--font-mono);
+    font-size: var(--text-mini);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-mega);
+    color: var(--color-text-secondary);
+}
+
+.feature-card__title {
+    font-family: var(--font-mono);
+    font-size: var(--text-body);
+    font-weight: var(--weight-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wider);
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.feature-card__text {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .feature-card {
+        padding: var(--space-xl);
+    }
+}

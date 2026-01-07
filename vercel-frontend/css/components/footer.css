@@ -90,7 +90,41 @@
 }
 
 /* ============================================
-   WORDMARK
+   SIMPLE FOOTER VARIANT
+   ============================================ */
+
+.footer--simple {
+    padding: var(--space-3xl) 0;
+}
+
+.footer__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-xl);
+}
+
+.footer__links {
+    display: flex;
+    gap: var(--space-xl);
+    flex-wrap: wrap;
+}
+
+.footer__link {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    color: var(--color-text-primary);
+    text-decoration: underline;
+    transition: opacity var(--transition-base);
+}
+
+.footer__link:hover {
+    opacity: 0.7;
+}
+
+/* ============================================
+   WORDMARK (for pages that need it)
    ============================================ */
 
 .footer__wordmark {
