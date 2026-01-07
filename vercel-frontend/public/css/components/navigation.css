@@ -1,0 +1,102 @@
+/* ============================================
+   NAVIGATION COMPONENT
+   Sticky header with logo, links, and CTA
+   ============================================ */
+
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+    background: var(--color-bg-primary);
+    border: var(--border-thin);
+    height: var(--nav-height);
+    padding: 0 var(--padding-nav);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav__logo {
+    font-family: var(--font-body);
+    font-size: 28px;
+    font-weight: var(--weight-regular);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    text-transform: lowercase;
+    letter-spacing: -0.01em;
+}
+
+.nav__menu {
+    display: flex;
+    gap: var(--gap-nav);
+    align-items: center;
+}
+
+.nav__link {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    font-weight: var(--weight-regular);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: opacity var(--transition-base);
+}
+
+.nav__link:hover {
+    opacity: 0.5;
+}
+
+.nav__link--active {
+    background: var(--color-text-primary);
+    color: var(--color-text-inverted);
+    padding: var(--space-sm) var(--space-lg);
+}
+
+.nav__cta {
+    background: var(--color-accent-primary);
+    color: var(--color-text-primary);
+    border: var(--border-thick);
+    padding: 14px 28px;
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    font-weight: var(--weight-regular);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    text-decoration: none;
+    transition: all var(--transition-base);
+}
+
+.nav__cta:hover {
+    background: var(--color-text-primary);
+    color: var(--color-accent-primary);
+}
+
+/* Mobile menu toggle (hidden by default) */
+.nav__toggle {
+    display: none;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .nav {
+        padding: 0 var(--space-xl);
+    }
+
+    .nav__menu {
+        gap: var(--space-xl);
+        font-size: var(--text-tiny);
+    }
+
+    .nav__link {
+        font-size: var(--text-mini);
+    }
+
+    .nav__cta {
+        padding: 10px 20px;
+        font-size: var(--text-mini);
+    }
+}

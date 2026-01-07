@@ -1,0 +1,33 @@
+/* ============================================
+   DIVIDER COMPONENT
+   4px black bars for section separation
+   ============================================ */
+
+.divider {
+    width: 100%;
+    height: var(--border-width-bar);
+    background: var(--color-border);
+    margin: var(--margin-section) 0;
+}
+
+.divider--narrow {
+    margin: var(--space-3xl) 0;
+}
+
+.divider--wide {
+    margin: var(--space-5xl) 0;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .divider {
+        margin: var(--space-3xl) 0;
+    }
+
+    .divider--wide {
+        margin: var(--space-4xl) 0;
+    }
+}

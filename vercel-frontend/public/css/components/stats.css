@@ -1,0 +1,107 @@
+/* ============================================
+   STATS DASHBOARD COMPONENT
+   4-column stats display
+   ============================================ */
+
+.stats-dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+    padding: var(--space-xl);
+    background: var(--color-bg-tertiary);
+    border: var(--border-thin);
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+    background: var(--color-bg-primary);
+    border: var(--border-thin);
+}
+
+.stat-card__icon {
+    font-size: 32px;
+    flex-shrink: 0;
+}
+
+.stat-card__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.stat-card__label {
+    font-family: var(--font-mono);
+    font-size: var(--text-mini);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-secondary);
+}
+
+.stat-card__value {
+    font-family: var(--font-headline);
+    font-size: var(--text-page-title);
+    font-weight: var(--weight-medium);
+    color: var(--color-text-primary);
+}
+
+/* Live indicator */
+.stat-card__live {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-family: var(--font-mono);
+    font-size: var(--text-mini);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-success);
+}
+
+.stat-card__live::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-success);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.4;
+    }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .stats-dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-dashboard {
+        grid-template-columns: repeat(2, 1fr);
+        padding: var(--space-lg);
+        gap: var(--space-md);
+    }
+
+    .stat-card {
+        padding: var(--space-md);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-md);
+    }
+
+    .stat-card__value {
+        font-size: var(--text-card-title);
+    }
+}

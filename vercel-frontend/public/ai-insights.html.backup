@@ -3,26 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Chat - Angle on Canton</title>
-    <meta name="description" content="Ask our AI assistant about prediction markets, quality scoring, and market analysis. Get instant insights on live markets.">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://angle-on-canton.vercel.app/ai-insights.html">
-    <meta property="og:title" content="AI Chat - Angle on Canton">
-    <meta property="og:description" content="Ask our AI assistant about prediction markets, quality scoring, and market analysis. Get instant insights on live markets.">
-    <meta property="og:image" content="https://angle-on-canton.vercel.app/share-card.png">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://angle-on-canton.vercel.app/ai-insights.html">
-    <meta property="twitter:title" content="AI Chat - Angle on Canton">
-    <meta property="twitter:description" content="Ask our AI assistant about prediction markets, quality scoring, and market analysis. Get instant insights on live markets.">
-    <meta property="twitter:image" content="https://angle-on-canton.vercel.app/share-card.png">
-
-    <link rel="stylesheet" href="css/main.css">
+    <title>AI Chat - Am Predicts MVP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/chat-widget.css">
     <style>
-        /* Page-specific overrides */
+        :root {
+            --off-white: #F7F7F7;
+            --near-black: #1B1C1C;
+            --light-gray: #E8E8E8;
+            --medium-gray: #6B6B6B;
+            --white: #FFFFFF;
+            /* LV Multicolor Palette */
+            --lv-pink: #E8A4C9;
+            --lv-red: #D94444;
+            --lv-purple: #9B6BB8;
+            --lv-blue: #5B8FD4;
+            --lv-green: #6AB86A;
+            --lv-yellow: #D4A44A;
+            --lv-teal: #4AB8B8;
+            --lv-coral: #E8846B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            background-color: var(--off-white);
+            color: var(--near-black);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--off-white);
+            border: 1px solid var(--near-black);
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .nav-logo {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--near-black);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-link {
+            font-family: 'Cousine', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--near-black);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .nav-link:hover {
+            opacity: 0.6;
+        }
+
+        .nav-link.active {
+            border-bottom: 2px solid var(--lv-purple);
+            padding-bottom: 4px;
+        }
+
+        .nav-cta {
+            font-family: 'Cousine', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: var(--lv-pink);
+            color: var(--near-black);
+            border: 1px solid var(--near-black);
+            padding: 12px 24px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--near-black);
+            color: var(--white);
+        }
+
+        /* Page Container */
         .page-container {
             flex: 1;
             display: flex;
@@ -30,56 +115,73 @@
             max-width: 1400px;
             width: 100%;
             margin: 0 auto;
-            padding: var(--space-3xl);
+            padding: 48px;
         }
 
         .page-header {
             text-align: center;
-            margin-bottom: var(--space-3xl);
+            margin-bottom: 48px;
         }
 
-        /* Chat Full Page Container */
+        .page-title {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 400;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .page-subtitle {
+            font-family: 'Cousine', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--medium-gray);
+        }
+
+        /* Chat Container - Full Page Version */
         .chat-full-container {
             flex: 1;
             display: flex;
             flex-direction: column;
-            background: var(--color-bg-primary);
-            border: var(--border-thick);
+            background: var(--white);
+            border: 2px solid var(--near-black);
             max-height: calc(100vh - 280px);
             min-height: 600px;
         }
 
         .chat-full-header {
-            background: var(--color-text-primary);
-            color: var(--color-text-inverted);
-            padding: var(--space-xl) var(--space-2xl);
-            border-bottom: var(--border-thick);
+            background: var(--near-black);
+            color: var(--white);
+            padding: 24px 32px;
+            border-bottom: 2px solid var(--near-black);
         }
 
         .chat-full-header h2 {
-            font-family: var(--font-mono);
+            font-family: 'Cousine', monospace;
             font-size: 16px;
-            font-weight: var(--weight-bold);
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: var(--tracking-wider);
-            margin-bottom: var(--space-sm);
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
         }
 
         .chat-full-status {
             display: flex;
             align-items: center;
-            gap: var(--space-sm);
-            font-family: var(--font-mono);
-            font-size: var(--text-mini);
+            gap: 8px;
+            font-family: 'Cousine', monospace;
+            font-size: 12px;
             text-transform: uppercase;
-            letter-spacing: var(--tracking-wider);
-            color: var(--color-success);
+            letter-spacing: 0.05em;
+            color: var(--lv-green);
         }
 
         .status-dot-small {
             width: 8px;
             height: 8px;
-            background: var(--color-success);
+            background: var(--lv-green);
             border-radius: 50%;
             animation: pulse 2s infinite;
         }
@@ -92,20 +194,41 @@
         .chat-full-body {
             flex: 1;
             overflow-y: auto;
-            padding: var(--space-2xl);
-            background: var(--color-bg-secondary);
+            padding: 32px;
+            background: var(--off-white);
         }
 
         .chat-full-footer {
-            border-top: var(--border-thin);
-            background: var(--color-bg-primary);
-            padding: var(--space-xl) var(--space-2xl);
+            border-top: 2px solid var(--light-gray);
+            background: var(--white);
+            padding: 24px 32px;
+        }
+
+        /* Reuse chat-widget styles for messages */
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--near-black);
+            padding: 32px;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        footer p {
+            font-family: 'Cousine', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--medium-gray);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
             .page-container {
-                padding: var(--space-xl);
+                padding: 24px;
             }
 
             .chat-full-container {
@@ -113,11 +236,11 @@
             }
 
             .chat-full-body {
-                padding: var(--space-lg);
+                padding: 20px;
             }
 
             .chat-full-footer {
-                padding: var(--space-md) var(--space-lg);
+                padding: 16px 20px;
             }
         }
     </style>
@@ -125,25 +248,22 @@
 <body>
     <!-- Navigation -->
     <nav class="nav">
-        <a href="index.html" class="nav__logo">angle on canton</a>
-        <div class="nav__menu">
-            <a href="index.html#markets" class="nav__link">Markets</a>
-            <a href="ai-insights.html" class="nav__link nav__link--active">AI Chat</a>
-            <a href="research.html" class="nav__link">Research</a>
-            <a href="index.html#predictions" class="nav__link">My Predictions</a>
-            <a href="about.html" class="nav__link">About</a>
-            <a href="index.html#markets" class="nav__cta">Browse Markets</a>
+        <a href="index.html" class="nav-logo">am predicts</a>
+        <div class="nav-links">
+            <a href="index.html#markets" class="nav-link">Markets</a>
+            <a href="ai-insights.html" class="nav-link active">AI Chat</a>
+            <a href="research.html" class="nav-link">Research</a>
+            <a href="index.html#predictions" class="nav-link">My Predictions</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="index.html#markets" class="nav-cta">Browse Markets</a>
         </div>
     </nav>
 
     <!-- Main Content -->
     <div class="page-container">
         <div class="page-header">
-            <div class="section-label">AI Assistant</div>
-            <h1 class="headline-page">AI ASSISTANT.</h1>
-            <p class="text-body-large text-uppercase" style="letter-spacing: 0.1em; color: var(--color-text-secondary);">
-                Ask me anything about prediction markets
-            </p>
+            <h1 class="page-title">AI ASSISTANT</h1>
+            <p class="page-subtitle">Ask me anything about prediction markets</p>
         </div>
 
         <!-- Full Page Chat Interface -->
@@ -208,46 +328,10 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer__content">
-                <div class="footer__brand">
-                    <div class="footer__logo">angle on canton</div>
-                    <p class="footer__copyright">
-                        © 2026 Angle on Canton.<br>
-                        All rights reserved.
-                    </p>
-                </div>
-                <div class="footer__menu">
-                    <div class="footer__menu-col">
-                        <div class="footer__menu-title">Menu</div>
-                        <a href="index.html#markets" class="footer__menu-link">Markets</a>
-                        <a href="ai-insights.html" class="footer__menu-link">AI Chat</a>
-                        <a href="research.html" class="footer__menu-link">Research</a>
-                        <a href="about.html" class="footer__menu-link">About</a>
-                    </div>
-                    <div class="footer__menu-col">
-                        <div class="footer__menu-title">Resources</div>
-                        <a href="research.html" class="footer__menu-link">Research Papers</a>
-                        <a href="about.html" class="footer__menu-link">Canton Protocol</a>
-                        <a href="index.html#faq" class="footer__menu-link">How It Works</a>
-                    </div>
-                    <div class="footer__menu-col">
-                        <div class="footer__menu-title">Connect</div>
-                        <a href="#" class="footer__menu-link">GitHub</a>
-                        <a href="#" class="footer__menu-link">Twitter</a>
-                        <a href="#" class="footer__menu-link">Discord</a>
-                    </div>
-                    <div class="footer__menu-col">
-                        <div class="footer__menu-title">Legal</div>
-                        <a href="#" class="footer__menu-link">Privacy</a>
-                        <a href="#" class="footer__menu-link">Terms</a>
-                        <a href="#" class="footer__menu-link">Disclaimer</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer__wordmark">angle on canton</div>
-        </div>
+    <footer>
+        <p>Am Predicts MVP (Demo v0)</p>
+        <p style="margin-top: 8px; color: var(--lv-pink);">Predictions are simulated for UX testing (no on-chain settlement).</p>
+        <p style="margin-top: 8px;">Insights may be heuristic/experimental and are not financial advice.</p>
     </footer>
 
     <script>

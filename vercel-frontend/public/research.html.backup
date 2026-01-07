@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Approach - Am Predicts MVP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/chat-widget.css">
+    <style>
+        :root {
+            --off-white: #F7F7F7;
+            --near-black: #1B1C1C;
+            --light-gray: #E8E8E8;
+            --medium-gray: #6B6B6B;
+            --white: #FFFFFF;
+            /* LV Multicolor Palette */
+            --lv-pink: #E8A4C9;
+            --lv-red: #D94444;
+            --lv-purple: #9B6BB8;
+            --lv-blue: #5B8FD4;
+            --lv-green: #6AB86A;
+            --lv-yellow: #D4A44A;
+            --lv-teal: #4AB8B8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            background-color: var(--off-white);
+            color: var(--near-black);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--off-white);
+            border: 1px solid var(--near-black);
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .nav-logo {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--near-black);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-link {
+            font-family: 'Cousine', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--near-black);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .nav-link:hover {
+            opacity: 0.6;
+        }
+
+        .nav-cta {
+            font-family: 'Cousine', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: var(--lv-pink);
+            color: var(--near-black);
+            border: 1px solid var(--near-black);
+            padding: 12px 24px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--near-black);
+            color: var(--white);
+        }
+
+        .section-label {
+            font-family: 'Cousine', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-label::before {
+            content: '+';
+            color: var(--lv-purple);
+            font-weight: bold;
+        }
+
+        .page-hero {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 48px 60px;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 400;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .page-hero p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--medium-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 48px;
+            border-top: 1px solid var(--near-black);
+        }
+
+        .content-section h2 {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 28px;
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .content-section p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--medium-gray);
+            margin-bottom: 20px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border: 1px solid var(--near-black);
+            padding: 32px;
+        }
+
+        .feature-card h3 {
+            font-family: 'Cousine', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .feature-card:nth-child(1) h3 { color: var(--lv-blue); }
+        .feature-card:nth-child(2) h3 { color: var(--lv-purple); }
+        .feature-card:nth-child(3) h3 { color: var(--lv-pink); }
+        .feature-card:nth-child(4) h3 { color: var(--lv-green); }
+
+        .feature-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--medium-gray);
+            margin-bottom: 0;
+        }
+
+        .highlight-box {
+            background: var(--near-black);
+            color: var(--white);
+            padding: 32px;
+            margin-top: 40px;
+        }
+
+        .highlight-box p {
+            color: var(--light-gray);
+            margin-bottom: 0;
+        }
+
+        .highlight-box strong {
+            color: var(--lv-yellow);
+        }
+
+        .btn-primary {
+            display: inline-block;
+            font-family: 'Cousine', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: var(--near-black);
+            color: var(--white);
+            border: none;
+            padding: 16px 32px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            margin-top: 32px;
+        }
+
+        .btn-primary:hover {
+            background: var(--lv-purple);
+            color: var(--white);
+        }
+
+        footer {
+            border-top: 1px solid var(--near-black);
+            padding: 48px;
+            text-align: center;
+        }
+
+        footer p {
+            font-family: 'Cousine', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--medium-gray);
+        }
+
+        footer p + p {
+            margin-top: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-hero,
+            .content-section {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">am predicts</a>
+        <div class="nav-links">
+            <a href="index.html#markets" class="nav-link">Markets</a>
+            <a href="ai-insights.html" class="nav-link">AI Chat</a>
+            <a href="research.html" class="nav-link active">Research</a>
+            <a href="index.html#predictions" class="nav-link">My Predictions</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="index.html#markets" class="nav-cta">Browse Markets</a>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="section-label">Our Approach</div>
+        <h1>HOW WE SCORE MARKETS.</h1>
+        <p>
+            We combine live market data with quality scoring algorithms to help you
+            identify the most reliable prediction markets.
+        </p>
+    </section>
+
+    <section class="content-section">
+        <h2>Quality Scoring</h2>
+        <p>
+            Not all prediction markets are created equal. Some have thin liquidity, wide spreads,
+            or low participation. Our quality scoring system evaluates each market on multiple
+            dimensions to help you focus on markets with the best data.
+        </p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>Liquidity Score</h3>
+                <p>Based on 24-hour trading volume. Higher volume means more reliable price discovery and easier entry/exit.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Spread Score</h3>
+                <p>Measures the bid-ask spread tightness. Tighter spreads indicate more efficient markets with lower trading costs.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Activity Score</h3>
+                <p>Tracks number of trades and unique participants. More activity suggests broader consensus on pricing.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Time Score</h3>
+                <p>Considers time until resolution. Markets closer to resolution often have more accurate pricing.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="section-label">Academic Foundation</div>
+        <h2>40+ YEARS OF RESEARCH</h2>
+        <p>
+            Our platform is built on decades of peer-reviewed academic research in prediction markets,
+            behavioral finance, and quantitative trading. We don't just show you markets — we apply proven
+            scientific methods to help you understand them.
+        </p>
+
+        <div class="feature-grid" style="margin-top: 40px;">
+            <div class="feature-card">
+                <h3>Berg & Rietz (2018)</h3>
+                <p style="margin-bottom: 12px;"><strong>Longshots, Overconfidence & Efficiency</strong></p>
+                <p>Study of forecast accuracy in binary prediction markets using Iowa Electronic Markets data. Examines longshot bias and overconfidence effects on market efficiency.</p>
+                <a href="../research/berg-rietz-2018-longshots-overconfidence.md" target="_blank" style="font-size: 12px; color: var(--lv-blue); text-decoration: underline; margin-top: 12px; display: inline-block;">View Paper →</a>
+            </div>
+            <div class="feature-card">
+                <h3>Munger (1995)</h3>
+                <p style="margin-bottom: 12px;"><strong>Psychology of Human Misjudgment</strong></p>
+                <p>Charlie Munger's analysis of 25 cognitive biases that affect decision-making. Critical foundation for understanding prediction market inefficiencies.</p>
+                <a href="../research/munger-25-biases.md" target="_blank" style="font-size: 12px; color: var(--lv-purple); text-decoration: underline; margin-top: 12px; display: inline-block;">View Paper →</a>
+            </div>
+            <div class="feature-card">
+                <h3>Mean Reversion Strategies</h3>
+                <p style="margin-bottom: 12px;"><strong>Quantitative Trading Guide</strong></p>
+                <p>Comprehensive analysis of mean reversion in prediction markets. Statistical arbitrage opportunities, risk management, and backtesting methodology.</p>
+                <a href="../research/quant_mean_reversion_guide.md" target="_blank" style="font-size: 12px; color: var(--lv-pink); text-decoration: underline; margin-top: 12px; display: inline-block;">View Paper →</a>
+            </div>
+            <div class="feature-card">
+                <h3>AI & Forecasting</h3>
+                <p style="margin-bottom: 12px;"><strong>Machine Learning Applications</strong></p>
+                <p>Research on AI-powered forecasting in prediction markets. Covers ensemble methods, feature engineering, and model validation techniques.</p>
+                <a href="../research/papers/theme4-ai-forecasting.md" target="_blank" style="font-size: 12px; color: var(--lv-teal); text-decoration: underline; margin-top: 12px; display: inline-block;">View Paper →</a>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+            <div style="background: var(--white); border: 1px solid var(--near-black); padding: 24px;">
+                <h3 style="font-family: 'Cousine', monospace; font-size: 14px; text-transform: uppercase; margin-bottom: 16px; color: var(--lv-blue);">More Research Topics</h3>
+                <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 2;">
+                    <li>• <a href="../research/papers/theme1-prediction-market-accuracy.md" target="_blank" style="color: var(--near-black); text-decoration: none; border-bottom: 1px solid var(--light-gray);">Prediction Market Accuracy</a></li>
+                    <li>• <a href="../research/papers/theme2-biases-inplay-betting.md" target="_blank" style="color: var(--near-black); text-decoration: none; border-bottom: 1px solid var(--light-gray);">Biases in In-Play Betting</a></li>
+                    <li>• <a href="../research/polymarket_ecosystem.md" target="_blank" style="color: var(--near-black); text-decoration: none; border-bottom: 1px solid var(--light-gray);">Polymarket Ecosystem Analysis</a></li>
+                    <li>• <a href="../research/political_betting_guide.md" target="_blank" style="color: var(--near-black); text-decoration: none; border-bottom: 1px solid var(--light-gray);">Political Betting Strategies</a></li>
+                </ul>
+            </div>
+            <div style="background: var(--white); border: 1px solid var(--near-black); padding: 24px;">
+                <h3 style="font-family: 'Cousine', monospace; font-size: 14px; text-transform: uppercase; margin-bottom: 16px; color: var(--lv-purple);">Applied Research</h3>
+                <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 2;">
+                    <li>• <a href="../research/polymarket_opportunities.md" target="_blank" style="color: var(--near-black); text-decoration: none; border-bottom: 1px solid var(--light-gray);">Market Opportunities Analysis</a></li>
+                    <li>• <a href="../research/polymarket_key_findings.md" target="_blank" style="color: var(--near-black); text-decoration: none; border-bottom: 1px solid var(--light-gray);">Key Findings & Patterns</a></li>
+                    <li>• <a href="../research/polymarket_data_research.md" target="_blank" style="color: var(--near-black); text-decoration: none; border-bottom: 1px solid var(--light-gray);">Data Analysis Methodology</a></li>
+                    <li>• <a href="../research/papers/pizzint-analysis.md" target="_blank" style="color: var(--near-black); text-decoration: none; border-bottom: 1px solid var(--light-gray);">Market Microstructure</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="section-label">Live Trading Models</div>
+        <h2>PROVEN IN PRODUCTION</h2>
+        <p>
+            Our quality scoring isn't just theoretical — we've deployed three live trading models on Polymarket
+            that use the same algorithms. These models run 24/7, making real predictions based on our research.
+        </p>
+
+        <div class="feature-grid" style="margin-top: 40px;">
+            <div class="feature-card">
+                <h3>Conservative Model</h3>
+                <p>Low-risk strategy focusing on high-quality markets (score > 75) with tight spreads. Targets small, consistent gains with strict risk management.</p>
+                <a href="trading-models/system.html" target="_blank" class="btn-primary" style="display: inline-block; padding: 12px 24px; margin-top: 16px; font-size: 12px;">View Model →</a>
+            </div>
+            <div class="feature-card">
+                <h3>Moderate Model</h3>
+                <p>Balanced approach combining quality scoring with mean reversion signals. Accepts medium-quality markets (score > 60) for higher potential returns.</p>
+                <a href="trading-models/signals.html" target="_blank" class="btn-primary" style="display: inline-block; padding: 12px 24px; margin-top: 16px; font-size: 12px;">View Signals →</a>
+            </div>
+            <div class="feature-card">
+                <h3>Aggressive Model</h3>
+                <p>High-risk, high-reward strategy targeting inefficient markets. Uses quantitative analysis to find mispriced opportunities with significant upside.</p>
+                <a href="trading-models/quality.html" target="_blank" class="btn-primary" style="display: inline-block; padding: 12px 24px; margin-top: 16px; font-size: 12px;">View Quality Metrics →</a>
+            </div>
+            <div class="feature-card">
+                <h3>Resolution Tracking</h3>
+                <p>Real-time monitoring of market resolutions and model accuracy. Track how our predictions perform against actual outcomes.</p>
+                <a href="trading-models/resolution.html" target="_blank" class="btn-primary" style="display: inline-block; padding: 12px 24px; margin-top: 16px; font-size: 12px;">View Results →</a>
+            </div>
+        </div>
+
+        <div class="highlight-box" style="margin-top: 40px; background: var(--near-black); color: var(--white); padding: 32px;">
+            <p style="color: var(--light-gray); margin-bottom: 16px;">
+                <strong style="color: var(--lv-green);">Why This Matters:</strong> These aren't backtested strategies or theoretical models.
+                They're live, running on real markets with real data. The same quality scoring system that powers our
+                trading models is available to you on every market card in our platform.
+            </p>
+            <p style="color: var(--light-gray); margin-bottom: 0;">
+                This transparency is core to our mission: prediction markets work best when participants have access
+                to sophisticated analysis tools. We're leveling the playing field with institutional-grade research.
+            </p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2>AI-Generated Insights</h2>
+        <p>
+            Our AI analyzes each market's metrics and generates plain-language insights to help
+            you understand what the data suggests. These insights combine the quality scores
+            with market probability to give you a quick read on each opportunity.
+        </p>
+        <p>
+            The insights highlight factors like market consensus strength, data quality, and
+            potential considerations - all designed to inform your prediction decisions.
+        </p>
+
+        <div class="highlight-box">
+            <p>
+                <strong>Note:</strong> All insights are heuristic and experimental. They're designed
+                to surface interesting patterns in the data, not to provide financial advice.
+                Always do your own research before placing predictions.
+            </p>
+        </div>
+
+        <a href="index.html#markets" class="btn-primary">Browse Markets</a>
+    </section>
+
+    <footer>
+        <p>Am Predicts MVP (Demo v0)</p>
+        <p style="color: var(--lv-pink);">Predictions are simulated for UX testing (no on-chain settlement).</p>
+        <p>Insights may be heuristic/experimental and are not financial advice.</p>
+    </footer>
+
+    <!-- AI Chat Widget -->
+    <script>const API_BASE = 'https://postposted-spent-knife-given.trycloudflare.com';</script>
+    <script src="js/chat-widget.js"></script>
+</body>
+</html>

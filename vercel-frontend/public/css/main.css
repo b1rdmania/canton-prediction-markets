@@ -1,0 +1,39 @@
+/* ============================================
+   AM PREDICTS DESIGN SYSTEM
+   Main CSS - Imports All Modules
+   Version 1.0 - January 2026
+   ============================================ */
+
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans:wght@400;500;700&display=swap');
+
+/* 1. Design Tokens (variables) */
+@import url('./01-design-tokens.css');
+
+/* 2. Reset/Normalize */
+@import url('./02-reset.css');
+
+/* 3. Base HTML elements */
+@import url('./03-base.css');
+
+/* 4. Typography */
+@import url('./04-typography.css');
+
+/* 5. Layout */
+@import url('./05-layout.css');
+
+/* 6. Components */
+@import url('./components/navigation.css');
+@import url('./components/section-label.css');
+@import url('./components/buttons.css');
+@import url('./components/market-card.css');
+@import url('./components/badge.css');
+@import url('./components/pill.css');
+@import url('./components/filter-bar.css');
+@import url('./components/stats.css');
+@import url('./components/divider.css');
+@import url('./components/footer.css');
+@import url('./components/chat-widget.css');
+
+/* 7. Utilities */
+@import url('./06-utilities.css');

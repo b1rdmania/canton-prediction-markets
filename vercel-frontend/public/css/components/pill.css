@@ -1,0 +1,76 @@
+/* ============================================
+   METRIC PILL COMPONENT
+   Pills with checkmarks for metrics
+   ============================================ */
+
+.metric-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-xl);
+    border: var(--border-thin);
+    background: transparent;
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    font-weight: var(--weight-regular);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-text-primary);
+}
+
+.metric-pill::before {
+    content: '✓';
+    color: var(--color-text-primary);
+    font-size: 16px;
+}
+
+/* ============================================
+   COLOR VARIANTS
+   ============================================ */
+
+.metric-pill--success {
+    border-color: var(--color-success);
+    color: var(--color-success);
+}
+
+.metric-pill--success::before {
+    color: var(--color-success);
+}
+
+.metric-pill--warning {
+    border-color: var(--color-warning);
+    color: var(--color-warning);
+}
+
+.metric-pill--warning::before {
+    color: var(--color-warning);
+}
+
+.metric-pill--danger {
+    border-color: var(--color-danger);
+    color: var(--color-danger);
+}
+
+.metric-pill--danger::before {
+    color: var(--color-danger);
+}
+
+.metric-pill--info {
+    border-color: var(--color-info);
+    color: var(--color-info);
+}
+
+.metric-pill--info::before {
+    color: var(--color-info);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .metric-pill {
+        padding: var(--space-sm) var(--space-lg);
+        font-size: var(--text-tiny);
+    }
+}

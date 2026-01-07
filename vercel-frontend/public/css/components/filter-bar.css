@@ -1,0 +1,93 @@
+/* ============================================
+   FILTER BAR COMPONENT
+   Sticky filter chips and sort controls
+   ============================================ */
+
+.filter-bar {
+    position: sticky;
+    top: var(--nav-height);
+    z-index: calc(var(--z-sticky) - 1);
+    background: var(--color-bg-tertiary);
+    border-bottom: var(--border-thin);
+    padding: var(--space-md) var(--space-xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+}
+
+/* ============================================
+   FILTER CHIPS
+   ============================================ */
+
+.filter-bar__chips {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.filter-chip {
+    padding: var(--space-sm) var(--space-lg);
+    border: var(--border-thin);
+    background: transparent;
+    font-family: var(--font-mono);
+    font-size: var(--text-tiny);
+    font-weight: var(--weight-regular);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.filter-chip:hover {
+    background: var(--color-bg-primary);
+}
+
+.filter-chip--active {
+    background: var(--color-text-primary);
+    color: var(--color-text-inverted);
+}
+
+/* ============================================
+   SORT CONTROLS
+   ============================================ */
+
+.filter-bar__sort {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.filter-select {
+    padding: var(--space-sm) var(--space-lg);
+    border: var(--border-thin);
+    background: var(--color-bg-primary);
+    font-family: var(--font-mono);
+    font-size: var(--text-tiny);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-primary);
+    cursor: pointer;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .filter-bar {
+        padding: var(--space-md) var(--space-lg);
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-bar__chips {
+        justify-content: center;
+    }
+
+    .filter-bar__sort {
+        justify-content: space-between;
+    }
+}

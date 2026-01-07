@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Am Predicts MVP - AI-Enhanced Prediction Markets</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/chat-widget.css">
+    <style>
+        :root {
+            --off-white: #F7F7F7;
+            --near-black: #1B1C1C;
+            --light-gray: #E8E8E8;
+            --medium-gray: #6B6B6B;
+            --white: #FFFFFF;
+            /* LV Multicolor Palette */
+            --lv-pink: #E8A4C9;
+            --lv-red: #D94444;
+            --lv-purple: #9B6BB8;
+            --lv-blue: #5B8FD4;
+            --lv-green: #6AB86A;
+            --lv-yellow: #D4A44A;
+            --lv-teal: #4AB8B8;
+            --lv-coral: #E8846B;
+            /* Primary accent (rotating) */
+            --accent: var(--lv-pink);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            background-color: var(--off-white);
+            color: var(--near-black);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--off-white);
+            border: 1px solid var(--near-black);
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .nav-logo {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--near-black);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-link {
+            font-family: 'Cousine', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--near-black);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .nav-link:hover {
+            opacity: 0.6;
+        }
+
+        .nav-cta {
+            font-family: 'Cousine', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: var(--lv-pink);
+            color: var(--near-black);
+            border: 1px solid var(--near-black);
+            padding: 12px 24px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--near-black);
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 48px 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-headline {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: clamp(48px, 6vw, 72px);
+            font-weight: 400;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+        }
+
+        .hero-subhead {
+            font-family: 'Cousine', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 24px;
+            color: var(--medium-gray);
+        }
+
+        .hero-body {
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--medium-gray);
+            margin-bottom: 40px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            font-family: 'Cousine', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: var(--near-black);
+            color: var(--white);
+            border: none;
+            padding: 16px 32px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--lv-purple);
+            color: var(--white);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            font-family: 'Cousine', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: transparent;
+            color: var(--near-black);
+            border: 1px solid var(--near-black);
+            padding: 15px 31px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            margin-left: 16px;
+        }
+
+        .btn-secondary:hover {
+            background: var(--near-black);
+            color: var(--white);
+        }
+
+        /* Hero SVG Graphic */
+        .hero-graphic {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-graphic svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            display: flex;
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Cousine', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--lv-yellow);
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.connected {
+            background: var(--lv-green);
+        }
+
+        .status-dot.disconnected {
+            background: var(--lv-red);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Feature Cards Section */
+        .features-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 48px 80px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--light-gray);
+            border: 1px solid var(--near-black);
+            position: relative;
+            padding: 48px 24px 24px;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: var(--near-black);
+        }
+
+        .feature-icon {
+            margin-bottom: 24px;
+            font-size: 24px;
+        }
+
+        .feature-card:nth-child(1) .feature-icon { color: var(--lv-blue); }
+        .feature-card:nth-child(2) .feature-icon { color: var(--lv-purple); }
+        .feature-card:nth-child(3) .feature-icon { color: var(--lv-pink); }
+        .feature-card:nth-child(4) .feature-icon { color: var(--lv-green); }
+
+        .feature-card:nth-child(1)::before { background: var(--lv-blue); }
+        .feature-card:nth-child(2)::before { background: var(--lv-purple); }
+        .feature-card:nth-child(3)::before { background: var(--lv-pink); }
+        .feature-card:nth-child(4)::before { background: var(--lv-green); }
+
+        .feature-title {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            margin-bottom: 12px;
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--medium-gray);
+        }
+
+        /* Section Label */
+        .section-label {
+            font-family: 'Cousine', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-label::before {
+            content: '+';
+            color: var(--lv-purple);
+            font-weight: bold;
+        }
+
+        /* Markets Section */
+        .markets-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 48px;
+        }
+
+        .markets-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-bottom: 48px;
+        }
+
+        .markets-headline {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: clamp(36px, 4vw, 48px);
+            font-weight: 400;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .markets-intro {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--medium-gray);
+        }
+
+        .markets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 24px;
+        }
+
+        .market-card {
+            background: var(--white);
+            border: 1px solid var(--near-black);
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .market-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .market-card-header {
+            background: var(--near-black);
+            color: var(--white);
+            padding: 12px 20px;
+            font-family: 'Cousine', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .market-card-body {
+            padding: 24px 20px;
+        }
+
+        .market-title {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            min-height: 44px;
+        }
+
+        .market-probability {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 48px;
+            font-weight: 400;
+            margin-bottom: 16px;
+        }
+
+        .market-insight {
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--medium-gray);
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .market-stats {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .metric-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border: 1px solid var(--near-black);
+            font-family: 'Cousine', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .metric-tag::before {
+            content: '\2713';
+            color: var(--lv-teal);
+        }
+
+        .market-action {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: var(--near-black);
+            color: var(--white);
+            font-family: 'Cousine', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .market-action:hover {
+            background: var(--lv-pink);
+            color: var(--near-black);
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 80px 48px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--light-gray);
+            border-top-color: var(--lv-purple);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 24px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-family: 'Cousine', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--medium-gray);
+        }
+
+        /* Stats Dashboard */
+        .stats-dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 48px 40px;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border: 2px solid var(--near-black);
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .stat-icon {
+            flex-shrink: 0;
+        }
+
+        .stat-content {
+            flex: 1;
+        }
+
+        .stat-value {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 8px;
+            color: var(--near-black);
+        }
+
+        .stat-label {
+            font-family: 'Cousine', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--medium-gray);
+        }
+
+        .stats-footer {
+            display: flex;
+            justify-content: center;
+            padding: 12px 0;
+        }
+
+        .last-update {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Cousine', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--medium-gray);
+        }
+
+        .update-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--lv-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            background: var(--light-gray);
+            border: 1px solid var(--near-black);
+            padding: 20px 24px;
+            margin-bottom: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .filter-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .filter-label {
+            font-family: 'Cousine', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--medium-gray);
+            font-weight: 700;
+        }
+
+        .filter-chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-chip {
+            font-family: 'Cousine', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 10px 16px;
+            background: var(--white);
+            color: var(--near-black);
+            border: 1px solid var(--near-black);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-chip:hover {
+            background: var(--near-black);
+            color: var(--white);
+        }
+
+        .filter-chip.active {
+            background: var(--near-black);
+            color: var(--white);
+        }
+
+        .filter-select {
+            font-family: 'Cousine', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 10px 16px;
+            background: var(--white);
+            color: var(--near-black);
+            border: 1px solid var(--near-black);
+            cursor: pointer;
+            min-width: 180px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--lv-purple);
+        }
+
+        /* Research Banner */
+        .research-banner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 48px 80px;
+        }
+
+        .research-banner-inner {
+            background: var(--white);
+            border: 1px solid var(--near-black);
+            padding: 48px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .research-banner-content h3 {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 24px;
+            font-weight: 500;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .research-banner-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--medium-gray);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 48px;
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 80px;
+        }
+
+        .faq-graphic {
+            padding-top: 40px;
+        }
+
+        .faq-content {
+            padding-top: 40px;
+        }
+
+        .faq-headline {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: clamp(36px, 4vw, 48px);
+            font-weight: 400;
+            text-transform: uppercase;
+            line-height: 1.1;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .faq-item {
+            border-top: 1px solid var(--near-black);
+            padding: 24px 0;
+        }
+
+        .faq-question {
+            font-family: 'Cousine', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .faq-toggle {
+            font-size: 24px;
+            color: var(--medium-gray);
+        }
+
+        .faq-answer {
+            display: none;
+            padding-top: 16px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--medium-gray);
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(27, 28, 28, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border: 1px solid var(--near-black);
+            width: 90%;
+            max-width: 560px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            background: var(--near-black);
+            color: var(--white);
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-family: 'Cousine', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 400;
+        }
+
+        .modal-close {
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .modal-close:hover {
+            opacity: 1;
+        }
+
+        .modal-body {
+            padding: 32px 24px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-family: 'Cousine', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--near-black);
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 16px;
+            background: var(--off-white);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--lv-blue);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--near-black);
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 16px;
+            background: var(--off-white);
+            cursor: pointer;
+        }
+
+        .modal-market-info {
+            background: var(--light-gray);
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .modal-market-title {
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .modal-market-stats {
+            display: flex;
+            gap: 32px;
+        }
+
+        .modal-stat-label {
+            font-size: 12px;
+            color: var(--medium-gray);
+            margin-bottom: 4px;
+        }
+
+        .modal-stat-value {
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--near-black);
+            padding: 48px;
+            text-align: center;
+        }
+
+        footer p {
+            font-family: 'Cousine', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--medium-gray);
+        }
+
+        footer p + p {
+            margin-top: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 80px 24px 60px;
+            }
+
+            .hero-graphic {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .markets-header {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .faq-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .faq-graphic {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .markets-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .research-banner-inner {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .status-bar {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .stat-card {
+                padding: 16px;
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+            }
+
+            .stat-value {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">am predicts</a>
+        <div class="nav-links">
+            <a href="#markets" class="nav-link">Markets</a>
+            <a href="ai-insights.html" class="nav-link">AI Chat</a>
+            <a href="research.html" class="nav-link">Research</a>
+            <a href="#predictions" class="nav-link">My Predictions</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="#markets" class="nav-cta">Browse Markets</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-headline">BROWSE. PREDICT. WIN.</h1>
+            <p class="hero-subhead">AI-ENHANCED PREDICTION MARKETS.</p>
+            <p class="hero-body">
+                Browse live prediction markets, see AI-powered insights with quality scores,
+                and place your predictions. Simple, transparent, and powered by real market data.
+            </p>
+            <div>
+                <a href="#markets" class="btn-primary">BROWSE MARKETS</a>
+                <a href="#predictions" class="btn-secondary">MY PREDICTIONS</a>
+            </div>
+
+            <div class="status-bar">
+                <div class="status-item">
+                    <div class="status-dot connected" id="apiStatus"></div>
+                    <span>Live Data</span>
+                </div>
+                <div class="status-item">
+                    <div class="status-dot connected" id="aiStatus"></div>
+                    <span>AI Insights</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-graphic">
+            <!-- Node and Edge SVG Graphic -->
+            <svg width="400" height="350" viewBox="0 0 400 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Connecting lines -->
+                <line x1="280" y1="60" x2="340" y2="60" stroke="#1B1C1C" stroke-width="2"/>
+                <line x1="340" y1="60" x2="340" y2="120" stroke="#1B1C1C" stroke-width="2"/>
+                <line x1="340" y1="120" x2="280" y2="120" stroke="#1B1C1C" stroke-width="2"/>
+                <line x1="280" y1="120" x2="280" y2="60" stroke="#1B1C1C" stroke-width="2"/>
+                <line x1="340" y1="120" x2="380" y2="160" stroke="#1B1C1C" stroke-width="2"/>
+                <line x1="280" y1="120" x2="220" y2="180" stroke="#1B1C1C" stroke-width="2"/>
+                <line x1="220" y1="180" x2="220" y2="260" stroke="#1B1C1C" stroke-width="2"/>
+                <line x1="220" y1="260" x2="120" y2="260" stroke="#1B1C1C" stroke-width="2"/>
+                <line x1="120" y1="260" x2="60" y2="300" stroke="#1B1C1C" stroke-width="2"/>
+                <line x1="280" y1="60" x2="380" y2="160" stroke="#1B1C1C" stroke-width="2"/>
+                <line x1="340" y1="60" x2="380" y2="160" stroke="#1B1C1C" stroke-width="2"/>
+
+                <!-- LV Multicolor nodes -->
+                <circle cx="280" cy="60" r="20" fill="#E8A4C9"/>
+                <circle cx="340" cy="60" r="20" fill="#5B8FD4"/>
+                <circle cx="340" cy="120" r="16" fill="#9B6BB8"/>
+                <circle cx="280" cy="120" r="16" fill="#6AB86A"/>
+                <circle cx="380" cy="160" r="24" fill="#D4A44A"/>
+                <circle cx="220" cy="180" r="14" fill="#4AB8B8"/>
+                <circle cx="220" cy="260" r="18" fill="#D94444"/>
+                <circle cx="120" cy="260" r="12" fill="#E8A4C9"/>
+                <circle cx="60" cy="300" r="28" fill="#9B6BB8"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Live Stats Dashboard -->
+    <section class="stats-dashboard">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon" style="color: var(--lv-blue);">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                    </svg>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value" id="statTotalMarkets">--</div>
+                    <div class="stat-label">LIVE MARKETS</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="color: var(--lv-green);">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value" id="statVolume24h">--</div>
+                    <div class="stat-label">24H VOLUME</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="color: var(--lv-purple);">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value" id="statPredictions">--</div>
+                    <div class="stat-label">YOUR PREDICTIONS</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="color: var(--lv-yellow);">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value" id="statAvgQuality">--</div>
+                    <div class="stat-label">AVG QUALITY</div>
+                </div>
+            </div>
+        </div>
+        <div class="stats-footer">
+            <div class="last-update">
+                <span class="update-dot"></span>
+                <span>Last updated: <span id="statsTimestamp">--</span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="features-section">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.35-4.35"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">1. Browse Markets</h3>
+                <p class="feature-desc">Explore live prediction markets from Polymarket with real-time data.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">2. See AI Insights</h3>
+                <p class="feature-desc">Get quality scores and AI-generated analysis for each market.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="12" y1="18" x2="12" y2="12"/>
+                        <line x1="9" y1="15" x2="15" y2="15"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">3. Place Prediction</h3>
+                <p class="feature-desc">Select your outcome, set your amount, and record your prediction.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                </div>
+                <h3 class="feature-title">4. Track Results</h3>
+                <p class="feature-desc">View your predictions and see how they perform over time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Markets Section -->
+    <section class="markets-section" id="markets">
+        <div class="markets-header">
+            <div>
+                <div class="section-label">Live Markets</div>
+                <h2 class="markets-headline">BROWSE PREDICTION MARKETS.</h2>
+            </div>
+            <div>
+                <p class="markets-intro">
+                    Live markets from Polymarket with AI-powered quality scores and insights.
+                    Click any market to see details and place your prediction.
+                </p>
+                <div style="margin-top: 24px;">
+                    <button class="btn-primary" onclick="refreshMarkets()">REFRESH</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <div class="filter-section">
+                <span class="filter-label">FILTER:</span>
+                <div class="filter-chips">
+                    <button class="filter-chip active" data-filter="all" onclick="filterMarkets('all')">
+                        All Markets
+                    </button>
+                    <button class="filter-chip" data-filter="high-quality" onclick="filterMarkets('high-quality')">
+                        High Quality (70+)
+                    </button>
+                    <button class="filter-chip" data-filter="high-volume" onclick="filterMarkets('high-volume')">
+                        High Volume
+                    </button>
+                    <button class="filter-chip" data-filter="confident" onclick="filterMarkets('confident')">
+                        High Confidence
+                    </button>
+                </div>
+            </div>
+            <div class="filter-section">
+                <span class="filter-label">SORT:</span>
+                <select class="filter-select" id="sortSelect" onchange="sortMarkets(this.value)">
+                    <option value="quality">Quality Score</option>
+                    <option value="volume">24h Volume</option>
+                    <option value="probability">Probability</option>
+                    <option value="newest">Newest First</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="marketsLoading" class="loading">
+            <div class="spinner"></div>
+            <p class="loading-text">Loading markets from Polymarket...</p>
+        </div>
+
+        <div id="marketsGrid" class="markets-grid" style="display: none;">
+            <!-- Markets will be loaded dynamically -->
+        </div>
+    </section>
+
+    <!-- Your Predictions Section -->
+    <section class="markets-section" id="predictions">
+        <div class="markets-header">
+            <div>
+                <div class="section-label">Your Predictions</div>
+                <h2 class="markets-headline">TRACK YOUR PREDICTIONS.</h2>
+            </div>
+            <div>
+                <p class="markets-intro">
+                    Your predictions are saved locally. Place predictions on any market above to see them here.
+                </p>
+            </div>
+        </div>
+
+        <div id="predictionsEmpty" class="loading" style="padding: 40px;">
+            <p class="loading-text">No predictions yet. Browse markets above and place your first prediction!</p>
+        </div>
+
+        <div id="predictionsGrid" class="markets-grid" style="display: none;">
+            <!-- Predictions will be loaded from localStorage -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Am Predicts MVP (Demo v0)</p>
+        <p style="margin-top: 8px; color: var(--lv-pink);">Predictions are simulated for UX testing (no on-chain settlement).</p>
+        <p style="margin-top: 8px;">Insights may be heuristic/experimental and are not financial advice.</p>
+    </footer>
+
+    <!-- Prediction Modal -->
+    <div id="predictionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Place Prediction</h2>
+                <span class="modal-close" onclick="closePredictionModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="modalMarketInfo" class="modal-market-info"></div>
+
+                <form id="predictionForm" onsubmit="submitPrediction(event)">
+                    <div class="form-group">
+                        <label class="form-label">Your Prediction</label>
+                        <select class="form-select" id="predictionOutcome" required>
+                            <option value="">Select outcome...</option>
+                            <option value="yes">YES</option>
+                            <option value="no">NO</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Amount (USD)</label>
+                        <input type="number" class="form-input" id="predictionAmount" min="1" step="0.01" placeholder="100" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Confidence Level: <span id="confidenceValue">5</span>/10</label>
+                        <input type="range" class="form-input" id="confidenceLevel" min="1" max="10" value="5" style="padding: 0;">
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%;">SUBMIT PREDICTION</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://postposted-spent-knife-given.trycloudflare.com';
+        let currentMarkets = [];
+        let selectedMarket = null;
+
+        // FAQ Toggle
+        function toggleFaq(element) {
+            element.classList.toggle('active');
+        }
+
+        // Confidence slider
+        document.getElementById('confidenceLevel')?.addEventListener('input', (e) => {
+            document.getElementById('confidenceValue').textContent = e.target.value;
+        });
+
+        async function checkStatus() {
+            try {
+                const response = await fetch(`${API_BASE}/api/health`);
+                const data = await response.json();
+
+                document.getElementById('apiStatus').className = 'status-dot connected';
+                document.getElementById('aiStatus').className = 'status-dot connected';
+            } catch (error) {
+                console.error('Status check failed:', error);
+                document.getElementById('apiStatus').className = 'status-dot disconnected';
+                document.getElementById('aiStatus').className = 'status-dot disconnected';
+            }
+        }
+
+        async function loadMarkets() {
+            try {
+                document.getElementById('marketsLoading').style.display = 'block';
+                document.getElementById('marketsGrid').style.display = 'none';
+
+                const response = await fetch(`${API_BASE}/api/quality/top-markets?limit=12`);
+                const data = await response.json();
+
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+
+                currentMarkets = data.markets || [];
+                displayMarkets(currentMarkets);
+                updateStatsDisplay(currentMarkets);
+
+                document.getElementById('marketsLoading').style.display = 'none';
+                document.getElementById('marketsGrid').style.display = 'grid';
+            } catch (error) {
+                console.error('Failed to load markets:', error);
+                document.getElementById('marketsLoading').innerHTML =
+                    '<p class="loading-text" style="color: #ef4444;">Failed to load markets. Please try again.</p>';
+            }
+        }
+
+        function updateStatsDisplay(markets) {
+            // Total markets
+            document.getElementById('statTotalMarkets').textContent = markets.length;
+
+            // Total 24h volume
+            const totalVolume = markets.reduce((sum, m) => sum + (m.volume_24h || 0), 0);
+            document.getElementById('statVolume24h').textContent = '$' + formatVolume(totalVolume);
+
+            // User predictions count
+            const predictions = getPredictions();
+            document.getElementById('statPredictions').textContent = predictions.length;
+
+            // Average quality
+            const avgQuality = markets.reduce((sum, m) => sum + (m.quality?.total_score || 0), 0) / markets.length;
+            document.getElementById('statAvgQuality').textContent = avgQuality.toFixed(0) + '/100';
+
+            // Timestamp
+            const now = new Date();
+            document.getElementById('statsTimestamp').textContent = now.toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function displayMarkets(markets) {
+            const grid = document.getElementById('marketsGrid');
+            grid.innerHTML = markets.map(market => {
+                const category = detectCategory(market.question);
+                const categoryColor = getCategoryColor(category);
+
+                return `
+                <div class="market-card" onclick="openPredictionModal('${market.market_id}')">
+                    <div class="market-card-header">
+                        <span>ACTIVE MARKET</span>
+                        <span>QUALITY: ${market.quality?.total_score?.toFixed(0) || 0}/100</span>
+                    </div>
+                    <div class="market-category-bar" style="background: ${categoryColor}; color: var(--near-black); padding: 8px 20px; font-family: 'Cousine', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; display: flex; justify-content: space-between; align-items: center;">
+                        <span>${category}</span>
+                        <span style="opacity: 0.7;">${getMarketTrend(market)}</span>
+                    </div>
+                    <div class="market-card-body">
+                        <div class="market-title">${market.question}</div>
+                        <div class="market-probability">${(parseFloat(market.price || 0.5) * 100).toFixed(1)}%</div>
+
+                        <div class="market-insight">${getAIInsight(market)}</div>
+
+                        <div class="market-stats">
+                            <span class="metric-tag">$${formatVolume(market.volume_24h || 0)} VOL</span>
+                            <span class="metric-tag">${getConfidenceBadge(market.price)} CONF</span>
+                            <span class="metric-tag" style="border-color: ${categoryColor}; color: ${categoryColor};">● ${category}</span>
+                        </div>
+                    </div>
+                    <button class="market-action" onclick="event.stopPropagation(); openPredictionModal('${market.market_id}')">
+                        PLACE PREDICTION
+                    </button>
+                </div>
+            `}).join('');
+        }
+
+        function detectCategory(question) {
+            const q = question.toLowerCase();
+
+            if (q.includes('trump') || q.includes('biden') || q.includes('election') || q.includes('president') || q.includes('senate') || q.includes('congress') || q.includes('political')) {
+                return 'Politics';
+            } else if (q.includes('bitcoin') || q.includes('crypto') || q.includes('eth') || q.includes('blockchain')) {
+                return 'Crypto';
+            } else if (q.includes('sport') || q.includes('nfl') || q.includes('nba') || q.includes('soccer') || q.includes('football')) {
+                return 'Sports';
+            } else if (q.includes('movie') || q.includes('oscar') || q.includes('emmy') || q.includes('celebrity')) {
+                return 'Entertainment';
+            } else if (q.includes('stock') || q.includes('market') || q.includes('economy') || q.includes('gdp') || q.includes('company')) {
+                return 'Business';
+            } else if (q.includes('science') || q.includes('research') || q.includes('discovery') || q.includes('nobel')) {
+                return 'Science';
+            } else {
+                return 'General';
+            }
+        }
+
+        function getCategoryColor(category) {
+            const colors = {
+                'Politics': 'var(--lv-blue)',
+                'Crypto': 'var(--lv-purple)',
+                'Sports': 'var(--lv-green)',
+                'Entertainment': 'var(--lv-pink)',
+                'Business': 'var(--lv-yellow)',
+                'Science': 'var(--lv-teal)',
+                'General': 'var(--light-gray)'
+            };
+            return colors[category] || 'var(--light-gray)';
+        }
+
+        function getMarketTrend(market) {
+            // For now, show volume-based trend
+            const volume = market.volume_24h || 0;
+            if (volume > 50000) return '↑ High Activity';
+            if (volume > 10000) return '→ Moderate';
+            return '→ Low Volume';
+        }
+
+        function getAIInsight(market) {
+            const prob = parseFloat(market.price || 0.5);
+            const quality = market.quality?.total_score || 0;
+
+            if (quality > 70) {
+                if (prob > 0.7) return "High quality market with strong YES consensus. Good liquidity and tight spread.";
+                if (prob < 0.3) return "High quality market with strong NO consensus. Good liquidity and tight spread.";
+                return "High quality market with uncertainty. Active trading and good data.";
+            }
+            if (prob > 0.7) return "Strong consensus toward YES. Monitor for volatility.";
+            if (prob < 0.3) return "Strong consensus toward NO. Monitor for volatility.";
+            return "Uncertain market. Mixed signals detected.";
+        }
+
+        function getConfidenceBadge(price) {
+            const prob = parseFloat(price || 0.5);
+            if (prob > 0.7 || prob < 0.3) return "HIGH";
+            if (prob > 0.6 || prob < 0.4) return "MED";
+            return "LOW";
+        }
+
+        function formatVolume(value) {
+            if (value >= 1000000) return (value / 1000000).toFixed(1) + 'M';
+            if (value >= 1000) return (value / 1000).toFixed(1) + 'K';
+            return value.toFixed(0);
+        }
+
+        function openPredictionModal(marketId) {
+            const market = currentMarkets.find(m => m.market_id === marketId);
+            if (!market) return;
+
+            selectedMarket = market;
+
+            document.getElementById('modalMarketInfo').innerHTML = `
+                <div class="modal-market-title">${market.question}</div>
+                <div class="modal-market-stats">
+                    <div>
+                        <div class="modal-stat-label">CURRENT PROBABILITY</div>
+                        <div class="modal-stat-value">${(parseFloat(market.price || 0.5) * 100).toFixed(1)}%</div>
+                    </div>
+                    <div>
+                        <div class="modal-stat-label">24H VOLUME</div>
+                        <div class="modal-stat-value">$${formatVolume(market.volume_24h || 0)}</div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('predictionModal').classList.add('active');
+        }
+
+        function closePredictionModal() {
+            document.getElementById('predictionModal').classList.remove('active');
+            document.getElementById('predictionForm').reset();
+            document.getElementById('confidenceValue').textContent = '5';
+            selectedMarket = null;
+        }
+
+        async function submitPrediction(event) {
+            event.preventDefault();
+
+            if (!selectedMarket) return;
+
+            const prediction = {
+                id: Date.now().toString(),
+                market_id: selectedMarket.market_id,
+                market_question: selectedMarket.question,
+                market_price: selectedMarket.price,
+                outcome: document.getElementById('predictionOutcome').value,
+                amount: parseFloat(document.getElementById('predictionAmount').value),
+                confidence: parseInt(document.getElementById('confidenceLevel').value),
+                timestamp: new Date().toISOString(),
+                status: 'active'
+            };
+
+            // Save to localStorage
+            savePrediction(prediction);
+
+            console.log('Prediction saved:', prediction);
+
+            alert(`PREDICTION RECORDED (Paper/Mock)\n\nMarket: ${prediction.market_question}\nOutcome: ${prediction.outcome.toUpperCase()}\nAmount: $${prediction.amount}\nConfidence: ${prediction.confidence}/10\n\nThis is a simulated prediction for demo purposes.`);
+
+            closePredictionModal();
+            displayPredictions();
+        }
+
+        function savePrediction(prediction) {
+            const predictions = getPredictions();
+            predictions.unshift(prediction);
+            localStorage.setItem('am_predictions', JSON.stringify(predictions));
+        }
+
+        function getPredictions() {
+            try {
+                return JSON.parse(localStorage.getItem('am_predictions') || '[]');
+            } catch {
+                return [];
+            }
+        }
+
+        function displayPredictions() {
+            const predictions = getPredictions();
+            const emptyEl = document.getElementById('predictionsEmpty');
+            const gridEl = document.getElementById('predictionsGrid');
+
+            // Update stats with current prediction count
+            document.getElementById('statPredictions').textContent = predictions.length;
+
+            if (predictions.length === 0) {
+                emptyEl.style.display = 'block';
+                gridEl.style.display = 'none';
+                return;
+            }
+
+            emptyEl.style.display = 'none';
+            gridEl.style.display = 'grid';
+
+            gridEl.innerHTML = predictions.map(p => `
+                <div class="market-card">
+                    <div class="market-card-header">
+                        <span>${p.outcome.toUpperCase()} @ ${(parseFloat(p.market_price || 0.5) * 100).toFixed(0)}%</span>
+                        <span>${new Date(p.timestamp).toLocaleDateString()}</span>
+                    </div>
+                    <div class="market-card-body">
+                        <div class="market-title">${p.market_question}</div>
+                        <div class="market-probability">$${p.amount.toFixed(2)}</div>
+
+                        <div class="market-insight">Your confidence: ${p.confidence}/10</div>
+
+                        <div class="market-stats">
+                            <span class="metric-tag">${p.status.toUpperCase()}</span>
+                            <span class="metric-tag">PAPER</span>
+                        </div>
+                    </div>
+                    <button class="market-action" onclick="deletePrediction('${p.id}')" style="background: var(--medium-gray);">
+                        REMOVE PREDICTION
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function deletePrediction(id) {
+            if (!confirm('Remove this prediction?')) return;
+            const predictions = getPredictions().filter(p => p.id !== id);
+            localStorage.setItem('am_predictions', JSON.stringify(predictions));
+            displayPredictions();
+        }
+
+        function refreshMarkets() {
+            loadMarkets();
+        }
+
+        function filterMarkets(filterType) {
+            // Update active filter chip
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.classList.remove('active');
+                if (chip.getAttribute('data-filter') === filterType) {
+                    chip.classList.add('active');
+                }
+            });
+
+            let filtered = [...currentMarkets];
+
+            switch(filterType) {
+                case 'high-quality':
+                    filtered = filtered.filter(m => (m.quality?.total_score || 0) >= 70);
+                    break;
+                case 'high-volume':
+                    filtered = filtered.filter(m => (m.volume_24h || 0) >= 10000);
+                    break;
+                case 'confident':
+                    const prob = parseFloat(m.price || 0.5);
+                    filtered = filtered.filter(m => {
+                        const p = parseFloat(m.price || 0.5);
+                        return p > 0.7 || p < 0.3;
+                    });
+                    break;
+                case 'all':
+                default:
+                    // Show all
+                    break;
+            }
+
+            displayMarkets(filtered);
+        }
+
+        function sortMarkets(sortType) {
+            let sorted = [...currentMarkets];
+
+            switch(sortType) {
+                case 'quality':
+                    sorted.sort((a, b) => (b.quality?.total_score || 0) - (a.quality?.total_score || 0));
+                    break;
+                case 'volume':
+                    sorted.sort((a, b) => (b.volume_24h || 0) - (a.volume_24h || 0));
+                    break;
+                case 'probability':
+                    sorted.sort((a, b) => parseFloat(b.price || 0.5) - parseFloat(a.price || 0.5));
+                    break;
+                case 'newest':
+                    // Assuming markets are already in newest-first order from API
+                    break;
+            }
+
+            currentMarkets = sorted;
+            displayMarkets(sorted);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            checkStatus();
+            loadMarkets();
+            displayPredictions();
+            setInterval(checkStatus, 30000);
+        });
+
+        // Close modal on outside click
+        document.getElementById('predictionModal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'predictionModal') {
+                closePredictionModal();
+            }
+        });
+    </script>
+
+    <!-- AI Chat Widget -->
+    <script src="js/chat-widget.js"></script>
+</body>
+</html>

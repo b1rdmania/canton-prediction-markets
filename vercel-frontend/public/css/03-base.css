@@ -1,0 +1,52 @@
+/* ============================================
+   BASE STYLES
+   HTML element defaults
+   ============================================ */
+
+body {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-primary);
+    background-color: var(--color-bg-secondary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Links */
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity var(--transition-base);
+}
+
+/* Buttons */
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Selection */
+::selection {
+    background: var(--color-accent-primary);
+    color: var(--color-text-primary);
+}
+
+::-moz-selection {
+    background: var(--color-accent-primary);
+    color: var(--color-text-primary);
+}
+
+/* Focus visible */
+:focus-visible {
+    outline: 2px solid var(--color-accent-primary);
+    outline-offset: 2px;
+}

@@ -1,0 +1,63 @@
+/* ============================================
+   BADGE COMPONENTS
+   Category badges with colored borders and dots
+   ============================================ */
+
+.category-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid transparent;
+    background: transparent;
+    font-family: var(--font-mono);
+    font-size: var(--text-mini);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+}
+
+.category-badge__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+/* ============================================
+   CATEGORY COLORS
+   ============================================ */
+
+.category-badge[data-category="politics"] {
+    color: var(--color-politics);
+    border-color: var(--color-politics);
+}
+
+.category-badge[data-category="crypto"] {
+    color: var(--color-crypto);
+    border-color: var(--color-crypto);
+}
+
+.category-badge[data-category="sports"] {
+    color: var(--color-sports);
+    border-color: var(--color-sports);
+}
+
+.category-badge[data-category="entertainment"] {
+    color: var(--color-entertainment);
+    border-color: var(--color-entertainment);
+}
+
+.category-badge[data-category="business"] {
+    color: var(--color-business);
+    border-color: var(--color-business);
+}
+
+.category-badge[data-category="science"] {
+    color: var(--color-science);
+    border-color: var(--color-science);
+}
+
+.category-badge[data-category="general"] {
+    color: var(--color-text-secondary);
+    border-color: var(--color-text-secondary);
+}

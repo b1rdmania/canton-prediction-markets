@@ -1,0 +1,68 @@
+/* ============================================
+   BUTTON COMPONENTS
+   Primary, secondary, and ghost variants
+   ============================================ */
+
+.btn {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    font-weight: var(--weight-regular);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    padding: 14px 28px;
+    border: var(--border-thick);
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.btn--primary {
+    background: var(--color-text-primary);
+    color: var(--color-text-inverted);
+    border-color: var(--color-text-primary);
+}
+
+.btn--primary:hover {
+    background: var(--color-accent-primary);
+    color: var(--color-text-primary);
+    border-color: var(--color-text-primary);
+}
+
+.btn--secondary {
+    background: transparent;
+    color: var(--color-text-primary);
+    border-color: var(--color-text-primary);
+}
+
+.btn--secondary:hover {
+    background: var(--color-text-primary);
+    color: var(--color-text-inverted);
+}
+
+.btn--ghost {
+    background: transparent;
+    color: var(--color-text-secondary);
+    border-color: var(--color-text-secondary);
+}
+
+.btn--ghost:hover {
+    color: var(--color-text-primary);
+    border-color: var(--color-text-primary);
+}
+
+.btn--full-width {
+    width: 100%;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .btn {
+        padding: 12px 24px;
+        font-size: var(--text-tiny);
+    }
+}

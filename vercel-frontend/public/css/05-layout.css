@@ -1,0 +1,166 @@
+/* ============================================
+   LAYOUT SYSTEM
+   Container, grid, and section classes
+   ============================================ */
+
+/* ============================================
+   CONTAINERS
+   ============================================ */
+
+.container {
+    max-width: var(--container-standard);
+    margin: 0 auto;
+    padding: 0 var(--padding-section);
+}
+
+.container--full {
+    max-width: var(--container-max);
+}
+
+.container--narrow {
+    max-width: var(--content-max);
+}
+
+.container--text {
+    max-width: var(--text-max);
+}
+
+/* ============================================
+   SECTIONS
+   ============================================ */
+
+.section {
+    padding: var(--margin-section) 0;
+}
+
+.section--hero {
+    padding: var(--margin-hero) 0;
+}
+
+.section--large {
+    padding: var(--space-5xl) 0;
+}
+
+.section--no-padding-top {
+    padding-top: 0;
+}
+
+.section--no-padding-bottom {
+    padding-bottom: 0;
+}
+
+/* ============================================
+   GRID SYSTEM
+   ============================================ */
+
+.grid {
+    display: grid;
+    gap: var(--gap-grid);
+}
+
+.grid--cards {
+    gap: var(--gap-card-grid);
+}
+
+.grid--tight {
+    gap: var(--space-xl);
+}
+
+.grid--2col {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid--3col {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid--4col {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Two column layout with specific sizing */
+.grid--50-50 {
+    grid-template-columns: 1fr 1fr;
+}
+
+.grid--60-40 {
+    grid-template-columns: 3fr 2fr;
+}
+
+.grid--40-60 {
+    grid-template-columns: 2fr 3fr;
+}
+
+/* ============================================
+   FLEX UTILITIES
+   ============================================ */
+
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .grid--4col {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid--3col {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 var(--space-xl);
+    }
+
+    .section {
+        padding: var(--space-3xl) 0;
+    }
+
+    .section--hero {
+        padding: var(--space-4xl) 0;
+    }
+
+    .grid--2col,
+    .grid--3col,
+    .grid--4col,
+    .grid--50-50,
+    .grid--60-40,
+    .grid--40-60 {
+        grid-template-columns: 1fr;
+    }
+
+    .grid {
+        gap: var(--space-3xl);
+    }
+
+    .grid--cards {
+        gap: var(--space-lg);
+    }
+}

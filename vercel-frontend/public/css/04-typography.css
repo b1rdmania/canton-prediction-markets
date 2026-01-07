@@ -1,0 +1,148 @@
+/* ============================================
+   TYPOGRAPHY SYSTEM
+   All text styles and classes
+   ============================================ */
+
+/* ============================================
+   HEADLINES - IBM Plex Mono, uppercase
+   ============================================ */
+
+.headline-hero {
+    font-family: var(--font-headline);
+    font-size: var(--text-hero);
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+}
+
+.headline-section {
+    font-family: var(--font-headline);
+    font-size: var(--text-section);
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-normal);
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+}
+
+.headline-subsection {
+    font-family: var(--font-headline);
+    font-size: var(--text-subsection);
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-normal);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+}
+
+.headline-page {
+    font-family: var(--font-headline);
+    font-size: var(--text-page-title);
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-normal);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+}
+
+/* ============================================
+   BODY TEXT - Noto Sans
+   ============================================ */
+
+.text-body {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-primary);
+}
+
+.text-body-large {
+    font-family: var(--font-body);
+    font-size: var(--text-body-large);
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-loose);
+    color: var(--color-text-primary);
+}
+
+.text-small {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+}
+
+/* ============================================
+   LABELS - Monospace, uppercase, wide spacing
+   ============================================ */
+
+.label {
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    font-weight: var(--weight-regular);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+}
+
+.label-section {
+    font-family: var(--font-mono);
+    font-size: var(--text-tiny);
+    font-weight: var(--weight-regular);
+    letter-spacing: var(--tracking-mega);
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+}
+
+.label-form {
+    font-family: var(--font-mono);
+    font-size: var(--text-mini);
+    font-weight: var(--weight-regular);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+}
+
+/* ============================================
+   CARD TITLES - Monospace
+   ============================================ */
+
+.card-title {
+    font-family: var(--font-mono);
+    font-size: var(--text-card-title);
+    font-weight: var(--weight-regular);
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--color-text-primary);
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-primary {
+    color: var(--color-text-primary);
+}
+
+.text-secondary {
+    color: var(--color-text-secondary);
+}
+
+.text-inverted {
+    color: var(--color-text-inverted);
+}
+
+.text-accent {
+    color: var(--color-accent-primary);
+}

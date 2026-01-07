@@ -1,0 +1,187 @@
+/* ============================================
+   MARKET CARD COMPONENT
+   Main card for displaying prediction markets
+   ============================================ */
+
+.market-card {
+    background: var(--color-bg-primary);
+    border: var(--border-thin);
+    position: relative;
+    cursor: pointer;
+    transition: transform var(--transition-base),
+                box-shadow var(--transition-base);
+}
+
+.market-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
+.market-card__header {
+    background: var(--color-text-primary);
+    color: var(--color-text-inverted);
+    padding: 12px 20px;
+    font-family: var(--font-mono);
+    font-size: var(--text-tiny);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ============================================
+   CATEGORY BAR
+   Subtle colored left border
+   ============================================ */
+
+.market-card__category-bar {
+    padding: var(--space-sm) var(--space-lg);
+    background: var(--color-bg-tertiary);
+    border-left: 3px solid transparent;
+    font-family: var(--font-mono);
+    font-size: var(--text-tiny);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-secondary);
+}
+
+/* Category colors applied via data attribute */
+.market-card[data-category="politics"] .market-card__category-bar {
+    border-left-color: var(--color-politics);
+}
+
+.market-card[data-category="crypto"] .market-card__category-bar {
+    border-left-color: var(--color-crypto);
+}
+
+.market-card[data-category="sports"] .market-card__category-bar {
+    border-left-color: var(--color-sports);
+}
+
+.market-card[data-category="entertainment"] .market-card__category-bar {
+    border-left-color: var(--color-entertainment);
+}
+
+.market-card[data-category="business"] .market-card__category-bar {
+    border-left-color: var(--color-business);
+}
+
+.market-card[data-category="science"] .market-card__category-bar {
+    border-left-color: var(--color-science);
+}
+
+.market-card[data-category="general"] .market-card__category-bar {
+    border-left-color: var(--color-text-secondary);
+}
+
+/* ============================================
+   BODY
+   ============================================ */
+
+.market-card__body {
+    padding: var(--space-xl);
+}
+
+.market-card__title {
+    font-family: var(--font-body);
+    font-size: var(--text-body-large);
+    font-weight: var(--weight-medium);
+    line-height: var(--leading-normal);
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-lg);
+}
+
+.market-card__probability {
+    font-family: var(--font-headline);
+    font-size: var(--text-subsection);
+    font-weight: var(--weight-medium);
+    color: var(--color-accent-primary);
+    line-height: var(--leading-tight);
+    margin: var(--space-lg) 0;
+}
+
+.market-card__insight {
+    font-family: var(--font-body);
+    font-size: var(--text-small);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-lg);
+}
+
+/* ============================================
+   STATS ROW
+   ============================================ */
+
+.market-card__stats {
+    display: flex;
+    gap: var(--space-lg);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-bg-tertiary);
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.stat__label {
+    font-family: var(--font-mono);
+    font-size: var(--text-mini);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-text-secondary);
+}
+
+.stat__value {
+    font-family: var(--font-mono);
+    font-size: var(--text-small);
+    font-weight: var(--weight-medium);
+    color: var(--color-text-primary);
+}
+
+/* ============================================
+   CTA BUTTON
+   ============================================ */
+
+.market-card__cta {
+    width: 100%;
+    background: var(--color-text-primary);
+    color: var(--color-text-inverted);
+    border: none;
+    border-top: var(--border-thin);
+    padding: var(--space-lg);
+    font-family: var(--font-mono);
+    font-size: var(--text-label);
+    font-weight: var(--weight-regular);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-widest);
+    cursor: pointer;
+    transition: background var(--transition-base), color var(--transition-base);
+}
+
+.market-card__cta:hover {
+    background: var(--color-accent-primary);
+    color: var(--color-text-primary);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .market-card__body {
+        padding: var(--space-lg);
+    }
+
+    .market-card__probability {
+        font-size: var(--text-page-title);
+    }
+}
