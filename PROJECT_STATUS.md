@@ -266,7 +266,7 @@ Split into 3 clean, focused repositories with fresh Git history:
 4. **User Interface**
    - Beautiful gradient design
    - Responsive layout
-   - Interactive prediction modal
+   - Interactive prediction modal (mock/paper UX)
    - Status indicators (API, data connections)
 
 ### 🚧 In Development
@@ -355,11 +355,12 @@ PINECONE_API_KEY=...
 ## 📚 Documentation
 
 ### Created Documents
-1. **MVP_IMPLEMENTATION.md** - 14-week implementation plan
+1. **MVP_IMPLEMENTATION.md** - Demo MVP v0 definition + Phase 2 Canton/DAML plan (appendix)
 2. **PROJECT_STATUS.md** - This document
 3. **README.md** - Main project README (updated for Canton)
 4. **DEPLOYMENT.md** - Deployment guide (inherited)
 5. **DOCKER_GUIDE.md** - Docker setup guide (inherited)
+6. **HANDOFF_DEMO_MVP.md** - Demo runbook / handoff
 
 ### Inherited Documentation (from polymarket-ai-trading)
 - BACKTESTING_GUIDE.md

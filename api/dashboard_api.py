@@ -287,17 +287,24 @@ def calculate_quality_score(market: Dict) -> Dict:
     # Liquidity score (0-35 points)
     volume_24h = float(market.get('volume24hr', 0))
     liquidity_score = min(35, (volume_24h / 10000) * 35)  # Max at $10k volume
-    
+
     # Spread score (0-25 points) - tighter is better
+    # Support both CLOB API (tokens) and Gamma API (outcomes) formats
+    tokens = market.get('tokens', [])
     outcomes = market.get('outcomes', [])
-    if len(outcomes) >= 2:
+    if len(tokens) >= 2:
+        best_bid = float(tokens[0].get('price', 0.5))
+        best_ask = float(tokens[1].get('price', 0.5))
+        spread_pct = abs(best_ask - best_bid) * 100
+        spread_score = max(0, 25 - (spread_pct * 5))  # Penalize wide spreads
+    elif len(outcomes) >= 2 and isinstance(outcomes[0], dict):
         best_bid = float(outcomes[0].get('price', 0.5))
         best_ask = float(outcomes[1].get('price', 0.5))
         spread_pct = abs(best_ask - best_bid) * 100
-        spread_score = max(0, 25 - (spread_pct * 5))  # Penalize wide spreads
+        spread_score = max(0, 25 - (spread_pct * 5))
     else:
-        spread_score = 0
-    
+        spread_score = 12.5  # Default middle score if no spread data
+
     # Activity score (0-15 points) - recent activity
     activity_score = 15 if volume_24h > 1000 else (volume_24h / 1000) * 15
     
@@ -344,23 +351,29 @@ async def get_top_quality_markets(limit: int = 20):
             response = await client.get(f"{CLOB_API}/markets")
             if response.status_code != 200:
                 return {'error': 'Failed to fetch markets', 'markets': []}
-            
-            markets = response.json()[:50]  # Analyze top 50
-            
+
+            data = response.json()
+            # CLOB API returns {"data": [...]}
+            markets = data.get('data', data) if isinstance(data, dict) else data
+            markets = markets[:50]  # Analyze top 50
+
             scored_markets = []
             for market in markets:
                 quality = calculate_quality_score(market)
+                # CLOB API uses 'tokens' not 'outcomes'
+                tokens = market.get('tokens', [])
+                price = float(tokens[0].get('price', 0.5)) if tokens else 0.5
                 scored_markets.append({
                     'market_id': market.get('condition_id', ''),
                     'question': market.get('question', ''),
                     'quality': quality,
-                    'price': float(market.get('outcomes', [{}])[0].get('price', 0)),
+                    'price': price,
                     'volume_24h': quality['volume_24h']
                 })
-            
+
             # Sort by score
             scored_markets.sort(key=lambda x: x['quality']['total_score'], reverse=True)
-            
+
             return {
                 'markets': scored_markets[:limit],
                 'timestamp': datetime.now().isoformat()

@@ -3,16 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Research Foundation - Canton Prediction Markets</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Our Approach - Am Predicts MVP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --off-white: #F7F7F7;
             --near-black: #1B1C1C;
-            --coral: #E8846B;
             --light-gray: #E8E8E8;
             --medium-gray: #6B6B6B;
             --white: #FFFFFF;
+            /* LV Multicolor Palette */
+            --lv-pink: #E8A4C9;
+            --lv-red: #D94444;
+            --lv-purple: #9B6BB8;
+            --lv-blue: #5B8FD4;
+            --lv-green: #6AB86A;
+            --lv-yellow: #D4A44A;
+            --lv-teal: #4AB8B8;
         }
 
         * {
@@ -29,7 +36,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Navigation */
         .nav {
             position: sticky;
             top: 0;
@@ -71,17 +77,12 @@
             opacity: 0.6;
         }
 
-        .nav-link.active {
-            border-bottom: 2px solid var(--coral);
-            padding-bottom: 4px;
-        }
-
         .nav-cta {
             font-family: 'Cousine', monospace;
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            background: var(--coral);
+            background: var(--lv-pink);
             color: var(--near-black);
             border: 1px solid var(--near-black);
             padding: 12px 24px;
@@ -92,33 +93,6 @@
         .nav-cta:hover {
             background: var(--near-black);
             color: var(--white);
-        }
-
-        /* Hero */
-        .page-hero {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 100px 48px 80px;
-            display: grid;
-            grid-template-columns: 1fr 400px;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .page-hero-content h1 {
-            font-family: 'Noto Sans', sans-serif;
-            font-size: clamp(42px, 5vw, 64px);
-            font-weight: 400;
-            text-transform: uppercase;
-            line-height: 1.1;
-            margin-bottom: 24px;
-        }
-
-        .page-hero-content p {
-            font-size: 18px;
-            line-height: 1.6;
-            color: var(--medium-gray);
-            margin-bottom: 32px;
         }
 
         .section-label {
@@ -134,8 +108,103 @@
 
         .section-label::before {
             content: '+';
-            color: var(--coral);
+            color: var(--lv-purple);
             font-weight: bold;
+        }
+
+        .page-hero {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 100px 48px 60px;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 400;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .page-hero p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--medium-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 48px;
+            border-top: 1px solid var(--near-black);
+        }
+
+        .content-section h2 {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 28px;
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .content-section p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--medium-gray);
+            margin-bottom: 20px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            border: 1px solid var(--near-black);
+            padding: 32px;
+        }
+
+        .feature-card h3 {
+            font-family: 'Cousine', monospace;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .feature-card:nth-child(1) h3 { color: var(--lv-blue); }
+        .feature-card:nth-child(2) h3 { color: var(--lv-purple); }
+        .feature-card:nth-child(3) h3 { color: var(--lv-pink); }
+        .feature-card:nth-child(4) h3 { color: var(--lv-green); }
+
+        .feature-card p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--medium-gray);
+            margin-bottom: 0;
+        }
+
+        .highlight-box {
+            background: var(--near-black);
+            color: var(--white);
+            padding: 32px;
+            margin-top: 40px;
+        }
+
+        .highlight-box p {
+            color: var(--light-gray);
+            margin-bottom: 0;
+        }
+
+        .highlight-box strong {
+            color: var(--lv-yellow);
         }
 
         .btn-primary {
@@ -151,457 +220,14 @@
             cursor: pointer;
             transition: all 0.2s;
             text-decoration: none;
+            margin-top: 32px;
         }
 
         .btn-primary:hover {
-            background: var(--coral);
-            color: var(--near-black);
-        }
-
-        .btn-secondary {
-            display: inline-block;
-            font-family: 'Cousine', monospace;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            background: transparent;
-            color: var(--near-black);
-            border: 1px solid var(--near-black);
-            padding: 15px 31px;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-decoration: none;
-            margin-left: 16px;
-        }
-
-        .btn-secondary:hover {
-            background: var(--near-black);
+            background: var(--lv-purple);
             color: var(--white);
         }
 
-        /* Stats Section */
-        .stats-section {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 48px 80px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-        }
-
-        .stat-card {
-            background: var(--white);
-            border: 1px solid var(--near-black);
-            padding: 32px 24px;
-            text-align: center;
-            position: relative;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: var(--coral);
-        }
-
-        .stat-number {
-            font-family: 'Noto Sans', sans-serif;
-            font-size: 48px;
-            font-weight: 400;
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            font-family: 'Cousine', monospace;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--medium-gray);
-        }
-
-        /* Crossover Section */
-        .crossover-section {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 80px 48px;
-            border-top: 1px solid var(--near-black);
-        }
-
-        .crossover-header {
-            margin-bottom: 48px;
-        }
-
-        .crossover-headline {
-            font-family: 'Noto Sans', sans-serif;
-            font-size: clamp(32px, 3vw, 42px);
-            font-weight: 400;
-            text-transform: uppercase;
-            line-height: 1.1;
-            margin-bottom: 16px;
-        }
-
-        .crossover-desc {
-            font-size: 16px;
-            line-height: 1.6;
-            color: var(--medium-gray);
-            max-width: 600px;
-        }
-
-        .crossover-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-        }
-
-        .crossover-card {
-            background: var(--white);
-            border: 1px solid var(--near-black);
-            padding: 32px;
-        }
-
-        .crossover-card.highlight {
-            background: var(--light-gray);
-        }
-
-        .crossover-card h3 {
-            font-family: 'Noto Sans', sans-serif;
-            font-size: 18px;
-            font-weight: 500;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .crossover-card h3::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--coral);
-            border-radius: 50%;
-        }
-
-        .crossover-card ul {
-            list-style: none;
-        }
-
-        .crossover-card li {
-            padding: 8px 0;
-            padding-left: 24px;
-            position: relative;
-            font-size: 15px;
-            color: var(--medium-gray);
-        }
-
-        .crossover-card li::before {
-            content: '\2713';
-            position: absolute;
-            left: 0;
-            color: var(--coral);
-        }
-
-        .crossover-insight {
-            background: var(--near-black);
-            color: var(--white);
-            padding: 32px;
-            margin-top: 24px;
-        }
-
-        .crossover-insight p {
-            font-size: 16px;
-            line-height: 1.6;
-        }
-
-        .crossover-insight strong {
-            color: var(--coral);
-        }
-
-        /* Models Section */
-        .models-section {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 80px 48px;
-            border-top: 1px solid var(--near-black);
-        }
-
-        .models-header {
-            margin-bottom: 48px;
-        }
-
-        .models-headline {
-            font-family: 'Noto Sans', sans-serif;
-            font-size: clamp(32px, 3vw, 42px);
-            font-weight: 400;
-            text-transform: uppercase;
-            line-height: 1.1;
-        }
-
-        .models-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .model-card {
-            background: var(--light-gray);
-            border: 1px solid var(--near-black);
-            position: relative;
-            text-align: center;
-        }
-
-        .model-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 8px;
-            background: var(--near-black);
-        }
-
-        .model-card-body {
-            padding: 48px 24px 24px;
-        }
-
-        .model-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--coral);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 20px;
-        }
-
-        .model-card h3 {
-            font-family: 'Noto Sans', sans-serif;
-            font-size: 18px;
-            font-weight: 500;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-
-        .model-card p {
-            font-size: 14px;
-            line-height: 1.5;
-            color: var(--medium-gray);
-            margin-bottom: 20px;
-        }
-
-        .model-action {
-            display: block;
-            width: 100%;
-            padding: 16px;
-            background: var(--near-black);
-            color: var(--white);
-            font-family: 'Cousine', monospace;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            text-align: center;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-
-        .model-action:hover {
-            background: var(--coral);
-            color: var(--near-black);
-        }
-
-        /* Papers Section */
-        .papers-section {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 80px 48px;
-            border-top: 1px solid var(--near-black);
-        }
-
-        .papers-header {
-            margin-bottom: 48px;
-        }
-
-        .papers-headline {
-            font-family: 'Noto Sans', sans-serif;
-            font-size: clamp(32px, 3vw, 42px);
-            font-weight: 400;
-            text-transform: uppercase;
-            line-height: 1.1;
-        }
-
-        .papers-grid {
-            display: grid;
-            gap: 24px;
-        }
-
-        .paper-card {
-            background: var(--white);
-            border: 1px solid var(--near-black);
-            display: grid;
-            grid-template-columns: 1fr auto;
-            align-items: center;
-        }
-
-        .paper-card-body {
-            padding: 24px 32px;
-        }
-
-        .paper-card h4 {
-            font-family: 'Noto Sans', sans-serif;
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 12px;
-        }
-
-        .paper-card p {
-            font-size: 14px;
-            line-height: 1.6;
-            color: var(--medium-gray);
-        }
-
-        .paper-card-action {
-            padding: 24px 32px;
-            border-left: 1px solid var(--near-black);
-        }
-
-        /* Algorithm Section */
-        .algorithm-section {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 80px 48px;
-            border-top: 1px solid var(--near-black);
-        }
-
-        .algorithm-header {
-            margin-bottom: 48px;
-        }
-
-        .algorithm-headline {
-            font-family: 'Noto Sans', sans-serif;
-            font-size: clamp(32px, 3vw, 42px);
-            font-weight: 400;
-            text-transform: uppercase;
-            line-height: 1.1;
-        }
-
-        .algorithm-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-
-        .algorithm-card {
-            background: var(--white);
-            border: 1px solid var(--near-black);
-            padding: 32px;
-        }
-
-        .algorithm-card h3 {
-            font-family: 'Noto Sans', sans-serif;
-            font-size: 16px;
-            font-weight: 500;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-        }
-
-        .algorithm-card ul {
-            list-style: none;
-        }
-
-        .algorithm-card li {
-            padding: 8px 0;
-            font-size: 14px;
-            color: var(--medium-gray);
-            border-bottom: 1px solid var(--light-gray);
-        }
-
-        .algorithm-card li:last-child {
-            border-bottom: none;
-        }
-
-        .algorithm-card li strong {
-            color: var(--near-black);
-        }
-
-        /* CTA Section */
-        .cta-section {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 80px 48px;
-            border-top: 1px solid var(--near-black);
-        }
-
-        .cta-inner {
-            background: var(--near-black);
-            color: var(--white);
-            padding: 64px;
-            text-align: center;
-        }
-
-        .cta-inner h2 {
-            font-family: 'Noto Sans', sans-serif;
-            font-size: clamp(28px, 3vw, 36px);
-            font-weight: 400;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-        }
-
-        .cta-inner p {
-            font-size: 16px;
-            color: var(--light-gray);
-            margin-bottom: 32px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cta-btn {
-            font-family: 'Cousine', monospace;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 16px 32px;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-
-        .cta-btn-primary {
-            background: var(--coral);
-            color: var(--near-black);
-            border: 1px solid var(--coral);
-        }
-
-        .cta-btn-primary:hover {
-            background: var(--white);
-        }
-
-        .cta-btn-secondary {
-            background: transparent;
-            color: var(--white);
-            border: 1px solid var(--white);
-        }
-
-        .cta-btn-secondary:hover {
-            background: var(--white);
-            color: var(--near-black);
-        }
-
-        /* Footer */
         footer {
             border-top: 1px solid var(--near-black);
             padding: 48px;
@@ -620,353 +246,98 @@
             margin-top: 8px;
         }
 
-        footer a {
-            color: var(--coral);
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .page-hero {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                padding: 60px 24px 60px;
-            }
-
-            .page-hero svg {
-                display: none;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .crossover-grid,
-            .algorithm-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .models-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
 
-            .stats-grid {
+            .feature-grid {
                 grid-template-columns: 1fr;
             }
 
-            .paper-card {
-                grid-template-columns: 1fr;
-            }
-
-            .paper-card-action {
-                border-left: none;
-                border-top: 1px solid var(--near-black);
-            }
-
-            .stats-section,
-            .crossover-section,
-            .models-section,
-            .papers-section,
-            .algorithm-section,
-            .cta-section {
+            .page-hero,
+            .content-section {
                 padding-left: 24px;
                 padding-right: 24px;
-            }
-
-            .cta-inner {
-                padding: 40px 24px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="nav">
-        <a href="index.html" class="nav-logo">canton</a>
+        <a href="index.html" class="nav-logo">am predicts</a>
         <div class="nav-links">
+            <a href="index.html#markets" class="nav-link">Markets</a>
+            <a href="index.html#predictions" class="nav-link">My Predictions</a>
             <a href="about.html" class="nav-link">About</a>
-            <a href="ai-insights.html" class="nav-link">Products</a>
-            <a href="research.html" class="nav-link active">Research</a>
-            <a href="trading-models/system.html" class="nav-link">Trading Models</a>
-            <a href="index.html#markets" class="nav-cta">View Markets</a>
+            <a href="index.html#markets" class="nav-cta">Browse Markets</a>
         </div>
     </nav>
 
-    <!-- Hero -->
     <section class="page-hero">
-        <div class="page-hero-content">
-            <div class="section-label">Research Foundation</div>
-            <h1>40+ YEARS OF ACADEMIC RESEARCH.</h1>
+        <div class="section-label">Our Approach</div>
+        <h1>HOW WE SCORE MARKETS.</h1>
+        <p>
+            We combine live market data with quality scoring algorithms to help you
+            identify the most reliable prediction markets.
+        </p>
+    </section>
+
+    <section class="content-section">
+        <h2>Quality Scoring</h2>
+        <p>
+            Not all prediction markets are created equal. Some have thin liquidity, wide spreads,
+            or low participation. Our quality scoring system evaluates each market on multiple
+            dimensions to help you focus on markets with the best data.
+        </p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>Liquidity Score</h3>
+                <p>Based on 24-hour trading volume. Higher volume means more reliable price discovery and easier entry/exit.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Spread Score</h3>
+                <p>Measures the bid-ask spread tightness. Tighter spreads indicate more efficient markets with lower trading costs.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Activity Score</h3>
+                <p>Tracks number of trades and unique participants. More activity suggests broader consensus on pricing.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Time Score</h3>
+                <p>Considers time until resolution. Markets closer to resolution often have more accurate pricing.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2>AI-Generated Insights</h2>
+        <p>
+            Our AI analyzes each market's metrics and generates plain-language insights to help
+            you understand what the data suggests. These insights combine the quality scores
+            with market probability to give you a quick read on each opportunity.
+        </p>
+        <p>
+            The insights highlight factors like market consensus strength, data quality, and
+            potential considerations - all designed to inform your prediction decisions.
+        </p>
+
+        <div class="highlight-box">
             <p>
-                This project combines cutting-edge blockchain technology with decades of academic research
-                on prediction markets. Our approach is informed by quantitative analysis, behavioral economics,
-                and proven trading strategies tested on real markets.
-            </p>
-            <div>
-                <a href="trading-models/system.html" class="btn-primary">VIEW LIVE MODELS</a>
-                <a href="https://github.com/b1rdmania/canton-prediction-markets" class="btn-secondary">GITHUB</a>
-            </div>
-        </div>
-        <div>
-            <svg width="350" height="300" viewBox="0 0 350 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M50 50 L50 150 L150 150" stroke="#1B1C1C" stroke-width="2" fill="none"/>
-                <path d="M150 150 L150 50 L250 50" stroke="#1B1C1C" stroke-width="2" fill="none"/>
-                <path d="M250 50 L300 50" stroke="#1B1C1C" stroke-width="2" fill="none"/>
-                <path d="M150 150 L250 150 L250 50" stroke="#1B1C1C" stroke-width="2" fill="none"/>
-                <path d="M50 150 L50 250" stroke="#1B1C1C" stroke-width="2" fill="none"/>
-                <path d="M150 150 L150 250" stroke="#1B1C1C" stroke-width="2" fill="none"/>
-                <circle cx="50" cy="50" r="14" fill="#E8846B"/>
-                <circle cx="150" cy="50" r="10" fill="#E8846B"/>
-                <circle cx="250" cy="50" r="14" fill="#E8846B"/>
-                <circle cx="300" cy="50" r="10" fill="#E8846B"/>
-                <circle cx="50" cy="150" r="12" fill="#E8846B"/>
-                <circle cx="150" cy="150" r="16" fill="#E8846B"/>
-                <circle cx="250" cy="150" r="12" fill="#E8846B"/>
-                <circle cx="50" cy="250" r="18" fill="#E8846B"/>
-                <circle cx="150" cy="250" r="14" fill="#E8846B"/>
-            </svg>
-        </div>
-    </section>
-
-    <!-- Stats -->
-    <section class="stats-section">
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-number">40+</div>
-                <div class="stat-label">Years of Research</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">3</div>
-                <div class="stat-label">Active Trading Models</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">Open Source</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">LIVE</div>
-                <div class="stat-label">Real Market Data</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Crossover -->
-    <section class="crossover-section">
-        <div class="crossover-header">
-            <div class="section-label">Crossover</div>
-            <h2 class="crossover-headline">TRADING MODELS TO CANTON AI.</h2>
-            <p class="crossover-desc">
-                The Canton prediction markets platform builds on proven algorithmic trading strategies
-                that have been tested on Polymarket. This research foundation adds credibility and
-                real-world validation to the AI insights.
+                <strong>Note:</strong> All insights are heuristic and experimental. They're designed
+                to surface interesting patterns in the data, not to provide financial advice.
+                Always do your own research before placing predictions.
             </p>
         </div>
 
-        <div class="crossover-grid">
-            <div class="crossover-card">
-                <h3>Trading Models (Eva)</h3>
-                <ul>
-                    <li>Mean reversion strategies</li>
-                    <li>3 parallel risk levels</li>
-                    <li>Quantitative quality scoring</li>
-                    <li>Live Polymarket integration</li>
-                    <li>Paper trading validated</li>
-                </ul>
-            </div>
-
-            <div class="crossover-card highlight">
-                <h3>Canton AI (Amber)</h3>
-                <ul>
-                    <li>AI-enhanced insights</li>
-                    <li>Confidence level scoring</li>
-                    <li>Quality metrics (same algorithm!)</li>
-                    <li>Same Polymarket data source</li>
-                    <li>Canton blockchain integration</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="crossover-insight">
-            <p>
-                <strong>Key Insight:</strong> The Canton AI uses the SAME quality scoring algorithms that power
-                the trading models, adding proven quantitative analysis to AI-generated insights.
-            </p>
-        </div>
+        <a href="index.html#markets" class="btn-primary">Browse Markets</a>
     </section>
 
-    <!-- Models -->
-    <section class="models-section">
-        <div class="models-header">
-            <div class="section-label">Live Models</div>
-            <h2 class="models-headline">THREE TRADING MODELS RUNNING 24/7.</h2>
-        </div>
-
-        <div class="models-grid">
-            <div class="model-card">
-                <div class="model-card-body">
-                    <div class="model-icon">C</div>
-                    <h3>Conservative</h3>
-                    <p>High-confidence trades only. Tight risk controls. Focus on established markets.</p>
-                </div>
-                <a href="trading-models/system.html" class="model-action">View Live</a>
-            </div>
-
-            <div class="model-card">
-                <div class="model-card-body">
-                    <div class="model-icon">M</div>
-                    <h3>Moderate</h3>
-                    <p>Balanced risk/reward. Moderate position sizing. Diversified strategy.</p>
-                </div>
-                <a href="trading-models/system.html" class="model-action">View Live</a>
-            </div>
-
-            <div class="model-card">
-                <div class="model-card-body">
-                    <div class="model-icon">A</div>
-                    <h3>Aggressive</h3>
-                    <p>Maximum opportunity capture. Higher risk tolerance. Early market entry.</p>
-                </div>
-                <a href="trading-models/system.html" class="model-action">View Live</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Papers -->
-    <section class="papers-section">
-        <div class="papers-header">
-            <div class="section-label">Academic Foundation</div>
-            <h2 class="papers-headline">KEY RESEARCH PAPERS.</h2>
-        </div>
-
-        <div class="papers-grid">
-            <div class="paper-card">
-                <div class="paper-card-body">
-                    <h4>Berg & Rietz (2018) - Longshots and Overconfidence</h4>
-                    <p>
-                        Seminal work on prediction market biases. Shows that longshots (low-probability events)
-                        are systematically overpriced due to behavioral biases. Our mean reversion models
-                        exploit this inefficiency.
-                    </p>
-                </div>
-                <div class="paper-card-action">
-                    <a href="theory.html" class="btn-primary">Read More</a>
-                </div>
-            </div>
-
-            <div class="paper-card">
-                <div class="paper-card-body">
-                    <h4>Prediction Market Accuracy Literature</h4>
-                    <p>
-                        Comprehensive review of prediction market accuracy across political, economic, and
-                        sports markets. Informs our quality scoring system and confidence metrics.
-                    </p>
-                </div>
-                <div class="paper-card-action">
-                    <a href="theory.html" class="btn-primary">Read More</a>
-                </div>
-            </div>
-
-            <div class="paper-card">
-                <div class="paper-card-body">
-                    <h4>Munger's 25 Cognitive Biases</h4>
-                    <p>
-                        Charlie Munger's framework for understanding systematic errors in human judgment.
-                        Applied to prediction market analysis to identify mispricing opportunities.
-                    </p>
-                </div>
-                <div class="paper-card-action">
-                    <a href="theory.html" class="btn-primary">Read More</a>
-                </div>
-            </div>
-
-            <div class="paper-card">
-                <div class="paper-card-body">
-                    <h4>Quantitative Mean Reversion Strategies</h4>
-                    <p>
-                        Statistical arbitrage techniques adapted for prediction markets. Identifies when
-                        probabilities deviate from fundamental values and are likely to revert.
-                    </p>
-                </div>
-                <div class="paper-card-action">
-                    <a href="theory.html" class="btn-primary">Read More</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Algorithm -->
-    <section class="algorithm-section">
-        <div class="algorithm-header">
-            <div class="section-label">How It Works</div>
-            <h2 class="algorithm-headline">RESEARCH POWERS CANTON AI.</h2>
-        </div>
-
-        <div class="algorithm-grid">
-            <div class="algorithm-card">
-                <h3>Quality Scoring Algorithm</h3>
-                <ul>
-                    <li><strong>Liquidity Score (0-35):</strong> Based on 24h volume</li>
-                    <li><strong>Spread Score (0-25):</strong> Bid-ask spread tightness</li>
-                    <li><strong>Activity Score (0-25):</strong> Number of trades and participants</li>
-                    <li><strong>Time Score (0-15):</strong> Time to resolution</li>
-                </ul>
-            </div>
-
-            <div class="algorithm-card">
-                <h3>Mean Reversion Detection</h3>
-                <ul>
-                    <li><strong>Historical Averages:</strong> Compare to similar past events</li>
-                    <li><strong>Fundamental Estimates:</strong> Base rate probability analysis</li>
-                    <li><strong>Cross-Market Checks:</strong> Consistency across related markets</li>
-                </ul>
-            </div>
-
-            <div class="algorithm-card">
-                <h3>Behavioral Bias Detection</h3>
-                <ul>
-                    <li><strong>Longshot Bias:</strong> Overpricing of unlikely events</li>
-                    <li><strong>Recency Bias:</strong> Overweighting recent news</li>
-                    <li><strong>Confirmation Bias:</strong> Selective information processing</li>
-                </ul>
-            </div>
-
-            <div class="algorithm-card">
-                <h3>Why This Matters</h3>
-                <ul>
-                    <li><strong>Credibility:</strong> Algorithms tested on real markets</li>
-                    <li><strong>Validation:</strong> Quality scores identify opportunities</li>
-                    <li><strong>Data-Driven:</strong> AI grounded in quantitative analysis</li>
-                    <li><strong>Transparent:</strong> Open-source and verifiable</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-section">
-        <div class="cta-inner">
-            <h2>EXPLORE THE RESEARCH</h2>
-            <p>
-                Deep dive into the academic papers and trading strategies. All research materials,
-                trading algorithms, and AI models are open source.
-            </p>
-            <div class="cta-buttons">
-                <a href="trading-models/system.html" class="cta-btn cta-btn-primary">Live Trading Models</a>
-                <a href="trading-models/quality.html" class="cta-btn cta-btn-secondary">Quality Metrics</a>
-                <a href="theory.html" class="cta-btn cta-btn-secondary">Theoretical Framework</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
-        <p>Canton Prediction Markets</p>
-        <p>All code available on <a href="https://github.com/b1rdmania/canton-prediction-markets">GitHub</a></p>
+        <p>Am Predicts MVP (Demo v0)</p>
+        <p style="color: var(--lv-pink);">Predictions are simulated for UX testing (no on-chain settlement).</p>
+        <p>Insights may be heuristic/experimental and are not financial advice.</p>
     </footer>
 </body>
 </html>

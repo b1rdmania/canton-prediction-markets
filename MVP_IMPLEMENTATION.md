@@ -1,8 +1,85 @@
-# Canton Prediction Markets - MVP Implementation Plan
+---
+# Canton Prediction Markets - MVP (Demo v0) + Phase 2 Plan
 
-**Version**: 1.0  
-**Timeline**: 14 weeks (3.5 months)  
-**Status**: Phase 1 - Planning & Design
+**Version**: 0.1  
+**Last Updated**: 2026-01-06  
+**Current Target**: **Demo MVP v0 (Stakeholder Demo)**  
+**Next Target**: Phase 2 Canton/DAML MVP (see Appendix)
+
+---
+
+## Demo MVP v0 (What “MVP” means right now)
+
+### 1) One-sentence definition
+A public, reliable demo that lets users **browse live markets**, **see insight cards**, and **go through a “place prediction” UX** that is **mock/paper-only** (no on-chain settlement yet).
+
+### 2) Goals
+- **Validate product direction**: what users want to see, how they interpret insights, and what “placing a prediction” should feel like.
+- **Demonstrate feasibility**: live market data + scoring + insights in a clean, credible UI.
+- **Be demo-safe**: predictable behavior under flaky backend / rate limits (graceful degradation).
+
+### 3) Non-goals (explicitly out of scope for Demo MVP v0)
+- No Canton ledger integration
+- No DAML smart contracts
+- No real funds / real trading / wallet custody
+- No automated on-chain market resolution
+- No user accounts / auth (unless required by hosting)
+
+### 4) User flows (must be supported)
+1. **Browse markets**
+   - User visits the dashboard and sees a list of live markets.
+   - Markets show key info (price/probability, volume/liquidity, quality score, confidence).
+
+2. **Inspect a market**
+   - User opens a market detail / modal.
+   - User sees “insights” and the rationale (even if metrics-derived for now).
+
+3. **Place a prediction (mock/paper)**
+   - User selects outcome (Yes/No), amount, and (optional) note/rationale.
+   - System confirms: “Prediction recorded (paper/mock).”
+   - A visible “Your predictions” list shows the new item.
+
+### 5) Functional scope
+#### Included (Demo MVP v0)
+- **Market list** driven by backend “top markets” quality endpoint.
+- **Quality scoring display** (0–100) and confidence label.
+- **Insights panel** (may be metrics-derived; clearly labeled).
+- **Prediction placement UI** (mock/paper).
+
+#### Not included (Demo MVP v0)
+- Canton integration, DAML templates, on-chain resolution
+- Kalshi integration (unless already trivial to add later)
+- Personalized recommendations, long-term memory, social features
+
+### 6) Architecture (current, demo-oriented)
+```
+Frontend (Vercel, vanilla JS)
+    ↓
+Backend (FastAPI in Docker on a machine)
+    ↓
+Public access via Cloudflare tunnel
+    ↓
+Market data sources (Polymarket APIs)
+```
+
+### 7) Definition of Done (acceptance criteria)
+**The Demo MVP v0 is “live” when:**
+- Frontend is publicly accessible (no Vercel auth gate).
+- The app loads and shows markets even during partial failures:
+  - If backend is down/unreachable, user sees a clear “backend unavailable” state (not a blank page).
+  - If market fetch fails/rate-limits, user sees an error state and a retry.
+- “Place prediction” flow produces a confirmation and adds an entry to a visible list (paper/mock).
+- A 5–10 minute scripted demo can be run end-to-end by someone who didn’t build it.
+
+### 8) Demo disclaimer language (must appear in UI + docs)
+- “Predictions are simulated for UX testing (no on-chain settlement).”
+- “Insights may be heuristic/experimental and are not financial advice.”
+
+---
+
+## Appendix A — Phase 2: Canton/DAML MVP (Archived original plan)
+
+**Note**: The content below is the original “true MVP” definition (Canton/DAML betting + resolution). It remains the *next* milestone, but is no longer the definition of “MVP” for the immediate stakeholder demo.
 
 ---
 

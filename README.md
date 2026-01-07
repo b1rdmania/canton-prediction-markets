@@ -6,19 +6,25 @@ AI-assisted prediction market trading protocol for Canton blockchain and Swiss-b
 
 ## 🎯 Overview
 
-An AI-enhanced prediction markets platform built on Canton blockchain, combining:
+An AI-enhanced prediction markets platform with a **Demo MVP v0 live today**, and a **Phase 2 plan** to add Canton/DAML on-chain prediction placement.
+
+**Demo MVP v0 focuses on:**
+- **Real-time market data** (currently Polymarket)
+- **Insight cards** (research-backed; may be heuristic/metrics-derived in v0)
+- **Interactive “place prediction” UX** (mock/paper for UX validation)
+
+**Phase 2 (planned) adds:**
 - **DAML smart contracts** for secure, privacy-preserving predictions
-- **Real-time market data** from Kalshi and Polymarket
-- **Grok AI integration** for market summaries and probability analysis
-- **RAG system** with vector database for historical context
-- **Swiss regulatory compliance** and data protection standards
+- **Canton integration** (local/testnet → mainnet)
+- **Automated resolution flows**
+- **Richer AI** (Grok + RAG/vector DB)
 
 **Plus**: Advanced trading models (mean reversion strategies) available in the [Trading Models](vercel-frontend/public/trading-models/) section
 
 ## 📊 Live Demo
 
-**Frontend**: https://vercel-frontend-2t0c5r41n-boom-test-c54cde04.vercel.app  
-**Backend API**: https://postposted-spent-knife-given.trycloudflare.com  
+**Frontend**: [Vercel app](https://vercel-frontend-2t0c5r41n-boom-test-c54cde04.vercel.app)  
+**Backend API**: [Cloudflare tunnel](https://postposted-spent-knife-given.trycloudflare.com)  
 **Status**: ✅ Demo Ready (Phase 1 - MVP Proof of Concept)
 
 Currently showing:
@@ -26,7 +32,7 @@ Currently showing:
 - 🤖 AI-generated market insights (research-backed)
 - 📊 Quality scoring (liquidity, spread, activity)
 - 💡 Confidence levels and probability analysis
-- 🎯 Interactive prediction placement UI
+- 🎯 Interactive prediction placement UI (**mock/paper**)
 - 🔬 **Research foundation** (40+ years of academic work)
 - 📈 **Live trading models** (3 strategies running 24/7)
 
@@ -39,16 +45,17 @@ This system is specifically designed for prediction markets on:
 
 ## 🚀 Features
 
-- ✅ Canton blockchain integration
-- ✅ Live market data streaming
-- ✅ AI-powered probability analysis
-- ✅ Multi-model parallel trading (3 strategies)
-- ✅ Real-time signal detection
+### Live now (Demo MVP v0)
+- ✅ Live market data streaming (Polymarket)
+- ✅ Insight cards + confidence levels (demo-oriented)
 - ✅ Market quality scoring
-- ✅ Resolution tracking and accuracy metrics
-- ✅ Semantic market search using embeddings
-- ✅ Docker-based deployment
-- ✅ 24/7 operation support
+- ✅ Interactive prediction placement UX (mock/paper)
+- ✅ Docker-based backend deployment (demo ops)
+
+### Planned (Phase 2)
+- ⏳ Canton blockchain integration (DAML + Canton)
+- ⏳ On-chain prediction placement + resolution tracking
+- ⏳ Semantic search using embeddings + vector DB (RAG)
 
 ## 🏗️ Architecture
 
@@ -112,7 +119,8 @@ docker compose up -d
 ## 📚 Documentation
 
 - **[Project Status](PROJECT_STATUS.md)** ← Current status & what we've built!
-- **[MVP Implementation Plan](MVP_IMPLEMENTATION.md)** ← 14-week roadmap
+- **[MVP Definition + Phase 2 Plan](MVP_IMPLEMENTATION.md)** ← Demo MVP v0 + archived Phase 2 Canton/DAML plan
+- **[Demo MVP Handoff](HANDOFF_DEMO_MVP.md)** ← Runbook to keep the demo live
 - [Deployment Guide](DEPLOYMENT.md)
 - [Docker Guide](DOCKER_GUIDE.md)
 - [Paper Trading Start](PAPER_TRADING_START.md)
