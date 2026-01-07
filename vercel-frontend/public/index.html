@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Am Predicts MVP - AI-Enhanced Prediction Markets</title>
     <link href="https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/chat-widget.css">
     <style>
         :root {
             --off-white: #F7F7F7;
@@ -471,6 +472,159 @@
             color: var(--medium-gray);
         }
 
+        /* Stats Dashboard */
+        .stats-dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 48px 40px;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border: 2px solid var(--near-black);
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .stat-icon {
+            flex-shrink: 0;
+        }
+
+        .stat-content {
+            flex: 1;
+        }
+
+        .stat-value {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 8px;
+            color: var(--near-black);
+        }
+
+        .stat-label {
+            font-family: 'Cousine', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--medium-gray);
+        }
+
+        .stats-footer {
+            display: flex;
+            justify-content: center;
+            padding: 12px 0;
+        }
+
+        .last-update {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Cousine', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--medium-gray);
+        }
+
+        .update-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--lv-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            background: var(--light-gray);
+            border: 1px solid var(--near-black);
+            padding: 20px 24px;
+            margin-bottom: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .filter-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .filter-label {
+            font-family: 'Cousine', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--medium-gray);
+            font-weight: 700;
+        }
+
+        .filter-chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-chip {
+            font-family: 'Cousine', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 10px 16px;
+            background: var(--white);
+            color: var(--near-black);
+            border: 1px solid var(--near-black);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-chip:hover {
+            background: var(--near-black);
+            color: var(--white);
+        }
+
+        .filter-chip.active {
+            background: var(--near-black);
+            color: var(--white);
+        }
+
+        .filter-select {
+            font-family: 'Cousine', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 10px 16px;
+            background: var(--white);
+            color: var(--near-black);
+            border: 1px solid var(--near-black);
+            cursor: pointer;
+            min-width: 180px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--lv-purple);
+        }
+
         /* Research Banner */
         .research-banner {
             max-width: 1400px;
@@ -761,6 +915,22 @@
                 flex-direction: column;
                 gap: 12px;
             }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .stat-card {
+                padding: 16px;
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+            }
+
+            .stat-value {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
@@ -770,6 +940,8 @@
         <a href="index.html" class="nav-logo">am predicts</a>
         <div class="nav-links">
             <a href="#markets" class="nav-link">Markets</a>
+            <a href="ai-insights.html" class="nav-link">AI Chat</a>
+            <a href="research.html" class="nav-link">Research</a>
             <a href="#predictions" class="nav-link">My Predictions</a>
             <a href="about.html" class="nav-link">About</a>
             <a href="#markets" class="nav-cta">Browse Markets</a>
@@ -828,6 +1000,66 @@
                 <circle cx="120" cy="260" r="12" fill="#E8A4C9"/>
                 <circle cx="60" cy="300" r="28" fill="#9B6BB8"/>
             </svg>
+        </div>
+    </section>
+
+    <!-- Live Stats Dashboard -->
+    <section class="stats-dashboard">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon" style="color: var(--lv-blue);">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                    </svg>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value" id="statTotalMarkets">--</div>
+                    <div class="stat-label">LIVE MARKETS</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="color: var(--lv-green);">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value" id="statVolume24h">--</div>
+                    <div class="stat-label">24H VOLUME</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="color: var(--lv-purple);">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value" id="statPredictions">--</div>
+                    <div class="stat-label">YOUR PREDICTIONS</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="color: var(--lv-yellow);">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                </div>
+                <div class="stat-content">
+                    <div class="stat-value" id="statAvgQuality">--</div>
+                    <div class="stat-label">AVG QUALITY</div>
+                </div>
+            </div>
+        </div>
+        <div class="stats-footer">
+            <div class="last-update">
+                <span class="update-dot"></span>
+                <span>Last updated: <span id="statsTimestamp">--</span></span>
+            </div>
         </div>
     </section>
 
@@ -893,6 +1125,36 @@
                 <div style="margin-top: 24px;">
                     <button class="btn-primary" onclick="refreshMarkets()">REFRESH</button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <div class="filter-section">
+                <span class="filter-label">FILTER:</span>
+                <div class="filter-chips">
+                    <button class="filter-chip active" data-filter="all" onclick="filterMarkets('all')">
+                        All Markets
+                    </button>
+                    <button class="filter-chip" data-filter="high-quality" onclick="filterMarkets('high-quality')">
+                        High Quality (70+)
+                    </button>
+                    <button class="filter-chip" data-filter="high-volume" onclick="filterMarkets('high-volume')">
+                        High Volume
+                    </button>
+                    <button class="filter-chip" data-filter="confident" onclick="filterMarkets('confident')">
+                        High Confidence
+                    </button>
+                </div>
+            </div>
+            <div class="filter-section">
+                <span class="filter-label">SORT:</span>
+                <select class="filter-select" id="sortSelect" onchange="sortMarkets(this.value)">
+                    <option value="quality">Quality Score</option>
+                    <option value="volume">24h Volume</option>
+                    <option value="probability">Probability</option>
+                    <option value="newest">Newest First</option>
+                </select>
             </div>
         </div>
 
@@ -1015,6 +1277,7 @@
 
                 currentMarkets = data.markets || [];
                 displayMarkets(currentMarkets);
+                updateStatsDisplay(currentMarkets);
 
                 document.getElementById('marketsLoading').style.display = 'none';
                 document.getElementById('marketsGrid').style.display = 'grid';
@@ -1025,13 +1288,45 @@
             }
         }
 
+        function updateStatsDisplay(markets) {
+            // Total markets
+            document.getElementById('statTotalMarkets').textContent = markets.length;
+
+            // Total 24h volume
+            const totalVolume = markets.reduce((sum, m) => sum + (m.volume_24h || 0), 0);
+            document.getElementById('statVolume24h').textContent = '$' + formatVolume(totalVolume);
+
+            // User predictions count
+            const predictions = getPredictions();
+            document.getElementById('statPredictions').textContent = predictions.length;
+
+            // Average quality
+            const avgQuality = markets.reduce((sum, m) => sum + (m.quality?.total_score || 0), 0) / markets.length;
+            document.getElementById('statAvgQuality').textContent = avgQuality.toFixed(0) + '/100';
+
+            // Timestamp
+            const now = new Date();
+            document.getElementById('statsTimestamp').textContent = now.toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
         function displayMarkets(markets) {
             const grid = document.getElementById('marketsGrid');
-            grid.innerHTML = markets.map(market => `
+            grid.innerHTML = markets.map(market => {
+                const category = detectCategory(market.question);
+                const categoryColor = getCategoryColor(category);
+
+                return `
                 <div class="market-card" onclick="openPredictionModal('${market.market_id}')">
                     <div class="market-card-header">
                         <span>ACTIVE MARKET</span>
                         <span>QUALITY: ${market.quality?.total_score?.toFixed(0) || 0}/100</span>
+                    </div>
+                    <div class="market-category-bar" style="background: ${categoryColor}; color: var(--near-black); padding: 8px 20px; font-family: 'Cousine', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; display: flex; justify-content: space-between; align-items: center;">
+                        <span>${category}</span>
+                        <span style="opacity: 0.7;">${getMarketTrend(market)}</span>
                     </div>
                     <div class="market-card-body">
                         <div class="market-title">${market.question}</div>
@@ -1042,13 +1337,55 @@
                         <div class="market-stats">
                             <span class="metric-tag">$${formatVolume(market.volume_24h || 0)} VOL</span>
                             <span class="metric-tag">${getConfidenceBadge(market.price)} CONF</span>
+                            <span class="metric-tag" style="border-color: ${categoryColor}; color: ${categoryColor};">● ${category}</span>
                         </div>
                     </div>
                     <button class="market-action" onclick="event.stopPropagation(); openPredictionModal('${market.market_id}')">
                         PLACE PREDICTION
                     </button>
                 </div>
-            `).join('');
+            `}).join('');
+        }
+
+        function detectCategory(question) {
+            const q = question.toLowerCase();
+
+            if (q.includes('trump') || q.includes('biden') || q.includes('election') || q.includes('president') || q.includes('senate') || q.includes('congress') || q.includes('political')) {
+                return 'Politics';
+            } else if (q.includes('bitcoin') || q.includes('crypto') || q.includes('eth') || q.includes('blockchain')) {
+                return 'Crypto';
+            } else if (q.includes('sport') || q.includes('nfl') || q.includes('nba') || q.includes('soccer') || q.includes('football')) {
+                return 'Sports';
+            } else if (q.includes('movie') || q.includes('oscar') || q.includes('emmy') || q.includes('celebrity')) {
+                return 'Entertainment';
+            } else if (q.includes('stock') || q.includes('market') || q.includes('economy') || q.includes('gdp') || q.includes('company')) {
+                return 'Business';
+            } else if (q.includes('science') || q.includes('research') || q.includes('discovery') || q.includes('nobel')) {
+                return 'Science';
+            } else {
+                return 'General';
+            }
+        }
+
+        function getCategoryColor(category) {
+            const colors = {
+                'Politics': 'var(--lv-blue)',
+                'Crypto': 'var(--lv-purple)',
+                'Sports': 'var(--lv-green)',
+                'Entertainment': 'var(--lv-pink)',
+                'Business': 'var(--lv-yellow)',
+                'Science': 'var(--lv-teal)',
+                'General': 'var(--light-gray)'
+            };
+            return colors[category] || 'var(--light-gray)';
+        }
+
+        function getMarketTrend(market) {
+            // For now, show volume-based trend
+            const volume = market.volume_24h || 0;
+            if (volume > 50000) return '↑ High Activity';
+            if (volume > 10000) return '→ Moderate';
+            return '→ Low Volume';
         }
 
         function getAIInsight(market) {
@@ -1155,6 +1492,9 @@
             const emptyEl = document.getElementById('predictionsEmpty');
             const gridEl = document.getElementById('predictionsGrid');
 
+            // Update stats with current prediction count
+            document.getElementById('statPredictions').textContent = predictions.length;
+
             if (predictions.length === 0) {
                 emptyEl.style.display = 'block';
                 gridEl.style.display = 'none';
@@ -1199,6 +1539,62 @@
             loadMarkets();
         }
 
+        function filterMarkets(filterType) {
+            // Update active filter chip
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.classList.remove('active');
+                if (chip.getAttribute('data-filter') === filterType) {
+                    chip.classList.add('active');
+                }
+            });
+
+            let filtered = [...currentMarkets];
+
+            switch(filterType) {
+                case 'high-quality':
+                    filtered = filtered.filter(m => (m.quality?.total_score || 0) >= 70);
+                    break;
+                case 'high-volume':
+                    filtered = filtered.filter(m => (m.volume_24h || 0) >= 10000);
+                    break;
+                case 'confident':
+                    const prob = parseFloat(m.price || 0.5);
+                    filtered = filtered.filter(m => {
+                        const p = parseFloat(m.price || 0.5);
+                        return p > 0.7 || p < 0.3;
+                    });
+                    break;
+                case 'all':
+                default:
+                    // Show all
+                    break;
+            }
+
+            displayMarkets(filtered);
+        }
+
+        function sortMarkets(sortType) {
+            let sorted = [...currentMarkets];
+
+            switch(sortType) {
+                case 'quality':
+                    sorted.sort((a, b) => (b.quality?.total_score || 0) - (a.quality?.total_score || 0));
+                    break;
+                case 'volume':
+                    sorted.sort((a, b) => (b.volume_24h || 0) - (a.volume_24h || 0));
+                    break;
+                case 'probability':
+                    sorted.sort((a, b) => parseFloat(b.price || 0.5) - parseFloat(a.price || 0.5));
+                    break;
+                case 'newest':
+                    // Assuming markets are already in newest-first order from API
+                    break;
+            }
+
+            currentMarkets = sorted;
+            displayMarkets(sorted);
+        }
+
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             checkStatus();
@@ -1214,5 +1610,8 @@
             }
         });
     </script>
+
+    <!-- AI Chat Widget -->
+    <script src="js/chat-widget.js"></script>
 </body>
 </html>

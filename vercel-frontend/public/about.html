@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Am Predicts MVP</title>
     <link href="https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/chat-widget.css">
     <style>
         :root {
             --off-white: #F7F7F7;
@@ -260,8 +261,10 @@
         <a href="index.html" class="nav-logo">am predicts</a>
         <div class="nav-links">
             <a href="index.html#markets" class="nav-link">Markets</a>
+            <a href="ai-insights.html" class="nav-link">AI Chat</a>
+            <a href="research.html" class="nav-link">Research</a>
             <a href="index.html#predictions" class="nav-link">My Predictions</a>
-            <a href="about.html" class="nav-link">About</a>
+            <a href="about.html" class="nav-link active">About</a>
             <a href="index.html#markets" class="nav-cta">Browse Markets</a>
         </div>
     </nav>
@@ -316,10 +319,137 @@
         <a href="index.html#markets" class="btn-primary">Browse Markets</a>
     </section>
 
+    <section class="page-hero">
+        <div class="section-label">Future Vision</div>
+        <h1>THE CANTON ROADMAP.</h1>
+        <p style="margin-top: 24px;">
+            Our current demo showcases AI-powered prediction market analysis. But our vision goes much further:
+            privacy-preserving, on-chain predictions powered by Canton Network.
+        </p>
+    </section>
+
+    <section class="content-section">
+        <h2 style="margin-bottom: 32px;">Phase 1: Demo MVP (Current)</h2>
+        <div style="background: var(--white); border: 1px solid var(--near-black); padding: 32px;">
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+                <div>
+                    <h3 style="font-family: 'Cousine', monospace; font-size: 14px; text-transform: uppercase; margin-bottom: 16px; color: var(--lv-green);">✓ Completed</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 15px; line-height: 2;">
+                        <li>• Live Polymarket integration</li>
+                        <li>• AI-powered quality scoring</li>
+                        <li>• Market insights generation</li>
+                        <li>• Mock prediction placement</li>
+                        <li>• AI chat assistant</li>
+                        <li>• Research & academic foundation</li>
+                        <li>• Live trading models</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="font-family: 'Cousine', monospace; font-size: 14px; text-transform: uppercase; margin-bottom: 16px; color: var(--lv-blue);">→ Current Status</h3>
+                    <p style="font-size: 15px; line-height: 1.7; color: var(--medium-gray);">
+                        We've successfully built a functional prediction market platform that demonstrates our AI capabilities
+                        and research-backed approach. All predictions are currently simulated in localStorage for UX testing.
+                    </p>
+                    <p style="font-size: 15px; line-height: 1.7; color: var(--medium-gray); margin-top: 16px;">
+                        <strong>Next:</strong> Canton blockchain integration for real, privacy-preserving on-chain predictions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2 style="margin-bottom: 32px;">Phase 2: Canton Integration (Q1-Q2 2026)</h2>
+        <div style="background: var(--near-black); color: var(--white); border: 2px solid var(--near-black); padding: 40px;">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 32px;">
+                <div>
+                    <div style="width: 48px; height: 48px; background: var(--lv-purple); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 16px;">🔒</div>
+                    <h3 style="font-family: 'Cousine', monospace; font-size: 14px; text-transform: uppercase; margin-bottom: 12px; color: var(--lv-purple);">DAML Smart Contracts</h3>
+                    <p style="font-size: 14px; line-height: 1.6; color: var(--light-gray);">
+                        Build smart contracts for prediction placement, escrow, and automated resolution using Digital Asset Modeling Language (DAML).
+                    </p>
+                </div>
+                <div>
+                    <div style="width: 48px; height: 48px; background: var(--lv-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 16px;">👤</div>
+                    <h3 style="font-family: 'Cousine', monospace; font-size: 14px; text-transform: uppercase; margin-bottom: 12px; color: var(--lv-blue);">User Wallets</h3>
+                    <p style="font-size: 14px; line-height: 1.6; color: var(--light-gray);">
+                        Integrate Canton-compatible wallets for secure authentication and transaction signing. Privacy-first by design.
+                    </p>
+                </div>
+                <div>
+                    <div style="width: 48px; height: 48px; background: var(--lv-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 16px;">⚡</div>
+                    <h3 style="font-family: 'Cousine', monospace; font-size: 14px; text-transform: uppercase; margin-bottom: 12px; color: var(--lv-green);">On-Chain Predictions</h3>
+                    <p style="font-size: 14px; line-height: 1.6; color: var(--light-gray);">
+                        Replace mock predictions with real on-chain transactions. Verifiable, transparent, and secure.
+                    </p>
+                </div>
+            </div>
+
+            <div style="background: rgba(247, 247, 247, 0.1); padding: 24px; border-left: 4px solid var(--lv-yellow);">
+                <p style="font-size: 14px; line-height: 1.7; color: var(--light-gray); margin-bottom: 12px;">
+                    <strong style="color: var(--lv-yellow);">Why Canton?</strong> Canton Network provides privacy, composability,
+                    and regulatory compliance that traditional blockchains can't match. Built on DAML, Canton enables:
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 2; color: var(--light-gray);">
+                    <li>• Privacy-preserving transactions (sub-transaction privacy)</li>
+                    <li>• Regulatory compliance (Swiss financial law compatible)</li>
+                    <li>• Cross-network composability (interop with traditional finance)</li>
+                    <li>• Deterministic settlement (no blockchain congestion)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2 style="margin-bottom: 32px;">Phase 3: Mainnet & Scale (Q3-Q4 2026)</h2>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;">
+            <div style="background: var(--white); border: 1px solid var(--near-black); padding: 32px;">
+                <h3 style="font-family: 'Cousine', monospace; font-size: 14px; text-transform: uppercase; margin-bottom: 16px; color: var(--lv-pink);">Canton Mainnet Launch</h3>
+                <p style="font-size: 15px; line-height: 1.7; color: var(--medium-gray); margin-bottom: 16px;">
+                    Deploy to Canton's production network with full regulatory compliance. Launch with institutional-grade
+                    infrastructure and Swiss financial oversight.
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 2; color: var(--medium-gray);">
+                    <li>✓ Institutional custody integration</li>
+                    <li>✓ Regulatory reporting & compliance</li>
+                    <li>✓ KYC/AML workflows</li>
+                    <li>✓ Fiat on/off ramps</li>
+                </ul>
+            </div>
+            <div style="background: var(--white); border: 1px solid var(--near-black); padding: 32px;">
+                <h3 style="font-family: 'Cousine', monospace; font-size: 14px; text-transform: uppercase; margin-bottom: 16px; color: var(--lv-teal);">Advanced Features</h3>
+                <p style="font-size: 15px; line-height: 1.7; color: var(--medium-gray); margin-bottom: 16px;">
+                    Expand platform capabilities with institutional-grade features and broader market coverage.
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 0; font-size: 14px; line-height: 2; color: var(--medium-gray);">
+                    <li>✓ Portfolio tracking & analytics</li>
+                    <li>✓ Social features & leaderboards</li>
+                    <li>✓ Custom market creation</li>
+                    <li>✓ API access for developers</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="margin-top: 32px; background: var(--light-gray); padding: 32px; text-align: center;">
+            <h3 style="font-family: 'Noto Sans', sans-serif; font-size: 24px; font-weight: 500; margin-bottom: 16px;">Join Us on the Journey</h3>
+            <p style="font-size: 16px; line-height: 1.7; color: var(--medium-gray); max-width: 700px; margin: 0 auto 24px;">
+                We're building the future of prediction markets: transparent, privacy-preserving, and backed by 40+ years
+                of academic research. Follow our progress as we move from demo to production.
+            </p>
+            <a href="index.html#markets" class="btn-primary" style="display: inline-block; padding: 16px 32px; margin-top: 8px; text-decoration: none;">
+                Try the Demo →
+            </a>
+        </div>
+    </section>
+
     <footer>
         <p>Am Predicts MVP (Demo v0)</p>
         <p style="color: var(--lv-pink);">Predictions are simulated for UX testing (no on-chain settlement).</p>
         <p>Insights may be heuristic/experimental and are not financial advice.</p>
     </footer>
+
+    <!-- AI Chat Widget -->
+    <script>const API_BASE = 'https://postposted-spent-knife-given.trycloudflare.com';</script>
+    <script src="js/chat-widget.js"></script>
 </body>
 </html>

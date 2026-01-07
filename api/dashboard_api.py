@@ -604,6 +604,151 @@ async def semantic_search(query: str, limit: int = 10):
 
 
 # ============================================================================
+# AI CHAT ENDPOINT
+# ============================================================================
+
+class ChatRequest(BaseModel):
+    message: str
+    context: Optional[Dict] = None
+
+@app.post("/api/ai/chat")
+async def ai_chat(request: ChatRequest):
+    """AI chat endpoint for conversational market analysis."""
+    if not openai_client:
+        return {'error': 'OpenAI API not configured', 'response': 'AI chat is not available at the moment.'}
+
+    try:
+        user_message = request.message.lower()
+
+        # Fetch current markets for context
+        markets_data = []
+        try:
+            async with httpx.AsyncClient(timeout=10.0) as client:
+                response = await client.get(f"{GAMMA_API}/markets?limit=20")
+                if response.status_code == 200:
+                    markets_raw = response.json()
+
+                    # Process markets
+                    for market in markets_raw:
+                        if not market.get('active', True):
+                            continue
+
+                        # Get quality score
+                        volume_24h = float(market.get('volume24hr', 0))
+                        quality_score = calculate_quality_score_simple(volume_24h)
+
+                        markets_data.append({
+                            'question': market.get('question', ''),
+                            'market_id': market.get('conditionId', ''),
+                            'price': get_market_price(market),
+                            'volume_24h': volume_24h,
+                            'quality': {'total_score': quality_score}
+                        })
+        except:
+            pass
+
+        # Determine intent and craft system prompt
+        system_prompt = """You are an AI assistant for Canton Prediction Markets, a platform that shows live prediction markets from Polymarket with AI-powered quality scoring.
+
+Your capabilities:
+- Explain prediction market concepts
+- Analyze market quality and probabilities
+- Recommend markets based on quality scores
+- Answer questions about the platform
+
+Quality Scoring System (0-100):
+- Liquidity (0-35): Based on 24h volume
+- Spread (0-25): Bid-ask tightness
+- Activity (0-25): Trades and participants
+- Time (0-15): Time to resolution
+
+High Quality: 70-100
+Medium Quality: 50-69
+Low Quality: 0-49
+
+Be helpful, concise, and focused on helping users understand and navigate prediction markets. If asked about specific markets, refer to the current markets data provided."""
+
+        # Check for specific intents
+        markets_to_return = []
+
+        if any(word in user_message for word in ['best', 'top', 'good', 'quality', 'recommend']):
+            # Sort by quality
+            markets_data.sort(key=lambda x: x['quality']['total_score'], reverse=True)
+            markets_to_return = markets_data[:3]
+
+        elif any(word in user_message for word in ['high volume', 'liquid', 'active']):
+            # Sort by volume
+            markets_data.sort(key=lambda x: x['volume_24h'], reverse=True)
+            markets_to_return = markets_data[:3]
+
+        elif any(word in user_message for word in ['politics', 'election', 'government']):
+            # Filter for political markets (basic keyword matching)
+            political_markets = [m for m in markets_data if any(
+                word in m['question'].lower() for word in ['election', 'president', 'trump', 'biden', 'senate', 'congress']
+            )]
+            markets_to_return = political_markets[:3]
+
+        # Build user prompt with context
+        markets_context = ""
+        if markets_data:
+            markets_context = "\n\nCurrent Top Markets:\n"
+            for i, m in enumerate(markets_data[:10], 1):
+                markets_context += f"{i}. {m['question']} - {float(m['price'])*100:.1f}% probability, Quality: {m['quality']['total_score']:.0f}/100\n"
+
+        user_prompt = f"{request.message}{markets_context}"
+
+        # Call OpenAI
+        completion = openai_client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            temperature=0.7,
+            max_tokens=500
+        )
+
+        response_text = completion.choices[0].message.content
+
+        return {
+            'response': response_text,
+            'markets': markets_to_return,
+            'timestamp': datetime.now().isoformat()
+        }
+
+    except Exception as e:
+        return {
+            'error': str(e),
+            'response': "I'm having trouble processing your request. Please try asking in a different way or check back later.",
+            'markets': []
+        }
+
+def calculate_quality_score_simple(volume_24h):
+    """Simple quality score based on volume."""
+    if volume_24h >= 100000:
+        return 85
+    elif volume_24h >= 50000:
+        return 75
+    elif volume_24h >= 10000:
+        return 65
+    elif volume_24h >= 1000:
+        return 50
+    else:
+        return 35
+
+def get_market_price(market):
+    """Extract market price from Gamma API format."""
+    try:
+        # Gamma API format
+        outcomes = market.get('outcomes', [])
+        if outcomes and len(outcomes) > 0:
+            return float(outcomes[0].get('price', 0.5))
+    except:
+        pass
+    return 0.5
+
+
+# ============================================================================
 # EXISTING ENDPOINTS
 # ============================================================================
 

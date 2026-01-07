@@ -3,16 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Insights - Am Predicts MVP</title>
+    <title>AI Chat - Am Predicts MVP</title>
     <link href="https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/chat-widget.css">
     <style>
         :root {
             --off-white: #F7F7F7;
             --near-black: #1B1C1C;
-            --coral: #E8846B;
             --light-gray: #E8E8E8;
             --medium-gray: #6B6B6B;
             --white: #FFFFFF;
+            /* LV Multicolor Palette */
+            --lv-pink: #E8A4C9;
+            --lv-red: #D94444;
+            --lv-purple: #9B6BB8;
+            --lv-blue: #5B8FD4;
+            --lv-green: #6AB86A;
+            --lv-yellow: #D4A44A;
+            --lv-teal: #4AB8B8;
+            --lv-coral: #E8846B;
         }
 
         * {
@@ -26,7 +35,10 @@
             background-color: var(--off-white);
             color: var(--near-black);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* Navigation */
@@ -49,6 +61,7 @@
             font-weight: 700;
             color: var(--near-black);
             text-decoration: none;
+            letter-spacing: -0.02em;
         }
 
         .nav-links {
@@ -72,7 +85,7 @@
         }
 
         .nav-link.active {
-            border-bottom: 2px solid var(--coral);
+            border-bottom: 2px solid var(--lv-purple);
             padding-bottom: 4px;
         }
 
@@ -81,7 +94,7 @@
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            background: var(--coral);
+            background: var(--lv-pink);
             color: var(--near-black);
             border: 1px solid var(--near-black);
             padding: 12px 24px;
@@ -94,328 +107,32 @@
             color: var(--white);
         }
 
-        /* Hero */
-        .page-hero {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 80px 48px 60px;
-            display: grid;
-            grid-template-columns: 1fr 350px;
-            gap: 80px;
-            align-items: start;
-        }
-
-        .page-hero-content h1 {
-            font-family: 'Noto Sans', sans-serif;
-            font-size: clamp(36px, 4vw, 56px);
-            font-weight: 400;
-            text-transform: uppercase;
-            line-height: 1.1;
-            margin-bottom: 24px;
-        }
-
-        .page-hero-content p {
-            font-size: 18px;
-            line-height: 1.6;
-            color: var(--medium-gray);
-            margin-bottom: 32px;
-        }
-
-        .section-label {
-            font-family: 'Cousine', monospace;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .section-label::before {
-            content: '+';
-            color: var(--coral);
-            font-weight: bold;
-        }
-
-        /* Search */
-        .search-box {
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 16px 20px 16px 48px;
-            border: 1px solid var(--near-black);
-            font-family: 'Noto Sans', sans-serif;
-            font-size: 16px;
-            background: var(--white);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--coral);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--medium-gray);
-        }
-
-        /* Tabs */
-        .tabs-section {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 48px;
-        }
-
-        .tabs {
-            display: flex;
-            gap: 0;
-            border-bottom: 1px solid var(--near-black);
-            margin-bottom: 48px;
-        }
-
-        .tab {
-            padding: 16px 32px;
-            background: none;
-            border: none;
-            font-family: 'Cousine', monospace;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--medium-gray);
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            margin-bottom: -1px;
-            transition: all 0.2s;
-        }
-
-        .tab:hover {
-            color: var(--near-black);
-        }
-
-        .tab.active {
-            color: var(--near-black);
-            border-bottom-color: var(--coral);
-        }
-
-        /* Insights Grid */
-        .insights-section {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 48px 80px;
-        }
-
-        .insights-grid {
-            display: grid;
-            gap: 24px;
-        }
-
-        .insight-card {
-            background: var(--white);
-            border: 1px solid var(--near-black);
-            position: relative;
-        }
-
-        .insight-card-header {
-            background: var(--near-black);
-            color: var(--white);
-            padding: 16px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .insight-card-header h3 {
-            font-family: 'Noto Sans', sans-serif;
-            font-size: 16px;
-            font-weight: 500;
+        /* Page Container */
+        .page-container {
             flex: 1;
-            margin-right: 16px;
-        }
-
-        .confidence-badge {
-            font-family: 'Cousine', monospace;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 6px 12px;
-            background: var(--coral);
-            color: var(--near-black);
-        }
-
-        .confidence-badge.medium {
-            background: var(--light-gray);
-        }
-
-        .confidence-badge.low {
-            background: var(--medium-gray);
-            color: var(--white);
-        }
-
-        .insight-card-body {
-            padding: 24px;
-        }
-
-        .insight-analysis {
-            font-size: 15px;
-            line-height: 1.7;
-            color: var(--near-black);
-            margin-bottom: 24px;
-            padding-bottom: 24px;
-            border-bottom: 1px solid var(--light-gray);
-        }
-
-        .quality-breakdown {
-            margin-bottom: 24px;
-        }
-
-        .quality-title {
-            font-family: 'Cousine', monospace;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--medium-gray);
-            margin-bottom: 12px;
-        }
-
-        .quality-bars {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
-
-        .quality-bar {
-            background: var(--light-gray);
-            padding: 12px 16px;
-        }
-
-        .quality-bar-label {
-            font-family: 'Cousine', monospace;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--medium-gray);
-            margin-bottom: 4px;
-        }
-
-        .quality-bar-value {
-            font-size: 18px;
-            font-weight: 500;
-        }
-
-        .insight-meta {
             display: flex;
-            gap: 24px;
-            flex-wrap: wrap;
-        }
-
-        .metric-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            border: 1px solid var(--near-black);
-            font-family: 'Cousine', monospace;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .metric-tag::before {
-            content: '\2713';
-            color: var(--coral);
-        }
-
-        /* How It Works */
-        .how-section {
+            flex-direction: column;
             max-width: 1400px;
+            width: 100%;
             margin: 0 auto;
-            padding: 80px 48px;
-            border-top: 1px solid var(--near-black);
+            padding: 48px;
         }
 
-        .how-header {
+        .page-header {
+            text-align: center;
             margin-bottom: 48px;
         }
 
-        .how-headline {
+        .page-title {
             font-family: 'Noto Sans', sans-serif;
-            font-size: clamp(32px, 3vw, 42px);
+            font-size: clamp(36px, 5vw, 56px);
             font-weight: 400;
             text-transform: uppercase;
             line-height: 1.1;
-        }
-
-        .how-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-        }
-
-        .how-card {
-            background: var(--light-gray);
-            border: 1px solid var(--near-black);
-            padding: 32px 24px;
-            position: relative;
-        }
-
-        .how-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: var(--near-black);
-        }
-
-        .how-number {
-            font-family: 'Cousine', monospace;
-            font-size: 12px;
-            color: var(--coral);
             margin-bottom: 16px;
         }
 
-        .how-card h3 {
-            font-family: 'Noto Sans', sans-serif;
-            font-size: 16px;
-            font-weight: 500;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-
-        .how-card p {
-            font-size: 14px;
-            line-height: 1.5;
-            color: var(--medium-gray);
-        }
-
-        /* Loading */
-        .loading {
-            text-align: center;
-            padding: 80px 48px;
-        }
-
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid var(--light-gray);
-            border-top-color: var(--coral);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 24px;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .loading-text {
+        .page-subtitle {
             font-family: 'Cousine', monospace;
             font-size: 14px;
             text-transform: uppercase;
@@ -423,11 +140,77 @@
             color: var(--medium-gray);
         }
 
+        /* Chat Container - Full Page Version */
+        .chat-full-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--white);
+            border: 2px solid var(--near-black);
+            max-height: calc(100vh - 280px);
+            min-height: 600px;
+        }
+
+        .chat-full-header {
+            background: var(--near-black);
+            color: var(--white);
+            padding: 24px 32px;
+            border-bottom: 2px solid var(--near-black);
+        }
+
+        .chat-full-header h2 {
+            font-family: 'Cousine', monospace;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .chat-full-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Cousine', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--lv-green);
+        }
+
+        .status-dot-small {
+            width: 8px;
+            height: 8px;
+            background: var(--lv-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .chat-full-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px;
+            background: var(--off-white);
+        }
+
+        .chat-full-footer {
+            border-top: 2px solid var(--light-gray);
+            background: var(--white);
+            padding: 24px 32px;
+        }
+
+        /* Reuse chat-widget styles for messages */
         /* Footer */
         footer {
             border-top: 1px solid var(--near-black);
-            padding: 48px;
+            padding: 32px;
             text-align: center;
+            margin-top: auto;
         }
 
         footer p {
@@ -438,53 +221,26 @@
             color: var(--medium-gray);
         }
 
-        footer p + p {
-            margin-top: 8px;
-        }
-
         /* Responsive */
-        @media (max-width: 1024px) {
-            .page-hero {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .how-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .quality-bars {
-                grid-template-columns: 1fr;
-            }
-        }
-
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
 
-            .tabs {
-                overflow-x: auto;
+            .page-container {
+                padding: 24px;
             }
 
-            .tab {
+            .chat-full-container {
+                max-height: calc(100vh - 200px);
+            }
+
+            .chat-full-body {
+                padding: 20px;
+            }
+
+            .chat-full-footer {
                 padding: 16px 20px;
-                white-space: nowrap;
-            }
-
-            .how-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .page-hero {
-                padding: 60px 24px 40px;
-            }
-
-            .insights-section,
-            .how-section,
-            .tabs-section {
-                padding-left: 24px;
-                padding-right: 24px;
             }
         }
     </style>
@@ -494,262 +250,253 @@
     <nav class="nav">
         <a href="index.html" class="nav-logo">am predicts</a>
         <div class="nav-links">
-            <a href="about.html" class="nav-link">About</a>
-            <a href="ai-insights.html" class="nav-link active">Products</a>
+            <a href="index.html#markets" class="nav-link">Markets</a>
+            <a href="ai-insights.html" class="nav-link active">AI Chat</a>
             <a href="research.html" class="nav-link">Research</a>
-            <a href="trading-models/system.html" class="nav-link">Trading Models</a>
-            <a href="index.html#markets" class="nav-cta">View Markets</a>
+            <a href="index.html#predictions" class="nav-link">My Predictions</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="index.html#markets" class="nav-cta">Browse Markets</a>
         </div>
     </nav>
 
-    <!-- Page Hero -->
-    <section class="page-hero">
-        <div class="page-hero-content">
-            <div class="section-label">AI Products</div>
-            <h1>AI-GENERATED MARKET INSIGHTS.</h1>
-            <p>
-                Powered by research-backed analysis with RAG-enhanced context from similar historical events.
-                Every insight combines real-time market data with 40+ years of prediction market research.
-            </p>
-        </div>
-        <div class="search-box">
-            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"/>
-                <path d="m21 21-4.35-4.35"/>
-            </svg>
-            <input type="text" class="search-input" id="searchInput" placeholder="Search markets...">
-        </div>
-    </section>
-
-    <!-- Tabs -->
-    <section class="tabs-section">
-        <div class="tabs">
-            <button class="tab active" onclick="switchTab('all')">All Insights</button>
-            <button class="tab" onclick="switchTab('high-confidence')">High Confidence</button>
-            <button class="tab" onclick="switchTab('trending')">Trending</button>
-        </div>
-    </section>
-
-    <!-- Insights Grid -->
-    <section class="insights-section">
-        <div id="insightsLoading" class="loading">
-            <div class="spinner"></div>
-            <p class="loading-text">Loading AI insights...</p>
+    <!-- Main Content -->
+    <div class="page-container">
+        <div class="page-header">
+            <h1 class="page-title">AI ASSISTANT</h1>
+            <p class="page-subtitle">Ask me anything about prediction markets</p>
         </div>
 
-        <div id="insightsGrid" class="insights-grid" style="display: none;">
-            <!-- Insights will be loaded here -->
-        </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="how-section">
-        <div class="how-header">
-            <div class="section-label">How It Works</div>
-            <h2 class="how-headline">FROM RAW DATA TO ACTIONABLE INSIGHTS.</h2>
-        </div>
-
-        <div class="how-grid">
-            <div class="how-card">
-                <div class="how-number">01</div>
-                <h3>Market Summary</h3>
-                <p>AI analyzes the event and generates a concise summary based on current market conditions.</p>
+        <!-- Full Page Chat Interface -->
+        <div class="chat-full-container">
+            <div class="chat-full-header">
+                <h2>Market Analysis & Questions</h2>
+                <div class="chat-full-status">
+                    <div class="status-dot-small"></div>
+                    <span>AI Online</span>
+                </div>
             </div>
-            <div class="how-card">
-                <div class="how-number">02</div>
-                <h3>RAG Retrieval</h3>
-                <p>Vector search finds similar historical events from our database of resolved markets.</p>
+
+            <div class="chat-full-body" id="chatFullMessages">
+                <div class="chat-welcome">
+                    <div class="welcome-icon">✨</div>
+                    <h4>Ask me anything about prediction markets</h4>
+                    <div class="suggested-questions">
+                        <button class="suggested-q" data-question="What are the best markets right now?">
+                            What are the best markets right now?
+                        </button>
+                        <button class="suggested-q" data-question="How does quality scoring work?">
+                            How does quality scoring work?
+                        </button>
+                        <button class="suggested-q" data-question="Show me high volume markets">
+                            Show me high volume markets
+                        </button>
+                        <button class="suggested-q" data-question="What are prediction markets?">
+                            What are prediction markets?
+                        </button>
+                        <button class="suggested-q" data-question="Explain the trading models">
+                            Explain the trading models
+                        </button>
+                        <button class="suggested-q" data-question="How accurate are prediction markets?">
+                            How accurate are prediction markets?
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="how-card">
-                <div class="how-number">03</div>
-                <h3>Probability Analysis</h3>
-                <p>AI combines market data with historical patterns to estimate likelihood and confidence.</p>
-            </div>
-            <div class="how-card">
-                <div class="how-number">04</div>
-                <h3>Quality Scoring</h3>
-                <p>System evaluates liquidity, spread, and activity for a comprehensive quality rating.</p>
+
+            <div class="chat-full-footer">
+                <form id="chatFullForm" class="chat-input-form">
+                    <input
+                        type="text"
+                        id="chatFullInput"
+                        class="chat-input"
+                        placeholder="Ask about markets, quality scores, strategies, analysis..."
+                        autocomplete="off"
+                        style="font-size: 16px;"
+                    />
+                    <button type="submit" class="chat-send-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </form>
+                <div class="chat-disclaimer">
+                    AI-generated responses may be experimental • Not financial advice
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
     <footer>
-        <p>Am Predicts MVP</p>
-        <p>Built with Research-Backed AI</p>
+        <p>Am Predicts MVP (Demo v0)</p>
+        <p style="margin-top: 8px; color: var(--lv-pink);">Predictions are simulated for UX testing (no on-chain settlement).</p>
+        <p style="margin-top: 8px;">Insights may be heuristic/experimental and are not financial advice.</p>
     </footer>
 
     <script>
         const API_BASE = 'https://postposted-spent-knife-given.trycloudflare.com';
-        let allInsights = [];
-        let originalInsights = [];
-        let currentTab = 'all';
+        let messages = [];
 
-        async function loadInsights() {
+        // Handle suggested questions
+        const suggestedQuestions = document.querySelectorAll('.suggested-q');
+        suggestedQuestions.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const question = btn.getAttribute('data-question');
+                sendMessage(question);
+            });
+        });
+
+        // Handle form submission
+        const form = document.getElementById('chatFullForm');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const input = document.getElementById('chatFullInput');
+            const message = input.value.trim();
+            if (message) {
+                sendMessage(message);
+                input.value = '';
+            }
+        });
+
+        async function sendMessage(message) {
+            const container = document.getElementById('chatFullMessages');
+
+            // Remove welcome screen
+            const welcome = container.querySelector('.chat-welcome');
+            if (welcome) {
+                welcome.remove();
+            }
+
+            // Add user message
+            addMessage('user', message);
+
+            // Show typing
+            showTyping();
+
             try {
-                document.getElementById('insightsLoading').style.display = 'block';
+                const response = await fetch(`${API_BASE}/api/ai/chat`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        context: {
+                            page: 'ai-chat',
+                            timestamp: new Date().toISOString()
+                        }
+                    })
+                });
 
-                const response = await fetch(`${API_BASE}/api/quality/top-markets?limit=20`);
                 const data = await response.json();
+                hideTyping();
 
                 if (data.error) {
                     throw new Error(data.error);
                 }
 
-                originalInsights = (data.markets || []).map(m => ({
-                    market: m,
-                    analysis: generateInsightText(m),
-                    timestamp: data.timestamp
-                }));
+                addMessage('assistant', data.response, data.markets);
 
-                allInsights = [...originalInsights];
-                displayInsights();
-
-                document.getElementById('insightsLoading').style.display = 'none';
-                document.getElementById('insightsGrid').style.display = 'grid';
             } catch (error) {
-                console.error('Failed to load insights:', error);
-                document.getElementById('insightsLoading').innerHTML =
-                    '<p class="loading-text" style="color: #ef4444;">Failed to load AI insights. Please try again.</p>';
+                console.error('Chat error:', error);
+                hideTyping();
+                addMessage('assistant',
+                    "I'm having trouble connecting right now. Please try again or browse the markets directly.",
+                    null,
+                    true
+                );
             }
+
+            // Save history
+            localStorage.setItem('am_full_chat_history', JSON.stringify(messages.slice(-20)));
         }
 
-        function generateInsightText(market) {
-            const prob = parseFloat(market.price || 0.5);
-            const quality = market.quality?.total_score || 0;
-            const volume = market.volume_24h || 0;
+        function addMessage(role, content, markets = null, isError = false) {
+            const container = document.getElementById('chatFullMessages');
+            const messageEl = document.createElement('div');
+            messageEl.className = `chat-message ${role}${isError ? ' error' : ''}`;
 
-            let insight = `Analysis for "${market.question}": `;
+            const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-            if (quality > 70) {
-                insight += `High-quality market with a quality score of ${quality.toFixed(0)}/100. `;
-            } else if (quality > 50) {
-                insight += `Moderate-quality market with a quality score of ${quality.toFixed(0)}/100. `;
-            } else {
-                insight += `Limited liquidity market with a quality score of ${quality.toFixed(0)}/100. `;
-            }
-
-            if (volume > 10000) {
-                insight += `Strong trading activity with $${formatVolume(volume)} in 24h volume. `;
-            } else if (volume > 1000) {
-                insight += `Moderate trading activity with $${formatVolume(volume)} in 24h volume. `;
-            } else {
-                insight += `Low trading activity. `;
-            }
-
-            if (prob > 0.7) {
-                insight += `Current consensus strongly favors YES at ${(prob * 100).toFixed(1)}%. Consider the mean reversion potential if overconfidence is present.`;
-            } else if (prob < 0.3) {
-                insight += `Current consensus strongly favors NO at ${((1-prob) * 100).toFixed(1)}%. Watch for longshot bias opportunities.`;
-            } else {
-                insight += `Market shows uncertainty with ${(prob * 100).toFixed(1)}% YES probability. Higher information gathering potential here.`;
-            }
-
-            return insight;
-        }
-
-        function displayInsights(filter = currentTab) {
-            let filtered = allInsights;
-
-            if (filter === 'high-confidence') {
-                filtered = allInsights.filter(i => getConfidenceLevel(i) === 'High');
-            } else if (filter === 'trending') {
-                filtered = allInsights.slice(0, 10);
-            }
-
-            const container = document.getElementById('insightsGrid');
-
-            if (filtered.length === 0) {
-                container.innerHTML = '<p class="loading-text">No insights found matching your criteria.</p>';
-                return;
-            }
-
-            container.innerHTML = filtered.map(insight => {
-                const confidence = getConfidenceLevel(insight);
-                const confidenceClass = confidence === 'High' ? '' : confidence === 'Medium' ? 'medium' : 'low';
-
-                return `
-                    <div class="insight-card">
-                        <div class="insight-card-header">
-                            <h3>${insight.market?.question || 'Market Analysis'}</h3>
-                            <span class="confidence-badge ${confidenceClass}">${confidence} Confidence</span>
-                        </div>
-                        <div class="insight-card-body">
-                            <div class="insight-analysis">
-                                ${insight.analysis || 'Analyzing market conditions...'}
-                            </div>
-
-                            <div class="quality-breakdown">
-                                <div class="quality-title">Quality Breakdown</div>
-                                <div class="quality-bars">
-                                    <div class="quality-bar">
-                                        <div class="quality-bar-label">Liquidity</div>
-                                        <div class="quality-bar-value">${insight.market?.quality?.liquidity_score?.toFixed(0) || 0}/35</div>
-                                    </div>
-                                    <div class="quality-bar">
-                                        <div class="quality-bar-label">Spread</div>
-                                        <div class="quality-bar-value">${insight.market?.quality?.spread_score?.toFixed(0) || 0}/25</div>
-                                    </div>
-                                    <div class="quality-bar">
-                                        <div class="quality-bar-label">Activity</div>
-                                        <div class="quality-bar-value">${insight.market?.quality?.activity_score?.toFixed(0) || 0}/25</div>
-                                    </div>
+            let marketsHTML = '';
+            if (markets && markets.length > 0) {
+                marketsHTML = `
+                    <div class="chat-markets">
+                        ${markets.map(m => `
+                            <div class="chat-market-card" onclick="window.location.href='index.html#market-${m.market_id}'">
+                                <div class="chat-market-title">${m.question}</div>
+                                <div class="chat-market-stats">
+                                    <span>${(parseFloat(m.price || 0.5) * 100).toFixed(0)}%</span>
+                                    <span>Quality: ${m.quality?.total_score?.toFixed(0) || 'N/A'}</span>
                                 </div>
                             </div>
-
-                            <div class="insight-meta">
-                                <span class="metric-tag">${((insight.market?.price || 0.5) * 100).toFixed(1)}% PROB</span>
-                                <span class="metric-tag">$${formatVolume(insight.market?.volume_24h || 0)} VOL</span>
-                                <span class="metric-tag">${insight.market?.quality?.total_score?.toFixed(0) || 0}/100 QUALITY</span>
-                            </div>
-                        </div>
+                        `).join('')}
                     </div>
                 `;
-            }).join('');
-        }
-
-        function getConfidenceLevel(insight) {
-            const prob = insight.market?.price || 0.5;
-            const quality = insight.market?.quality?.total_score || 0;
-
-            if ((prob > 0.7 || prob < 0.3) && quality > 70) return 'High';
-            if ((prob > 0.6 || prob < 0.4) && quality > 50) return 'Medium';
-            return 'Low';
-        }
-
-        function formatVolume(value) {
-            if (value >= 1000000) return (value / 1000000).toFixed(1) + 'M';
-            if (value >= 1000) return (value / 1000).toFixed(1) + 'K';
-            return value.toFixed(0);
-        }
-
-        function switchTab(tab) {
-            currentTab = tab;
-
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            event.target.classList.add('active');
-
-            displayInsights(tab);
-        }
-
-        // Search functionality
-        document.getElementById('searchInput')?.addEventListener('input', (e) => {
-            const query = e.target.value.toLowerCase();
-            if (!query) {
-                allInsights = [...originalInsights];
-                displayInsights(currentTab);
-                return;
             }
 
-            allInsights = originalInsights.filter(i =>
-                (i.market?.question || '').toLowerCase().includes(query) ||
-                (i.analysis || '').toLowerCase().includes(query)
-            );
-            displayInsights(currentTab);
-        });
+            messageEl.innerHTML = `
+                <div class="message-content">
+                    <div class="message-text">${formatMessage(content)}</div>
+                    ${marketsHTML}
+                </div>
+                <div class="message-time">${timestamp}</div>
+            `;
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', loadInsights);
+            container.appendChild(messageEl);
+            container.scrollTop = container.scrollHeight;
+
+            messages.push({ role, content, markets, timestamp });
+        }
+
+        function formatMessage(content) {
+            return content
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/\n/g, '<br>');
+        }
+
+        function showTyping() {
+            const container = document.getElementById('chatFullMessages');
+            const indicator = document.createElement('div');
+            indicator.className = 'chat-message assistant typing';
+            indicator.id = 'typingIndicatorFull';
+            indicator.innerHTML = `
+                <div class="message-content">
+                    <div class="typing-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            `;
+            container.appendChild(indicator);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function hideTyping() {
+            const indicator = document.getElementById('typingIndicatorFull');
+            if (indicator) {
+                indicator.remove();
+            }
+        }
+
+        // Load history on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                const saved = localStorage.getItem('am_full_chat_history');
+                if (saved) {
+                    messages = JSON.parse(saved);
+                    // Optionally restore to UI
+                }
+            } catch (e) {
+                console.error('Failed to load history:', e);
+            }
+
+            // Focus input
+            document.getElementById('chatFullInput').focus();
+        });
     </script>
 </body>
 </html>
