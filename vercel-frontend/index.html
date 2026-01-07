@@ -230,7 +230,7 @@
     </div>
 
     <script>
-        const API_BASE = 'https://postposted-spent-knife-given.trycloudflare.com';
+        const API_BASE = 'https://wanna-flexible-sapphire-suburban.trycloudflare.com';
         let currentMarkets = [];
         let selectedMarket = null;
         let currentFilter = 'all';
@@ -242,9 +242,18 @@
 
         async function fetchMarkets() {
             try {
-                const response = await fetch(`${API_BASE}/api/markets`);
+                const response = await fetch(`${API_BASE}/api/quality/top-markets?limit=30`);
                 const data = await response.json();
-                currentMarkets = data.markets || [];
+                // Transform API response format to frontend format
+                currentMarkets = (data.markets || []).map(m => ({
+                    id: m.market_id,
+                    question: m.question,
+                    probability: Math.round(m.price * 100),
+                    qualityScore: Math.round(m.quality?.total_score || 50),
+                    volume: m.volume_24h || 0,
+                    confidence: m.quality?.grade || 'C',
+                    insight: `Quality: ${m.quality?.grade || 'C'} • Volume: $${(m.volume_24h || 0).toLocaleString()}`
+                }));
                 displayMarkets();
                 updateStats();
                 updateLastUpdated();
