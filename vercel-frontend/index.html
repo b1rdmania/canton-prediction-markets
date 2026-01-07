@@ -4,23 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Angle on Canton - Real events. Real money. Better angles.</title>
-    <meta name="description" content="AI-enhanced prediction markets with quality scoring and research-backed insights. Browse live markets from Polymarket with better angles on real events.">
+    <meta name="description" content="Browse prediction markets with AI scores and quality ratings. Live data from Polymarket.">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://angle-on-canton.vercel.app/">
     <meta property="og:title" content="Angle on Canton - Real events. Real money. Better angles.">
-    <meta property="og:description" content="AI-enhanced prediction markets with quality scoring and research-backed insights. Browse live markets from Polymarket with better angles on real events.">
+    <meta property="og:description" content="Browse prediction markets with AI scores and quality ratings. Live data from Polymarket.">
     <meta property="og:image" content="https://angle-on-canton.vercel.app/share-card.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://angle-on-canton.vercel.app/">
     <meta property="twitter:title" content="Angle on Canton - Real events. Real money. Better angles.">
-    <meta property="twitter:description" content="AI-enhanced prediction markets with quality scoring and research-backed insights. Browse live markets from Polymarket with better angles on real events.">
+    <meta property="twitter:description" content="Browse prediction markets with AI scores and quality ratings. Live data from Polymarket.">
     <meta property="twitter:image" content="https://angle-on-canton.vercel.app/share-card.png">
 
-    <!-- Main CSS - All styles loaded from modular system -->
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -38,25 +37,19 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="section section--hero">
+    <section class="section" style="padding: 48px 0 32px;">
         <div class="container">
             <div class="grid grid--50-50">
                 <div>
                     <h1 class="headline-hero">REAL EVENTS.<br>REAL MONEY.<br>BETTER ANGLES.</h1>
-                    <p class="text-body-large" style="text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; color: var(--color-text-secondary);">
-                        AI-ENHANCED PREDICTION MARKETS.
+                    <p class="text-body-large" style="margin-bottom: 24px; max-width: 480px;">
+                        Browse live markets. See AI scores. Track your predictions.
                     </p>
-                    <p class="text-body-large">
-                        Browse live prediction markets, see AI-powered insights with quality scores,
-                        and place your predictions. Simple, transparent, and powered by real market data.
-                    </p>
-                    <div class="flex gap-lg" style="margin-top: 40px;">
+                    <div class="flex gap-lg">
                         <a href="#markets" class="btn btn--primary">Browse Markets</a>
                         <a href="about.html" class="btn btn--secondary">Learn More</a>
                     </div>
-
-                    <!-- Status Indicators -->
-                    <div style="display: flex; gap: 24px; margin-top: 40px; flex-wrap: wrap;">
+                    <div style="display: flex; gap: 24px; margin-top: 24px;">
                         <div style="display: flex; align-items: center; gap: 8px;">
                             <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--color-success);"></div>
                             <span class="text-small" style="font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.05em;">Live Data</span>
@@ -68,16 +61,12 @@
                     </div>
                 </div>
                 <div style="display: flex; justify-content: center; align-items: center;">
-                    <!-- Node and Edge SVG Graphic -->
-                    <svg viewBox="0 0 400 400" style="width: 100%; max-width: 500px; height: auto;">
-                        <!-- Connecting lines -->
+                    <svg viewBox="0 0 400 400" style="width: 100%; max-width: 400px; height: auto;">
                         <line x1="80" y1="100" x2="200" y2="150" stroke="var(--color-border)" stroke-width="1" opacity="0.3"/>
                         <line x1="200" y1="150" x2="320" y2="120" stroke="var(--color-border)" stroke-width="1" opacity="0.3"/>
                         <line x1="320" y1="120" x2="300" y2="280" stroke="var(--color-border)" stroke-width="1" opacity="0.3"/>
                         <line x1="200" y1="150" x2="150" y2="300" stroke="var(--color-border)" stroke-width="1" opacity="0.3"/>
                         <line x1="80" y1="100" x2="150" y2="300" stroke="var(--color-border)" stroke-width="1" opacity="0.3"/>
-
-                        <!-- LV Multicolor nodes -->
                         <circle cx="80" cy="100" r="25" fill="var(--color-accent-primary)" opacity="0.9"/>
                         <circle cx="200" cy="150" r="20" fill="var(--color-accent-primary)" opacity="0.85"/>
                         <circle cx="320" cy="120" r="18" fill="var(--color-accent-primary)" opacity="0.8"/>
@@ -89,12 +78,12 @@
         </div>
     </section>
 
-    <!-- Live Stats Dashboard -->
-    <section class="section section--no-padding-top">
+    <!-- Stats + Features Combined -->
+    <section class="section" style="padding: 24px 0 48px;">
         <div class="container">
-            <div class="stats-dashboard">
+            <div class="stats-dashboard" style="margin-bottom: 32px;">
                 <div class="stat-card stat-card--minimal">
-                    <div class="stat-card__label">Live Markets</div>
+                    <div class="stat-card__label">Markets</div>
                     <div class="stat-card__value" id="totalMarkets">--</div>
                 </div>
                 <div class="stat-card stat-card--minimal">
@@ -102,133 +91,91 @@
                     <div class="stat-card__value" id="totalVolume">--</div>
                 </div>
                 <div class="stat-card stat-card--minimal">
-                    <div class="stat-card__label">Your Predictions</div>
+                    <div class="stat-card__label">Your Picks</div>
                     <div class="stat-card__value" id="totalPredictions">0</div>
                 </div>
                 <div class="stat-card stat-card--minimal">
-                    <div class="stat-card__label">Avg Quality</div>
+                    <div class="stat-card__label">Avg Score</div>
                     <div class="stat-card__value" id="avgQuality">--</div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Divider -->
-    <div class="divider"></div>
-
-    <!-- How It Works -->
-    <section class="section">
-        <div class="container">
-            <div class="section-label">How It Works</div>
-            <h2 class="headline-section" style="margin-bottom: 48px;">BROWSE. ANALYZE. PREDICT.</h2>
 
             <div class="grid grid--4col grid--cards">
-                <!-- Feature Card 1 -->
                 <article class="feature-card">
                     <span class="feature-card__number">01</span>
-                    <h3 class="feature-card__title">Quality Scoring</h3>
-                    <p class="feature-card__text">
-                        Every market is evaluated on liquidity, spread, activity, and time to resolution.
-                    </p>
+                    <h3 class="feature-card__title">Score Markets</h3>
+                    <p class="feature-card__text">Each market gets a score based on volume, spread, and activity.</p>
                 </article>
-
-                <!-- Feature Card 2 -->
                 <article class="feature-card">
                     <span class="feature-card__number">02</span>
-                    <h3 class="feature-card__title">AI Insights</h3>
-                    <p class="feature-card__text">
-                        Heuristic analysis identifies value opportunities and market anomalies.
-                    </p>
+                    <h3 class="feature-card__title">AI Analysis</h3>
+                    <p class="feature-card__text">Get plain-language insights on what the data shows.</p>
                 </article>
-
-                <!-- Feature Card 3 -->
                 <article class="feature-card">
                     <span class="feature-card__number">03</span>
-                    <h3 class="feature-card__title">Track Predictions</h3>
-                    <p class="feature-card__text">
-                        Monitor your predictions and see how they perform against market resolution.
-                    </p>
+                    <h3 class="feature-card__title">Track Picks</h3>
+                    <p class="feature-card__text">Record your predictions and see how they perform.</p>
                 </article>
-
-                <!-- Feature Card 4 -->
                 <article class="feature-card">
                     <span class="feature-card__number">04</span>
                     <h3 class="feature-card__title">Live Data</h3>
-                    <p class="feature-card__text">
-                        Real-time market data from Polymarket, updated continuously.
-                    </p>
+                    <p class="feature-card__text">Real-time prices from Polymarket, updated constantly.</p>
                 </article>
             </div>
         </div>
     </section>
 
-    <!-- Divider -->
     <div class="divider"></div>
 
     <!-- Markets Section -->
-    <section class="section" id="markets">
+    <section class="section" id="markets" style="padding: 48px 0;">
         <div class="container">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 48px; flex-wrap: wrap; gap: 24px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; flex-wrap: wrap; gap: 16px;">
                 <div>
                     <div class="section-label">Markets</div>
                     <h2 class="headline-section">ACTIVE MARKETS</h2>
                 </div>
-                <div style="display: flex; gap: 8px; align-items: center;">
-                    <span class="text-small" style="font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-secondary);">
-                        Updated: <span id="lastUpdated">--:--</span>
-                    </span>
-                </div>
+                <span class="text-small" style="font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-secondary);">
+                    Updated: <span id="lastUpdated">--:--</span>
+                </span>
             </div>
 
-            <!-- Filter Bar -->
             <div class="filter-bar">
                 <div class="filter-bar__chips">
-                    <button class="filter-chip filter-chip--active" onclick="filterMarkets('all')">All Markets</button>
-                    <button class="filter-chip" onclick="filterMarkets('high-quality')">High Quality (70+)</button>
+                    <button class="filter-chip filter-chip--active" onclick="filterMarkets('all')">All</button>
+                    <button class="filter-chip" onclick="filterMarkets('high-quality')">Score 70+</button>
                     <button class="filter-chip" onclick="filterMarkets('high-volume')">High Volume</button>
-                    <button class="filter-chip" onclick="filterMarkets('high-confidence')">High Confidence</button>
+                    <button class="filter-chip" onclick="filterMarkets('high-confidence')">Strong Signal</button>
                 </div>
                 <div class="filter-bar__sort">
-                    <label class="label-form">Sort by</label>
+                    <label class="label-form">Sort</label>
                     <select class="filter-select" id="sortSelect" onchange="sortMarkets(this.value)">
-                        <option value="quality">Quality Score</option>
-                        <option value="volume">24h Volume</option>
+                        <option value="quality">Score</option>
+                        <option value="volume">Volume</option>
                         <option value="probability">Probability</option>
-                        <option value="newest">Newest First</option>
+                        <option value="newest">Newest</option>
                     </select>
                 </div>
             </div>
 
-            <!-- Loading State -->
-            <div id="marketsLoading" style="padding: 80px; text-align: center;">
+            <div id="marketsLoading" style="padding: 60px; text-align: center;">
                 <p class="text-body" style="color: var(--color-text-secondary);">Loading markets...</p>
             </div>
-
-            <!-- Markets Grid -->
-            <div id="marketsGrid" class="grid grid--3col grid--cards" style="display: none;">
-                <!-- Markets will be loaded dynamically -->
-            </div>
+            <div id="marketsGrid" class="grid grid--3col grid--cards" style="display: none;"></div>
         </div>
     </section>
 
-    <!-- Divider -->
     <div class="divider"></div>
 
-    <!-- Your Predictions Section -->
-    <section class="section" id="predictions">
+    <!-- Predictions Section -->
+    <section class="section" id="predictions" style="padding: 48px 0;">
         <div class="container">
-            <div class="section-label">My Predictions</div>
-            <h2 class="headline-section" style="margin-bottom: 48px;">YOUR PREDICTIONS</h2>
-
-            <!-- Empty State -->
-            <div id="predictionsEmpty" style="padding: 40px; text-align: center;">
-                <p class="text-body" style="color: var(--color-text-secondary);">No predictions yet. Browse markets above to get started!</p>
+            <div class="section-label">Your Picks</div>
+            <h2 class="headline-section" style="margin-bottom: 24px;">YOUR PREDICTIONS</h2>
+            <div id="predictionsEmpty" style="padding: 32px; text-align: center;">
+                <p class="text-body" style="color: var(--color-text-secondary);">No picks yet. Browse markets above to start.</p>
             </div>
-
-            <!-- Predictions Grid -->
-            <div id="predictionsGrid" class="grid grid--3col grid--cards" style="display: none;">
-                <!-- Predictions will be loaded from localStorage -->
-            </div>
+            <div id="predictionsGrid" class="grid grid--3col grid--cards" style="display: none;"></div>
         </div>
     </section>
 
@@ -238,7 +185,7 @@
             <div class="footer__row">
                 <div class="footer__brand">
                     <div class="footer__logo">angle on canton</div>
-                    <p class="footer__copyright">© 2026 Angle on Canton</p>
+                    <p class="footer__copyright">© 2026</p>
                 </div>
                 <div class="footer__links">
                     <a href="#markets" class="footer__link">Markets</a>
@@ -255,32 +202,28 @@
         <div style="background: var(--color-bg-primary); border: var(--border-thin); max-width: 600px; width: 90%; max-height: 90vh; overflow-y: auto;">
             <div style="background: var(--color-text-primary); color: var(--color-text-inverted); padding: 20px 24px; display: flex; justify-content: space-between; align-items: center;">
                 <h2 style="font-family: var(--font-mono); font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 400;">Place Prediction</h2>
-                <span onclick="closePredictionModal()" style="font-size: 24px; cursor: pointer; opacity: 0.7; transition: opacity 0.2s;">&times;</span>
+                <span onclick="closePredictionModal()" style="font-size: 24px; cursor: pointer; opacity: 0.7;">&times;</span>
             </div>
             <div style="padding: 32px 24px;">
                 <div id="modalMarketInfo" style="background: var(--color-bg-tertiary); padding: 20px; margin-bottom: 24px;"></div>
-
                 <form id="predictionForm" onsubmit="submitPrediction(event)">
                     <div style="margin-bottom: 24px;">
-                        <label style="display: block; font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Your Prediction</label>
+                        <label style="display: block; font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Your Pick</label>
                         <select id="predictionOutcome" required style="width: 100%; padding: 12px 16px; border: var(--border-thin); font-family: var(--font-body); font-size: 16px; background: var(--color-bg-secondary);">
-                            <option value="">Select outcome...</option>
+                            <option value="">Select...</option>
                             <option value="yes">YES</option>
                             <option value="no">NO</option>
                         </select>
                     </div>
-
                     <div style="margin-bottom: 24px;">
                         <label style="display: block; font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Amount (USD)</label>
                         <input type="number" id="predictionAmount" min="1" step="0.01" placeholder="100" required style="width: 100%; padding: 12px 16px; border: var(--border-thin); font-family: var(--font-body); font-size: 16px; background: var(--color-bg-secondary);">
                     </div>
-
                     <div style="margin-bottom: 24px;">
-                        <label style="display: block; font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Confidence Level: <span id="confidenceValue">5</span>/10</label>
+                        <label style="display: block; font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px;">Confidence: <span id="confidenceValue">5</span>/10</label>
                         <input type="range" id="confidenceLevel" min="1" max="10" value="5" style="width: 100%;">
                     </div>
-
-                    <button type="submit" class="btn btn--primary btn--full-width">SUBMIT PREDICTION</button>
+                    <button type="submit" class="btn btn--primary btn--full-width">SUBMIT</button>
                 </form>
             </div>
         </div>
@@ -293,12 +236,10 @@
         let currentFilter = 'all';
         let currentSort = 'quality';
 
-        // Confidence slider
         document.getElementById('confidenceLevel')?.addEventListener('input', (e) => {
             document.getElementById('confidenceValue').textContent = e.target.value;
         });
 
-        // Fetch markets on load
         async function fetchMarkets() {
             try {
                 const response = await fetch(`${API_BASE}/api/markets`);
@@ -309,19 +250,15 @@
                 updateLastUpdated();
                 document.getElementById('aiStatus').style.background = 'var(--color-success)';
             } catch (error) {
-                console.error('Error fetching markets:', error);
-                document.getElementById('marketsLoading').innerHTML =
-                    '<p class="text-body" style="color: var(--color-danger);">Error loading markets. Please try again later.</p>';
+                console.error('Error:', error);
+                document.getElementById('marketsLoading').innerHTML = '<p class="text-body" style="color: var(--color-danger);">Error loading markets. Try again later.</p>';
             }
         }
 
-        // Update stats
         function updateStats() {
             const totalMarkets = currentMarkets.length;
             const totalVolume = currentMarkets.reduce((sum, m) => sum + (m.volume || 0), 0);
-            const avgQuality = currentMarkets.length > 0
-                ? Math.round(currentMarkets.reduce((sum, m) => sum + m.qualityScore, 0) / currentMarkets.length)
-                : 0;
+            const avgQuality = currentMarkets.length > 0 ? Math.round(currentMarkets.reduce((sum, m) => sum + m.qualityScore, 0) / currentMarkets.length) : 0;
 
             document.getElementById('totalMarkets').textContent = totalMarkets;
             document.getElementById('totalVolume').textContent = formatVolume(totalVolume);
@@ -331,173 +268,108 @@
             document.getElementById('totalPredictions').textContent = predictions.length;
         }
 
-        // Filter markets
         function filterMarkets(type) {
             currentFilter = type;
-
-            // Update active button
-            document.querySelectorAll('.filter-chip').forEach(btn => {
-                btn.classList.remove('filter-chip--active');
-            });
+            document.querySelectorAll('.filter-chip').forEach(btn => btn.classList.remove('filter-chip--active'));
             event.target.classList.add('filter-chip--active');
-
             displayMarkets();
         }
 
-        // Sort markets
         function sortMarkets(type) {
             currentSort = type;
             displayMarkets();
         }
 
-        // Get filtered markets
         function getFilteredMarkets() {
             let filtered = [...currentMarkets];
-
-            // Apply filter
             switch(currentFilter) {
-                case 'high-quality':
-                    filtered = filtered.filter(m => m.qualityScore >= 70);
-                    break;
-                case 'high-volume':
-                    filtered = filtered.filter(m => (m.volume || 0) > 10000);
-                    break;
-                case 'high-confidence':
-                    filtered = filtered.filter(m => {
-                        const prob = parseFloat(m.probability);
-                        return prob > 70 || prob < 30;
-                    });
-                    break;
+                case 'high-quality': filtered = filtered.filter(m => m.qualityScore >= 70); break;
+                case 'high-volume': filtered = filtered.filter(m => (m.volume || 0) > 10000); break;
+                case 'high-confidence': filtered = filtered.filter(m => { const p = parseFloat(m.probability); return p > 70 || p < 30; }); break;
             }
-
-            // Apply sort
             switch(currentSort) {
-                case 'quality':
-                    filtered.sort((a, b) => b.qualityScore - a.qualityScore);
-                    break;
-                case 'volume':
-                    filtered.sort((a, b) => (b.volume || 0) - (a.volume || 0));
-                    break;
-                case 'probability':
-                    filtered.sort((a, b) => parseFloat(b.probability) - parseFloat(a.probability));
-                    break;
-                case 'newest':
-                    filtered.reverse();
-                    break;
+                case 'quality': filtered.sort((a, b) => b.qualityScore - a.qualityScore); break;
+                case 'volume': filtered.sort((a, b) => (b.volume || 0) - (a.volume || 0)); break;
+                case 'probability': filtered.sort((a, b) => parseFloat(b.probability) - parseFloat(a.probability)); break;
+                case 'newest': filtered.reverse(); break;
             }
-
             return filtered;
         }
 
-        // Display markets
         function displayMarkets() {
             const grid = document.getElementById('marketsGrid');
             const loading = document.getElementById('marketsLoading');
-
             const filtered = getFilteredMarkets();
 
             if (filtered.length === 0) {
                 loading.style.display = 'block';
-                loading.innerHTML = '<p class="text-body" style="color: var(--color-text-secondary);">No markets match the selected filters.</p>';
+                loading.innerHTML = '<p class="text-body" style="color: var(--color-text-secondary);">No markets match filters.</p>';
                 grid.style.display = 'none';
                 return;
             }
-
             loading.style.display = 'none';
             grid.style.display = 'grid';
-
             grid.innerHTML = filtered.map(market => createMarketCard(market)).join('');
         }
 
-        // Create market card
         function createMarketCard(market) {
             const category = detectCategory(market.question);
-            const activity = (market.volume || 0) > 50000 ? '↑ High Activity' :
-                            (market.volume || 0) > 10000 ? '→ Moderate' : '→ Low Volume';
-
+            const activity = (market.volume || 0) > 50000 ? 'High' : (market.volume || 0) > 10000 ? 'Medium' : 'Low';
             return `
                 <article class="market-card" data-category="${category}" onclick="openPredictionModal('${market.id}')">
                     <div class="market-card__header">
-                        <span>ACTIVE MARKET</span>
-                        <span>QUALITY: ${market.qualityScore}/100</span>
+                        <span>ACTIVE</span>
+                        <span>SCORE: ${market.qualityScore}/100</span>
                     </div>
-                    <div class="market-card__category-bar">
-                        ${category.charAt(0).toUpperCase() + category.slice(1)} • ${activity}
-                    </div>
+                    <div class="market-card__category-bar">${category} • ${activity}</div>
                     <div class="market-card__body">
                         <h3 class="market-card__title">${market.question}</h3>
                         <div class="market-card__probability">${market.probability}%</div>
                         <p class="market-card__insight">${market.insight}</p>
                         <div class="market-card__stats">
-                            <div class="stat">
-                                <span class="stat__label">Volume</span>
-                                <span class="stat__value">${formatVolume(market.volume)}</span>
-                            </div>
-                            <div class="stat">
-                                <span class="stat__label">Confidence</span>
-                                <span class="stat__value">${market.confidence || 'Medium'}</span>
-                            </div>
-                            <div class="category-badge" data-category="${category}">
-                                <span class="category-badge__dot"></span>
-                                <span>${category.charAt(0).toUpperCase() + category.slice(1)}</span>
-                            </div>
+                            <div class="stat"><span class="stat__label">Vol</span><span class="stat__value">${formatVolume(market.volume)}</span></div>
+                            <div class="stat"><span class="stat__label">Signal</span><span class="stat__value">${market.confidence || 'Med'}</span></div>
                         </div>
                     </div>
-                    <button class="market-card__cta">Place Prediction</button>
+                    <button class="market-card__cta">Place Pick</button>
                 </article>
             `;
         }
 
-        // Detect category from question
-        function detectCategory(question) {
-            const lower = question.toLowerCase();
-            if (lower.match(/election|president|congress|senate|political|democrat|republican/)) return 'politics';
-            if (lower.match(/bitcoin|crypto|eth|blockchain|nft|token/)) return 'crypto';
-            if (lower.match(/nfl|nba|football|soccer|sports|championship|game|team/)) return 'sports';
-            if (lower.match(/movie|oscar|actor|film|celebrity|music|album/)) return 'entertainment';
-            if (lower.match(/stock|company|business|economy|market|trade/)) return 'business';
-            if (lower.match(/science|research|discovery|nobel|space|climate/)) return 'science';
+        function detectCategory(q) {
+            const l = q.toLowerCase();
+            if (l.match(/election|president|congress|senate|political|democrat|republican/)) return 'politics';
+            if (l.match(/bitcoin|crypto|eth|blockchain|nft|token/)) return 'crypto';
+            if (l.match(/nfl|nba|football|soccer|sports|championship|game|team/)) return 'sports';
+            if (l.match(/movie|oscar|actor|film|celebrity|music|album/)) return 'entertainment';
+            if (l.match(/stock|company|business|economy|market|trade/)) return 'business';
+            if (l.match(/science|research|discovery|nobel|space|climate/)) return 'science';
             return 'general';
         }
 
-        // Format volume
-        function formatVolume(volume) {
-            if (!volume) return '$0';
-            if (volume >= 1000000) return `$${(volume / 1000000).toFixed(1)}M`;
-            if (volume >= 1000) return `$${(volume / 1000).toFixed(1)}K`;
-            return `$${Math.round(volume)}`;
+        function formatVolume(v) {
+            if (!v) return '$0';
+            if (v >= 1000000) return `$${(v / 1000000).toFixed(1)}M`;
+            if (v >= 1000) return `$${(v / 1000).toFixed(1)}K`;
+            return `$${Math.round(v)}`;
         }
 
-        // Update last updated time
         function updateLastUpdated() {
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-            document.getElementById('lastUpdated').textContent = timeStr;
+            document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
         }
 
-        // Modal functions
         function openPredictionModal(marketId) {
             selectedMarket = currentMarkets.find(m => m.id === marketId);
             if (!selectedMarket) return;
-
-            const modal = document.getElementById('predictionModal');
             const info = document.getElementById('modalMarketInfo');
-
             info.innerHTML = `
                 <div style="font-weight: 500; margin-bottom: 16px;">${selectedMarket.question}</div>
                 <div style="display: flex; gap: 32px;">
-                    <div>
-                        <div style="font-size: 12px; color: var(--color-text-secondary); margin-bottom: 4px;">Current Probability</div>
-                        <div style="font-size: 24px; font-weight: 500; color: var(--color-accent-primary);">${selectedMarket.probability}%</div>
-                    </div>
-                    <div>
-                        <div style="font-size: 12px; color: var(--color-text-secondary); margin-bottom: 4px;">24h Volume</div>
-                        <div style="font-size: 24px; font-weight: 500;">${formatVolume(selectedMarket.volume)}</div>
-                    </div>
+                    <div><div style="font-size: 12px; color: var(--color-text-secondary); margin-bottom: 4px;">Probability</div><div style="font-size: 24px; font-weight: 500; color: var(--color-accent-primary);">${selectedMarket.probability}%</div></div>
+                    <div><div style="font-size: 12px; color: var(--color-text-secondary); margin-bottom: 4px;">Volume</div><div style="font-size: 24px; font-weight: 500;">${formatVolume(selectedMarket.volume)}</div></div>
                 </div>
             `;
-
-            modal.style.display = 'flex';
+            document.getElementById('predictionModal').style.display = 'flex';
         }
 
         function closePredictionModal() {
@@ -508,7 +380,6 @@
 
         function submitPrediction(event) {
             event.preventDefault();
-
             const prediction = {
                 id: Date.now().toString(),
                 marketId: selectedMarket.id,
@@ -519,66 +390,38 @@
                 probability: selectedMarket.probability,
                 timestamp: new Date().toISOString()
             };
-
-            // Save to localStorage
             const predictions = JSON.parse(localStorage.getItem('predictions') || '[]');
             predictions.push(prediction);
             localStorage.setItem('predictions', JSON.stringify(predictions));
-
-            // Update displays
             loadPredictions();
             updateStats();
             closePredictionModal();
-
-            // Scroll to predictions section
-            setTimeout(() => {
-                document.getElementById('predictions').scrollIntoView({ behavior: 'smooth' });
-            }, 100);
+            setTimeout(() => document.getElementById('predictions').scrollIntoView({ behavior: 'smooth' }), 100);
         }
 
-        // Load predictions
         function loadPredictions() {
             const predictions = JSON.parse(localStorage.getItem('predictions') || '[]');
             const grid = document.getElementById('predictionsGrid');
             const empty = document.getElementById('predictionsEmpty');
-
-            if (predictions.length === 0) {
-                empty.style.display = 'block';
-                grid.style.display = 'none';
-                return;
-            }
-
+            if (predictions.length === 0) { empty.style.display = 'block'; grid.style.display = 'none'; return; }
             empty.style.display = 'none';
             grid.style.display = 'grid';
-
             grid.innerHTML = predictions.map(pred => `
                 <article class="market-card" style="opacity: 0.9;">
-                    <div class="market-card__header">
-                        <span>${pred.outcome.toUpperCase()}</span>
-                        <span>$${pred.amount}</span>
-                    </div>
-                    <div class="market-card__category-bar">
-                        Confidence: ${pred.confidence}/10
-                    </div>
+                    <div class="market-card__header"><span>${pred.outcome.toUpperCase()}</span><span>$${pred.amount}</span></div>
+                    <div class="market-card__category-bar">Confidence: ${pred.confidence}/10</div>
                     <div class="market-card__body">
                         <h3 class="market-card__title">${pred.question}</h3>
                         <div class="market-card__probability">${pred.probability}%</div>
-                        <p class="market-card__insight">
-                            Placed on ${new Date(pred.timestamp).toLocaleDateString()}
-                        </p>
+                        <p class="market-card__insight">Placed ${new Date(pred.timestamp).toLocaleDateString()}</p>
                     </div>
                 </article>
             `).join('');
         }
 
-        // Initialize
         fetchMarkets();
         loadPredictions();
-
-        // Refresh every 5 minutes
-        setInterval(() => {
-            fetchMarkets();
-        }, 300000);
+        setInterval(fetchMarkets, 300000);
     </script>
 </body>
 </html>
