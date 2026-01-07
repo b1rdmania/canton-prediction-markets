@@ -4,26 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Angle on Canton</title>
-    <meta name="description" content="A demo for browsing prediction markets with AI scores. Paper predictions, live data, roadmap to Canton blockchain.">
+    <meta name="description" content="Building the first regulated prediction market on Canton blockchain. Private, compliant, institutional-grade.">
     <link rel="stylesheet" href="css/main.css">
     <style>
         .page-container { max-width: 900px; margin: 0 auto; padding: 24px var(--space-3xl); }
         .page-header { margin-bottom: 32px; }
         .content-section { padding: 32px 0; border-top: var(--border-thin); }
         .content-section h2 { font-family: var(--font-mono); font-size: 16px; text-transform: uppercase; margin-bottom: 16px; }
-        .content-section p { font-size: 15px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 16px; }
-        .content-section ul { list-style: none; margin: 16px 0; padding: 0; }
-        .content-section li { padding: 12px 0 12px 24px; position: relative; font-size: 14px; color: var(--color-text-secondary); border-bottom: 1px solid var(--color-bg-tertiary); }
-        .content-section li:last-child { border-bottom: none; }
-        .content-section li::before { content: '\2713'; position: absolute; left: 0; color: var(--color-sports); }
-        .content-section li strong { color: var(--color-text-primary); }
-        .notice-box { background: var(--color-text-primary); color: var(--color-text-inverted); padding: 20px; margin: 24px 0; }
-        .notice-box p { color: var(--color-bg-tertiary); margin: 0; }
-        .notice-box strong { color: var(--color-warning); }
-        .phase-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 24px; }
-        .phase-box { background: var(--color-bg-primary); border: var(--border-thin); padding: 20px; }
-        .phase-box h3 { font-family: var(--font-mono); font-size: 13px; text-transform: uppercase; margin-bottom: 12px; }
-        .phase-box ul { list-style: none; padding: 0; margin: 0; font-size: 13px; line-height: 2; }
+        .content-section p { font-size: 15px; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: 16px; }
+        .highlight { color: var(--color-text-primary); font-weight: 500; }
+        .pitch-box { background: var(--color-text-primary); color: var(--color-text-inverted); padding: 32px; margin: 24px 0; }
+        .pitch-box p { color: var(--color-bg-tertiary); margin: 0 0 16px 0; font-size: 17px; line-height: 1.6; }
+        .pitch-box p:last-child { margin-bottom: 0; }
+        .pitch-box strong { color: var(--color-accent-primary); }
+        .phase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+        .phase-box { border: var(--border-thin); padding: 24px; }
+        .phase-box h3 { font-family: var(--font-mono); font-size: 13px; text-transform: uppercase; margin-bottom: 16px; }
+        .phase-box ul { list-style: none; padding: 0; margin: 0; }
+        .phase-box li { font-size: 14px; line-height: 2; color: var(--color-text-secondary); }
+        .phase-box--done { background: var(--color-bg-tertiary); }
+        .phase-box--next { border-color: var(--color-accent-primary); border-width: 2px; }
         @media (max-width: 768px) { .phase-grid { grid-template-columns: 1fr; } .page-container { padding: 16px; } }
     </style>
 </head>
@@ -43,57 +43,60 @@
     <div class="page-container">
         <div class="page-header">
             <div class="section-label">About</div>
-            <h1 class="headline-section">ANGLE ON CANTON</h1>
-            <p style="font-size: 15px; color: var(--color-text-secondary); margin-top: 12px; max-width: 600px;">
-                Browse prediction markets with AI scores. Track paper predictions. Built for Canton blockchain.
-            </p>
+            <h1 class="headline-section">THE PITCH</h1>
+        </div>
+
+        <div class="pitch-box">
+            <p><strong>Prediction markets work.</strong> They beat polls, pundits, and most forecasting models. But today's platforms can't serve institutions—no privacy, no compliance, no regulatory clarity.</p>
+            <p><strong>We're building the first institutional-grade prediction market on Canton.</strong> Private transactions. Regulatory compliance. Real settlement. The same accuracy, now accessible to funds, corporates, and regulated entities.</p>
         </div>
 
         <section class="content-section">
-            <h2>What This Does</h2>
-            <p>Browse live markets from Polymarket. See AI scores for each market. Record paper predictions to track your accuracy.</p>
-            <ul>
-                <li><strong>Browse Markets</strong> - Live data with real-time prices</li>
-                <li><strong>Quality Scores</strong> - We rate each market on volume, spread, activity</li>
-                <li><strong>AI Insights</strong> - Plain-language analysis of what the data shows</li>
-                <li><strong>Track Predictions</strong> - Record and monitor your picks</li>
-            </ul>
-            <div class="notice-box">
-                <p><strong>Demo:</strong> This is a UX demo. Predictions are paper only—no real money. We're testing the product before building the full version.</p>
-            </div>
+            <h2>Why This Matters</h2>
+            <p>Polymarket proved demand: billions in volume, mainstream attention, real predictive power. But it's retail-only. Institutions can't touch it—compliance risk, no privacy, unclear legal status.</p>
+            <p><span class="highlight">Canton changes that.</span> Built by Digital Asset for institutional finance, it's already live with major banks and exchanges. DAML smart contracts give us privacy by default, atomic settlement, and a clear path to regulatory approval.</p>
+            <p>We're not competing with Polymarket. We're building what comes next: prediction markets for the institutional world.</p>
         </section>
 
         <section class="content-section">
-            <h2>Roadmap</h2>
-            <p>Phase 1 is done: a working demo with paper predictions. Phase 2 adds Canton blockchain for real, private on-chain settlement.</p>
+            <h2>What We're Building</h2>
             <div class="phase-grid">
-                <div class="phase-box">
-                    <h3 style="color: var(--color-success);">Phase 1: Done</h3>
+                <div class="phase-box phase-box--done">
+                    <h3 style="color: var(--color-sports);">Now: Proof of Concept</h3>
                     <ul>
-                        <li>• Live Polymarket data</li>
-                        <li>• AI quality scores</li>
-                        <li>• Market insights</li>
-                        <li>• Paper predictions</li>
-                        <li>• AI chat</li>
+                        <li>• Live Polymarket data feed</li>
+                        <li>• AI-powered quality scoring</li>
+                        <li>• Market analysis tools</li>
+                        <li>• Paper trading interface</li>
+                        <li>• UX validation</li>
                     </ul>
                 </div>
-                <div class="phase-box">
-                    <h3 style="color: var(--color-politics);">Phase 2: Canton</h3>
+                <div class="phase-box phase-box--next">
+                    <h3 style="color: var(--color-accent-primary);">Next: Canton Integration</h3>
                     <ul>
-                        <li>• DAML smart contracts</li>
-                        <li>• User wallets</li>
-                        <li>• On-chain predictions</li>
-                        <li>• Private settlement</li>
-                        <li>• Regulatory compliance</li>
+                        <li>• DAML market contracts</li>
+                        <li>• Private order matching</li>
+                        <li>• Institutional wallets</li>
+                        <li>• Compliance workflows</li>
+                        <li>• Real settlement rails</li>
                     </ul>
                 </div>
             </div>
         </section>
 
         <section class="content-section">
-            <h2>Why Canton?</h2>
-            <p>Canton Network gives us privacy, speed, and compliance that other blockchains can't match. Built on DAML, it enables private transactions, regulatory compliance, and cross-network interop.</p>
-            <a href="index.html#markets" class="btn btn--primary" style="margin-top: 16px;">Try the Demo</a>
+            <h2>Why Canton</h2>
+            <p><span class="highlight">Privacy:</span> Transactions visible only to counterparties. No public ledger exposure. Institutions can trade without revealing positions.</p>
+            <p><span class="highlight">Compliance:</span> DAML contracts encode regulatory rules. KYC/AML built in. Audit trails for regulators without sacrificing privacy.</p>
+            <p><span class="highlight">Interoperability:</span> Canton connects to existing financial infrastructure. Settlement in real currencies. Integration with custody and prime brokerage.</p>
+            <p><span class="highlight">Credibility:</span> Digital Asset's network already runs with Goldman, BNP Paribas, Broadridge. This isn't experimental—it's production infrastructure.</p>
+        </section>
+
+        <section class="content-section">
+            <h2>The Opportunity</h2>
+            <p>Prediction markets are a $1B+ category growing fast. But the institutional segment—hedge funds, corporates, governments—is completely unserved. They need prediction market accuracy but can't use existing platforms.</p>
+            <p>We're building the bridge: <span class="highlight">retail-proven mechanics + institutional-grade infrastructure.</span></p>
+            <a href="index.html#markets" class="btn btn--primary" style="margin-top: 16px;">See the Demo</a>
         </section>
     </div>
 
