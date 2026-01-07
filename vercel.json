@@ -1,0 +1,5 @@
+{
+  "buildCommand": "cd vercel-frontend && echo 'No build needed'",
+  "outputDirectory": "vercel-frontend",
+  "installCommand": "echo 'No install needed'"
+}
