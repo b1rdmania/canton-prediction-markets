@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="About Canton Market of the Week - One question. One pool. On Canton.">
-  <title>About - Canton Market of the Week</title>
+  <meta name="description" content="How It Works - Canton Market of the Week">
+  <title>How It Works - Canton Market of the Week</title>
   <link rel="stylesheet" href="css/main.css">
   <style>
     /* Base layout */
@@ -108,13 +108,6 @@
       color: var(--color-text-primary);
     }
 
-    .hero-description {
-      font-size: 18px;
-      line-height: 1.6;
-      color: var(--color-text-secondary);
-      max-width: 700px;
-    }
-
     /* Section */
     .section {
       margin-bottom: 48px;
@@ -122,19 +115,23 @@
 
     .section-header {
       font-family: var(--font-mono);
-      font-size: 13px;
-      letter-spacing: 0.12em;
+      font-size: 16px;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--color-text-secondary);
+      color: var(--color-text-primary);
       margin-bottom: 16px;
       padding-bottom: 8px;
-      border-bottom: 1px solid var(--color-border-secondary);
+      border-bottom: 2px solid var(--color-border-primary);
     }
 
     .section-content {
       font-size: 16px;
       line-height: 1.7;
       color: var(--color-text-primary);
+    }
+
+    .section-content p {
+      margin-bottom: 16px;
     }
 
     .section-content ul {
@@ -164,37 +161,17 @@
       color: var(--color-text-primary);
     }
 
-    /* Flow steps */
-    .flow-steps {
-      margin: 24px 0;
-    }
-
-    .flow-step {
-      margin-bottom: 24px;
-      padding: 20px;
+    /* Highlight box */
+    .highlight-box {
       background: var(--color-background-primary);
       border-left: 3px solid var(--color-accent-primary);
+      padding: 20px;
+      margin: 24px 0;
       border-radius: 4px;
     }
 
-    .flow-step-number {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--color-accent-primary);
-      margin-bottom: 8px;
-    }
-
-    .flow-step-title {
-      font-family: var(--font-mono);
-      font-size: 16px;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-      color: var(--color-text-primary);
-    }
-
-    .flow-step-description {
+    .highlight-box p {
+      margin: 0;
       font-size: 15px;
       line-height: 1.6;
       color: var(--color-text-secondary);
@@ -233,8 +210,8 @@
         font-size: 28px;
       }
 
-      .hero-description {
-        font-size: 16px;
+      .section-header {
+        font-size: 14px;
       }
 
       .section-content {
@@ -264,8 +241,8 @@
       <a href="weekly-pool-mockup.html" class="nav-logo">am validator</a>
       <div class="nav-links">
         <a href="weekly-pool-mockup.html" class="nav-link">MARKET</a>
-        <a href="weekly-pool-about.html" class="nav-link active">ABOUT</a>
-        <a href="weekly-pool-how.html" class="nav-link">HOW IT WORKS</a>
+        <a href="weekly-pool-about.html" class="nav-link">ABOUT</a>
+        <a href="weekly-pool-how.html" class="nav-link active">HOW IT WORKS</a>
       </div>
       <div class="nav-actions">
         <a href="weekly-pool-mockup.html" class="btn-compact">CONNECT WALLET</a>
@@ -278,69 +255,70 @@
 
     <!-- Hero -->
     <div class="hero-about">
-      <div class="hero-label">About</div>
+      <div class="hero-label">How It Works</div>
       <h1 class="hero-title">CANTON MARKET<br>OF THE WEEK</h1>
-      <p class="hero-description">
-        A weekly Canton-native market that feels alive: one curated binary question, one community pool, one resolution moment. It shows Canton liveness (DAML + USDC.x) with minimal surface area—no orderbooks, no wallets, no crypto theatrics—just a visible ledger heartbeat senior validators can read at a glance.
-      </p>
     </div>
 
-    <!-- How it's built -->
+    <!-- Section 1 -->
     <div class="section">
-      <div class="section-header">How it's built</div>
+      <div class="section-header">1. Market of the Week ritual</div>
       <div class="section-content">
         <ul>
-          <li><strong>Contracts:</strong> DAML templates handle market creation, staking, resolution, and USDC.x settlement.</li>
-          <li><strong>Cadence:</strong> A new question is voted in each week; the DAML ledger advances from open → trading → resolution → settled.</li>
-          <li><strong>Frontend:</strong> A calm, focused page (hero + market mood + stake module + recap) connects to Canton via a lean API and reflects live pool data.</li>
-          <li><strong>Ops:</strong> Single market at a time cuts audit surface; resolver identity + source are shown for governance clarity.</li>
+          <li>Each week we surface one curated binary question (Yes / No). The community votes from 3–5 candidates; the winner becomes the "Canton Market of the Week."</li>
+          <li>The hero area shows the live question, a countdown to resolution, and a note: "Deliberately minimal. Built to show real on-ledger flow."</li>
+          <li>This concentrated cadence keeps attention and makes the ledger feel alive.</li>
         </ul>
       </div>
     </div>
 
-    <!-- Market flow -->
+    <!-- Section 2 -->
     <div class="section">
-      <div class="section-header">Market flow</div>
-      <div class="flow-steps">
-        <div class="flow-step">
-          <div class="flow-step-number">Step 1</div>
-          <div class="flow-step-title">Vote</div>
-          <div class="flow-step-description">
-            Curated candidates are presented; the community chooses the Market of the Week.
-          </div>
-        </div>
-
-        <div class="flow-step">
-          <div class="flow-step-number">Step 2</div>
-          <div class="flow-step-title">Stake</div>
-          <div class="flow-step-description">
-            Participants bet Yes/No into the parimutuel pool; the "market mood" bar updates as stakes arrive.
-          </div>
-        </div>
-
-        <div class="flow-step">
-          <div class="flow-step-number">Step 3</div>
-          <div class="flow-step-title">Resolve</div>
-          <div class="flow-step-description">
-            At the scheduled time, the resolver executes on Canton. DAML flips state, drains the pot, pays winners in USDC.x, and emits a post-resolution recap card (question, outcome, pool size, payout, timestamp).
-          </div>
-        </div>
-
-        <div class="flow-step">
-          <div class="flow-step-number">Step 4</div>
-          <div class="flow-step-title">Replay</div>
-          <div class="flow-step-description">
-            The recap stays visible while the next week's vote opens, keeping the ritual going.
-          </div>
+      <div class="section-header">2. Stake into the parimutuel pool</div>
+      <div class="section-content">
+        <ul>
+          <li>Participants select Yes or No, enter a USDC.x amount, optionally add a short note, and hit "Stake now." Stakes feed a single shared pot.</li>
+          <li>The "Market mood" bar shows the Yes/No split and updates as stakes arrive. Percentages translate to implied probability and payout per share.</li>
+        </ul>
+        <div class="highlight-box">
+          <p>Terminology matters: we speak about <strong>participants</strong>, <strong>stakes</strong>, <strong>pools</strong>, and <strong>resolution</strong>—no "bets", "orderbooks," or "interface gimmicks."</p>
         </div>
       </div>
     </div>
 
-    <!-- Tone -->
+    <!-- Section 3 -->
     <div class="section">
-      <div class="section-header">Tone</div>
+      <div class="section-header">3. Resolution moment</div>
       <div class="section-content">
-        <p>Focus on "participants," "stakes," "pool," "resolution." Keep copy concise, restrained, and Canton-native—built to show a serious machine doing real work every week.</p>
+        <ul>
+          <li>At the scheduled time the designated resolver (or oracle feed) executes the DAML contract on Canton. The contract flips state, drains the pot, and pays winners in USDC.x.</li>
+          <li>The UI updates instantly: status flips to "resolved," payouts display, and a recap card appears with question, final outcome, pool size, payout complete, and timestamp.</li>
+          <li>A small footer line reads "Resolved on Canton · DAML execution complete" to make the ledger event explicit.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="section">
+      <div class="section-header">4. Post-resolution recap</div>
+      <div class="section-content">
+        <ul>
+          <li>The recap card stays visible while the next week's vote opens. It shows how many participants engaged, the pool size, the final outcome, and when the payout landed.</li>
+          <li>A compact "Participants snapshot" list highlights the top 5 stakes (anonymized), signaling real people moving funds.</li>
+          <li>This section is the ledger receipt turned into a story.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="section">
+      <div class="section-header">5. What this is not</div>
+      <div class="section-content">
+        <ul>
+          <li>Not an orderbook or multi-market dashboard.</li>
+          <li>Not a trading terminal with endless instruments.</li>
+          <li>No wallet onboarding, no auth gating, no AI hype.</li>
+          <li>Just one clean weekly ritual showing Canton's DAML + USDC.x heartbeat.</li>
+        </ul>
       </div>
     </div>
 
