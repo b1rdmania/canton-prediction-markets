@@ -7,115 +7,196 @@
   <title>Canton Market of the Week</title>
   <link rel="stylesheet" href="css/main.css">
   <style>
-    /* Inline styles for weekly pool specific components */
+    /* Compact single-viewport layout */
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
 
-    /* Hero section for weekly market */
-    .hero-weekly {
+    /* Compact navigation */
+    .nav-compact {
       background: var(--color-background-primary);
-      border-bottom: 4px solid var(--color-border-primary);
-      padding: var(--space-5xl) 0 var(--space-4xl);
-      text-align: center;
+      border-bottom: 2px solid var(--color-border-primary);
+      padding: 12px 0;
+      position: relative;
+      z-index: 100;
     }
 
-    .hero-weekly .section-label {
-      margin-bottom: var(--space-lg);
+    .nav-compact .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .hero-weekly .headline-hero {
-      font-size: 96px;
-      line-height: 1.1;
-      margin-bottom: var(--space-xl);
+    .nav-compact .nav-logo {
+      font-family: var(--font-body);
+      font-size: 18px;
       color: var(--color-text-primary);
     }
 
-    .hero-weekly .hero-subtitle {
+    .nav-compact .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-compact .nav-link {
       font-family: var(--font-mono);
-      font-size: var(--font-size-lg);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
       color: var(--color-text-secondary);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: var(--space-4xl);
+      text-decoration: none;
     }
 
-    .hero-weekly .market-question {
-      max-width: 900px;
-      margin: 0 auto var(--space-3xl);
-      padding: var(--space-3xl);
-      background: var(--color-background-secondary);
-      border: 2px solid var(--color-border-primary);
-    }
-
-    .hero-weekly .market-question h2 {
-      font-size: 48px;
-      line-height: 1.2;
-      margin-bottom: var(--space-xl);
-    }
-
-    .countdown {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-md);
-      padding: var(--space-md) var(--space-xl);
-      background: var(--color-background-primary);
-      border: 1px solid var(--color-border-primary);
+    .nav-compact .btn-compact {
+      padding: 8px 16px;
+      background: var(--color-text-primary);
+      color: var(--color-background-primary);
+      border: 2px solid var(--color-text-primary);
       font-family: var(--font-mono);
-      font-size: var(--font-size-sm);
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .nav-compact .btn-compact:hover {
+      background: var(--color-background-primary);
+      color: var(--color-text-primary);
+    }
+
+    /* Main content area - fills remaining space */
+    .main-content {
+      flex: 1;
+      overflow-y: auto;
+      background: var(--color-background-secondary);
+    }
+
+    .content-wrapper {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 24px;
+      height: 100%;
+    }
+
+    /* Compact header */
+    .compact-header {
+      background: var(--color-background-primary);
+      border: 2px solid var(--color-border-primary);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .header-left {
+      flex: 1;
+    }
+
+    .week-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent-primary);
+      margin-bottom: 12px;
+    }
+
+    .market-title {
+      font-family: var(--font-mono);
+      font-size: 42px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    .market-subtitle {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+    }
+
+    .header-right {
+      text-align: right;
+    }
+
+    .countdown-compact {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-secondary);
+      margin-bottom: 4px;
     }
 
     .countdown-time {
+      font-family: var(--font-mono);
+      font-size: 24px;
       color: var(--color-accent-primary);
       font-weight: 600;
     }
 
-    .hero-note {
-      font-size: var(--font-size-sm);
-      color: var(--color-text-tertiary);
-      max-width: 600px;
-      margin: var(--space-3xl) auto 0;
+    .market-question-compact {
+      font-size: 20px;
+      line-height: 1.4;
+      color: var(--color-text-primary);
+      padding: 16px;
+      background: var(--color-background-secondary);
+      border: 1px solid var(--color-border-secondary);
+      border-radius: 4px;
     }
 
-    /* Market mood (pool split) */
-    .market-mood {
+    /* Three-column grid */
+    .three-col-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      height: calc(100vh - 320px);
+    }
+
+    .col-panel {
       background: var(--color-background-primary);
       border: 2px solid var(--color-border-primary);
-      border-radius: var(--border-radius-md);
-      padding: var(--space-3xl);
-      margin-bottom: var(--space-3xl);
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
     }
 
-    .market-mood-header {
-      text-align: center;
-      margin-bottom: var(--space-3xl);
-    }
-
-    .market-mood-label {
+    .panel-header {
       font-family: var(--font-mono);
-      font-size: var(--font-size-sm);
+      font-size: 11px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--color-text-secondary);
-      margin-bottom: var(--space-sm);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--color-border-secondary);
     }
 
-    .market-mood-subtext {
-      font-size: var(--font-size-xs);
-      color: var(--color-text-tertiary);
-    }
-
-    .pool-split {
-      display: flex;
-      gap: var(--space-lg);
-      margin-bottom: var(--space-xl);
-    }
-
-    .pool-bar {
-      height: 120px;
+    /* Market Mood */
+    .pool-bar-compact {
+      height: 80px;
       display: flex;
       border: 2px solid var(--color-border-primary);
       overflow: hidden;
-      border-radius: var(--border-radius-sm);
+      border-radius: 4px;
+      margin-bottom: 12px;
     }
 
     .pool-bar-yes {
@@ -125,9 +206,8 @@
       justify-content: center;
       color: white;
       font-family: var(--font-mono);
-      font-size: 48px;
+      font-size: 36px;
       font-weight: 600;
-      transition: all 0.3s ease;
     }
 
     .pool-bar-no {
@@ -137,29 +217,29 @@
       justify-content: center;
       color: white;
       font-family: var(--font-mono);
-      font-size: 48px;
+      font-size: 36px;
       font-weight: 600;
-      transition: all 0.3s ease;
     }
 
     .pool-legend {
       display: flex;
       justify-content: space-between;
       font-family: var(--font-mono);
-      font-size: var(--font-size-sm);
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
+      margin-bottom: 20px;
     }
 
     .pool-legend-item {
       display: flex;
       align-items: center;
-      gap: var(--space-sm);
+      gap: 6px;
     }
 
     .pool-legend-dot {
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
     }
 
@@ -171,36 +251,20 @@
       background: #E8846B;
     }
 
-    /* Stake module */
-    .stake-module {
-      background: var(--color-background-primary);
-      border: 2px solid var(--color-border-primary);
-      border-radius: var(--border-radius-md);
-      padding: var(--space-3xl);
-    }
-
-    .stake-module-header {
-      font-family: var(--font-mono);
-      font-size: var(--font-size-sm);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--color-text-secondary);
-      margin-bottom: var(--space-2xl);
-    }
-
+    /* Stake Module */
     .stake-toggle {
       display: flex;
-      gap: var(--space-md);
-      margin-bottom: var(--space-2xl);
+      gap: 8px;
+      margin-bottom: 16px;
     }
 
     .stake-toggle-btn {
       flex: 1;
-      padding: var(--space-xl);
+      padding: 12px;
       background: var(--color-background-secondary);
       border: 2px solid var(--color-border-primary);
       font-family: var(--font-mono);
-      font-size: var(--font-size-md);
+      font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       cursor: pointer;
@@ -208,7 +272,6 @@
     }
 
     .stake-toggle-btn:hover {
-      background: var(--color-background-primary);
       border-color: var(--color-text-primary);
     }
 
@@ -219,27 +282,27 @@
     }
 
     .stake-input-group {
-      margin-bottom: var(--space-xl);
+      margin-bottom: 12px;
     }
 
     .stake-label {
       display: block;
       font-family: var(--font-mono);
-      font-size: var(--font-size-xs);
+      font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--color-text-secondary);
-      margin-bottom: var(--space-sm);
+      margin-bottom: 6px;
     }
 
     .stake-input {
       width: 100%;
-      padding: var(--space-lg);
+      padding: 10px;
       border: 2px solid var(--color-border-primary);
       background: var(--color-background-secondary);
       font-family: var(--font-mono);
-      font-size: var(--font-size-md);
-      transition: border-color 0.2s ease;
+      font-size: 13px;
+      box-sizing: border-box;
     }
 
     .stake-input:focus {
@@ -249,14 +312,14 @@
 
     .stake-textarea {
       width: 100%;
-      padding: var(--space-lg);
+      padding: 10px;
       border: 2px solid var(--color-border-primary);
       background: var(--color-background-secondary);
       font-family: var(--font-body);
-      font-size: var(--font-size-sm);
-      min-height: 100px;
+      font-size: 12px;
+      min-height: 60px;
       resize: vertical;
-      transition: border-color 0.2s ease;
+      box-sizing: border-box;
     }
 
     .stake-textarea:focus {
@@ -264,29 +327,32 @@
       border-color: var(--color-text-primary);
     }
 
-    /* Participants snapshot */
-    .participants-snapshot {
-      background: var(--color-background-primary);
-      border: 2px solid var(--color-border-primary);
-      border-radius: var(--border-radius-md);
-      padding: var(--space-3xl);
-    }
-
-    .participants-header {
+    .btn-stake {
+      width: 100%;
+      padding: 12px;
+      background: var(--color-text-primary);
+      color: var(--color-background-primary);
+      border: 2px solid var(--color-text-primary);
       font-family: var(--font-mono);
-      font-size: var(--font-size-lg);
-      letter-spacing: 0.08em;
+      font-size: 12px;
       text-transform: uppercase;
-      margin-bottom: var(--space-2xl);
-      padding-bottom: var(--space-lg);
-      border-bottom: 1px solid var(--color-border-secondary);
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-top: auto;
     }
 
+    .btn-stake:hover {
+      background: var(--color-accent-primary);
+      border-color: var(--color-accent-primary);
+    }
+
+    /* Participants */
     .participants-stats {
       font-family: var(--font-mono);
-      font-size: var(--font-size-sm);
+      font-size: 11px;
       color: var(--color-text-secondary);
-      margin-bottom: var(--space-2xl);
+      margin-bottom: 16px;
     }
 
     .pool-size-highlight {
@@ -297,36 +363,40 @@
     .participants-list {
       display: flex;
       flex-direction: column;
-      gap: var(--space-lg);
+      gap: 8px;
     }
 
     .participant-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: var(--space-lg);
+      padding: 10px;
       background: var(--color-background-secondary);
       border: 1px solid var(--color-border-secondary);
-      border-radius: var(--border-radius-sm);
+      border-radius: 3px;
       font-family: var(--font-mono);
-      font-size: var(--font-size-sm);
+      font-size: 11px;
+      gap: 8px;
     }
 
     .participant-address {
       color: var(--color-text-secondary);
+      flex-shrink: 0;
     }
 
     .participant-amount {
       color: var(--color-text-primary);
       font-weight: 600;
+      flex-shrink: 0;
     }
 
     .participant-position {
-      padding: 4px 8px;
+      padding: 2px 6px;
       border-radius: 3px;
-      font-size: var(--font-size-xs);
+      font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
+      flex-shrink: 0;
     }
 
     .participant-position.yes {
@@ -341,34 +411,19 @@
       border: 1px solid rgba(232, 132, 107, 0.3);
     }
 
-    /* Resolution panel */
-    .resolution-panel {
-      background: var(--color-background-primary);
-      border: 2px solid var(--color-border-primary);
-      border-radius: var(--border-radius-md);
-      padding: var(--space-3xl);
-    }
-
-    .resolution-header {
-      font-family: var(--font-mono);
-      font-size: var(--font-size-sm);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--color-text-secondary);
-      margin-bottom: var(--space-xl);
-    }
-
+    /* Resolution */
     .resolution-details {
       display: flex;
       flex-direction: column;
-      gap: var(--space-lg);
+      gap: 12px;
     }
 
     .resolution-row {
       display: flex;
       justify-content: space-between;
-      padding: var(--space-lg) 0;
+      padding: 8px 0;
       border-bottom: 1px solid var(--color-border-secondary);
+      gap: 12px;
     }
 
     .resolution-row:last-child {
@@ -377,24 +432,34 @@
 
     .resolution-label {
       font-family: var(--font-mono);
-      font-size: var(--font-size-xs);
+      font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--color-text-tertiary);
+      flex-shrink: 0;
     }
 
     .resolution-value {
       font-family: var(--font-mono);
-      font-size: var(--font-size-sm);
+      font-size: 11px;
       color: var(--color-text-primary);
+      text-align: right;
     }
 
-    /* Weekly timeline */
-    .weekly-timeline {
-      background: var(--color-background-primary);
-      border: 2px solid var(--color-border-primary);
-      border-radius: var(--border-radius-md);
-      padding: var(--space-3xl);
+    /* Timeline at bottom */
+    .timeline-compact {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--color-border-secondary);
+    }
+
+    .timeline-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-tertiary);
+      margin-bottom: 12px;
     }
 
     .timeline-steps {
@@ -407,10 +472,10 @@
     .timeline-steps::before {
       content: '';
       position: absolute;
-      top: 20px;
+      top: 12px;
       left: 0;
       right: 0;
-      height: 2px;
+      height: 1px;
       background: var(--color-border-secondary);
       z-index: 0;
     }
@@ -419,15 +484,15 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: var(--space-md);
+      gap: 6px;
       position: relative;
       z-index: 1;
       flex: 1;
     }
 
     .timeline-dot {
-      width: 40px;
-      height: 40px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       background: var(--color-background-primary);
       border: 2px solid var(--color-border-secondary);
@@ -435,7 +500,7 @@
       align-items: center;
       justify-content: center;
       font-family: var(--font-mono);
-      font-size: var(--font-size-xs);
+      font-size: 9px;
       color: var(--color-text-tertiary);
     }
 
@@ -451,158 +516,128 @@
       color: var(--color-text-primary);
     }
 
-    .timeline-label {
+    .timeline-step-label {
       font-family: var(--font-mono);
-      font-size: var(--font-size-xs);
+      font-size: 9px;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       color: var(--color-text-secondary);
       text-align: center;
+      line-height: 1.2;
     }
 
-    .timeline-step.active .timeline-label {
+    .timeline-step.active .timeline-step-label {
       color: var(--color-text-primary);
       font-weight: 600;
     }
 
-    /* Vote teaser */
-    .vote-teaser {
-      background: var(--color-background-primary);
-      border: 2px solid var(--color-border-primary);
-      border-radius: var(--border-radius-md);
-      padding: var(--space-3xl);
+    /* Footer compact */
+    .footer-compact {
+      background: var(--color-accent-primary);
+      border-top: 2px solid var(--color-border-primary);
+      padding: 12px 0;
+      text-align: center;
     }
 
-    .vote-teaser-header {
-      margin-bottom: var(--space-2xl);
+    .footer-compact .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 24px;
     }
 
-    .vote-candidate {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: var(--space-xl);
-      background: var(--color-background-secondary);
-      border: 1px solid var(--color-border-secondary);
-      border-radius: var(--border-radius-sm);
-      margin-bottom: var(--space-lg);
-      transition: all 0.2s ease;
-    }
-
-    .vote-candidate:hover {
-      border-color: var(--color-border-primary);
-      transform: translateX(4px);
-    }
-
-    .vote-candidate-text {
-      font-size: var(--font-size-md);
+    .footer-text {
+      font-size: 12px;
       color: var(--color-text-primary);
+      margin-bottom: 4px;
     }
 
-    .vote-btn-small {
-      padding: var(--space-sm) var(--space-lg);
-      background: transparent;
-      border: 2px solid var(--color-border-primary);
+    .footer-subtext {
       font-family: var(--font-mono);
-      font-size: var(--font-size-xs);
+      font-size: 10px;
+      color: var(--color-text-secondary);
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .vote-btn-small:hover {
-      background: var(--color-text-primary);
-      color: var(--color-background-primary);
     }
 
     /* Responsive adjustments */
+    @media (max-width: 1400px) {
+      .three-col-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .col-panel:last-child {
+        grid-column: 1 / -1;
+      }
+    }
+
     @media (max-width: 768px) {
-      .hero-weekly .headline-hero {
-        font-size: 48px;
+      .three-col-grid {
+        grid-template-columns: 1fr;
+        height: auto;
       }
 
-      .hero-weekly .market-question h2 {
-        font-size: 32px;
+      .col-panel {
+        height: auto;
       }
 
-      .pool-bar {
-        height: 80px;
+      body {
+        overflow-y: auto;
       }
 
-      .pool-bar-yes,
-      .pool-bar-no {
-        font-size: 32px;
-      }
-
-      .stake-toggle {
-        flex-direction: column;
-      }
-
-      .timeline-steps {
-        flex-direction: column;
-        gap: var(--space-xl);
-      }
-
-      .timeline-steps::before {
-        display: none;
+      .main-content {
+        overflow-y: visible;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav class="nav">
+  <!-- Compact Navigation -->
+  <nav class="nav-compact">
     <div class="container">
-      <div class="nav-content">
-        <div class="nav-logo">canton markets</div>
-        <div class="nav-links">
-          <a href="#" class="nav-link">ABOUT</a>
-          <a href="#" class="nav-link">HOW IT WORKS</a>
-        </div>
-        <div class="nav-actions">
-          <button class="btn btn--primary btn--small">CONNECT WALLET</button>
-        </div>
+      <div class="nav-logo">canton markets</div>
+      <div class="nav-links">
+        <a href="#" class="nav-link">ABOUT</a>
+        <a href="#" class="nav-link">HOW IT WORKS</a>
+      </div>
+      <div class="nav-actions">
+        <button class="btn-compact">CONNECT WALLET</button>
       </div>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero-weekly">
-    <div class="container">
-      <div class="section-label">WEEK 1 · JAN 13–19, 2026</div>
-      <h1 class="headline-hero">CANTON MARKET<br>OF THE WEEK</h1>
-      <div class="hero-subtitle">One question. One pool. On Canton.</div>
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="content-wrapper">
 
-      <div class="market-question">
-        <h2>Will the Federal Reserve cut interest rates by 0.25% or more before March 2026?</h2>
-        <div class="countdown">
-          <span>Resolves in:</span>
-          <span class="countdown-time">4d 18h 32m</span>
+      <!-- Compact Header -->
+      <div class="compact-header">
+        <div class="header-top">
+          <div class="header-left">
+            <div class="week-label">WEEK 1 · JAN 13–19, 2026</div>
+            <h1 class="market-title">CANTON MARKET<br>OF THE WEEK</h1>
+            <div class="market-subtitle">One question. One pool. On Canton.</div>
+          </div>
+          <div class="header-right">
+            <div class="countdown-compact">Resolves in:</div>
+            <div class="countdown-time">4d 18h 32m</div>
+          </div>
+        </div>
+        <div class="market-question-compact">
+          Will the Federal Reserve cut interest rates by 0.25% or more before March 2026?
         </div>
       </div>
 
-      <p class="hero-note">Deliberately minimal. Built to show real on-ledger flow.</p>
-    </div>
-  </section>
+      <!-- Three Column Grid -->
+      <div class="three-col-grid">
 
-  <!-- Main Content Grid -->
-  <section class="section">
-    <div class="container" style="max-width: 1200px;">
-      <div class="grid grid--60-40" style="gap: 32px; align-items: start;">
+        <!-- Column 1: Market Mood + Timeline -->
+        <div class="col-panel">
+          <div class="panel-header">Market Mood</div>
+          <div style="flex: 1;">
+            <div style="font-size: 11px; color: var(--color-text-tertiary); margin-bottom: 12px;">Live pool balance</div>
 
-        <!-- Left Column: Market Mood + Stake Module -->
-        <div>
-
-          <!-- Market Mood -->
-          <div class="market-mood">
-            <div class="market-mood-header">
-              <div class="market-mood-label">Market Mood</div>
-              <div class="market-mood-subtext">Live pool balance</div>
-            </div>
-
-            <div class="pool-bar">
+            <div class="pool-bar-compact">
               <div class="pool-bar-yes" style="width: 62%;">62%</div>
               <div class="pool-bar-no" style="width: 38%;">38%</div>
             </div>
@@ -617,74 +652,60 @@
                 <span>No · 38%</span>
               </div>
             </div>
+
+            <!-- Weekly Timeline -->
+            <div class="timeline-compact">
+              <div class="timeline-label">Weekly Cadence</div>
+              <div class="timeline-steps">
+                <div class="timeline-step completed">
+                  <div class="timeline-dot">✓</div>
+                  <div class="timeline-step-label">Curate</div>
+                </div>
+                <div class="timeline-step completed">
+                  <div class="timeline-dot">✓</div>
+                  <div class="timeline-step-label">Vote</div>
+                </div>
+                <div class="timeline-step active">
+                  <div class="timeline-dot">●</div>
+                  <div class="timeline-step-label">Trade</div>
+                </div>
+                <div class="timeline-step">
+                  <div class="timeline-dot">4</div>
+                  <div class="timeline-step-label">Resolve</div>
+                </div>
+                <div class="timeline-step">
+                  <div class="timeline-dot">5</div>
+                  <div class="timeline-step-label">Recap</div>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <!-- Stake Module -->
-          <div class="stake-module">
-            <div class="stake-module-header">Stake in this pool</div>
-
-            <div class="stake-toggle">
-              <button class="stake-toggle-btn active">YES</button>
-              <button class="stake-toggle-btn">NO</button>
-            </div>
-
-            <div class="stake-input-group">
-              <label class="stake-label">Amount (USDC.x)</label>
-              <input type="text" class="stake-input" placeholder="100.00" />
-            </div>
-
-            <div class="stake-input-group">
-              <label class="stake-label">Why you're staking (optional)</label>
-              <textarea class="stake-textarea" placeholder="Share your reasoning..."></textarea>
-            </div>
-
-            <button class="btn btn--primary" style="width: 100%;">STAKE NOW</button>
-          </div>
-
         </div>
 
-        <!-- Right Column: Participants + Resolution -->
-        <div>
+        <!-- Column 2: Stake Module -->
+        <div class="col-panel">
+          <div class="panel-header">Stake in this pool</div>
 
-          <!-- Participants Snapshot -->
-          <div class="participants-snapshot" style="margin-bottom: 32px;">
-            <div class="participants-header">Participants</div>
-            <div class="participants-stats">
-              42 participants · Pool size: <span class="pool-size-highlight">12,340 USDC.x</span>
-            </div>
-
-            <div class="participants-list">
-              <div class="participant-item">
-                <span class="participant-address">a84f…7d2c</span>
-                <span class="participant-amount">1,200 USDC.x</span>
-                <span class="participant-position yes">Yes</span>
-              </div>
-              <div class="participant-item">
-                <span class="participant-address">3b9e…1f48</span>
-                <span class="participant-amount">980 USDC.x</span>
-                <span class="participant-position no">No</span>
-              </div>
-              <div class="participant-item">
-                <span class="participant-address">c5d2…8a3b</span>
-                <span class="participant-amount">750 USDC.x</span>
-                <span class="participant-position yes">Yes</span>
-              </div>
-              <div class="participant-item">
-                <span class="participant-address">9f1a…4e67</span>
-                <span class="participant-amount">620 USDC.x</span>
-                <span class="participant-position yes">Yes</span>
-              </div>
-              <div class="participant-item">
-                <span class="participant-address">2d8c…b5f9</span>
-                <span class="participant-amount">500 USDC.x</span>
-                <span class="participant-position no">No</span>
-              </div>
-            </div>
+          <div class="stake-toggle">
+            <button class="stake-toggle-btn active">YES</button>
+            <button class="stake-toggle-btn">NO</button>
           </div>
 
-          <!-- Resolution Panel -->
-          <div class="resolution-panel">
-            <div class="resolution-header">Resolution</div>
+          <div class="stake-input-group">
+            <label class="stake-label">Amount (USDC.x)</label>
+            <input type="text" class="stake-input" placeholder="100.00" />
+          </div>
+
+          <div class="stake-input-group">
+            <label class="stake-label">Why you're staking (optional)</label>
+            <textarea class="stake-textarea" placeholder="Share your reasoning..."></textarea>
+          </div>
+
+          <button class="btn-stake">STAKE NOW</button>
+
+          <!-- Resolution Info -->
+          <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--color-border-secondary);">
+            <div class="panel-header" style="margin-bottom: 12px;">Resolution</div>
             <div class="resolution-details">
               <div class="resolution-row">
                 <span class="resolution-label">Method</span>
@@ -692,137 +713,81 @@
               </div>
               <div class="resolution-row">
                 <span class="resolution-label">Source</span>
-                <span class="resolution-value">Federal Reserve Official Announcement</span>
+                <span class="resolution-value">Federal Reserve Announcement</span>
               </div>
               <div class="resolution-row">
                 <span class="resolution-label">Time</span>
-                <span class="resolution-value">Jan 19, 2026 · 14:00 UTC</span>
+                <span class="resolution-value">Jan 19 · 14:00 UTC</span>
               </div>
               <div class="resolution-row">
                 <span class="resolution-label">Settlement</span>
-                <span class="resolution-value">DAML on Canton · USDC.x</span>
+                <span class="resolution-value">DAML · USDC.x</span>
               </div>
             </div>
           </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Weekly Timeline -->
-  <section class="section" style="background: var(--color-background-secondary); padding: 80px 0;">
-    <div class="container" style="max-width: 1200px;">
-      <div class="section-label" style="text-align: center; margin-bottom: 48px;">WEEKLY CADENCE</div>
-
-      <div class="weekly-timeline">
-        <div class="timeline-steps">
-          <div class="timeline-step completed">
-            <div class="timeline-dot">1</div>
-            <div class="timeline-label">Curate</div>
-          </div>
-          <div class="timeline-step completed">
-            <div class="timeline-dot">2</div>
-            <div class="timeline-label">Vote-to-list</div>
-          </div>
-          <div class="timeline-step active">
-            <div class="timeline-dot">3</div>
-            <div class="timeline-label">Trade window</div>
-          </div>
-          <div class="timeline-step">
-            <div class="timeline-dot">4</div>
-            <div class="timeline-label">Resolution</div>
-          </div>
-          <div class="timeline-step">
-            <div class="timeline-dot">5</div>
-            <div class="timeline-label">Recap</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Upcoming Vote Teaser -->
-  <section class="section">
-    <div class="container" style="max-width: 900px;">
-      <div class="vote-teaser">
-        <div class="vote-teaser-header">
-          <div class="section-label">NEXT WEEK</div>
-          <h2 class="headline-section" style="font-size: 36px; margin-top: 12px;">Vote on next week's market</h2>
         </div>
 
-        <div class="vote-candidate">
-          <div class="vote-candidate-text">Will Bitcoin reach $150,000 by end of Q1 2026?</div>
-          <button class="vote-btn-small">View & Vote</button>
-        </div>
-
-        <div class="vote-candidate">
-          <div class="vote-candidate-text">Will Apple announce a new AI product before March 2026?</div>
-          <button class="vote-btn-small">View & Vote</button>
-        </div>
-
-        <div class="vote-candidate">
-          <div class="vote-candidate-text">Will global average temperature exceed 1.5°C above pre-industrial by Feb 2026?</div>
-          <button class="vote-btn-small">View & Vote</button>
-        </div>
-
-        <div class="vote-candidate">
-          <div class="vote-candidate-text">Will a major social media platform be acquired before March 2026?</div>
-          <button class="vote-btn-small">View & Vote</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Your Positions Section -->
-  <section class="section" style="background: var(--color-background-secondary); padding: 80px 0;">
-    <div class="container" style="max-width: 1200px;">
-      <div class="section-label">YOUR ACTIVITY</div>
-      <h2 class="headline-section" style="margin-top: 12px; margin-bottom: 48px;">Your positions</h2>
-
-      <div class="grid grid--50-50" style="gap: 24px;">
-
-        <!-- Open Positions -->
-        <div style="background: var(--color-background-primary); border: 2px solid var(--color-border-primary); border-radius: 8px; padding: 32px;">
-          <div style="font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-secondary); margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--color-border-secondary);">
-            Open (1)
+        <!-- Column 3: Participants -->
+        <div class="col-panel">
+          <div class="panel-header">Participants</div>
+          <div class="participants-stats">
+            42 participants · Pool: <span class="pool-size-highlight">12,340 USDC.x</span>
           </div>
 
-          <div style="padding: 16px; background: var(--color-background-secondary); border: 1px solid var(--color-border-secondary); border-radius: 4px; margin-bottom: 12px;">
-            <div style="font-size: 14px; margin-bottom: 8px; color: var(--color-text-primary);">Will the Federal Reserve cut interest rates by 0.25% or more before March 2026?</div>
-            <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 12px; color: var(--color-text-secondary);">
-              <span>Position: <span style="color: #5B8FD4;">Yes</span></span>
-              <span>Stake: <span style="color: var(--color-text-primary); font-weight: 600;">100 USDC.x</span></span>
+          <div class="participants-list">
+            <div class="participant-item">
+              <span class="participant-address">a84f…7d2c</span>
+              <span class="participant-amount">1,200</span>
+              <span class="participant-position yes">Yes</span>
+            </div>
+            <div class="participant-item">
+              <span class="participant-address">3b9e…1f48</span>
+              <span class="participant-amount">980</span>
+              <span class="participant-position no">No</span>
+            </div>
+            <div class="participant-item">
+              <span class="participant-address">c5d2…8a3b</span>
+              <span class="participant-amount">750</span>
+              <span class="participant-position yes">Yes</span>
+            </div>
+            <div class="participant-item">
+              <span class="participant-address">9f1a…4e67</span>
+              <span class="participant-amount">620</span>
+              <span class="participant-position yes">Yes</span>
+            </div>
+            <div class="participant-item">
+              <span class="participant-address">2d8c…b5f9</span>
+              <span class="participant-amount">500</span>
+              <span class="participant-position no">No</span>
+            </div>
+            <div class="participant-item">
+              <span class="participant-address">7a3f…9c2d</span>
+              <span class="participant-amount">450</span>
+              <span class="participant-position yes">Yes</span>
+            </div>
+            <div class="participant-item">
+              <span class="participant-address">1e6b…4f8a</span>
+              <span class="participant-amount">380</span>
+              <span class="participant-position yes">Yes</span>
+            </div>
+            <div class="participant-item">
+              <span class="participant-address">5c9d…2a7e</span>
+              <span class="participant-amount">320</span>
+              <span class="participant-position no">No</span>
             </div>
           </div>
         </div>
 
-        <!-- Resolved Positions -->
-        <div style="background: var(--color-background-primary); border: 2px solid var(--color-border-primary); border-radius: 8px; padding: 32px;">
-          <div style="font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-secondary); margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--color-border-secondary);">
-            Resolved (0)
-          </div>
-
-          <div style="text-align: center; padding: 48px 0; color: var(--color-text-tertiary); font-size: 14px;">
-            No resolved positions yet
-          </div>
-        </div>
-
       </div>
+
     </div>
-  </section>
+  </div>
 
-  <!-- Footer -->
-  <footer class="footer footer--simple" style="background: var(--color-accent-primary); border-top: 4px solid var(--color-border-primary); padding: 48px 0;">
+  <!-- Compact Footer -->
+  <footer class="footer-compact">
     <div class="container">
-      <div style="text-align: center;">
-        <div style="font-size: 14px; color: var(--color-text-primary); margin-bottom: 16px;">
-          Built for Canton. One market at a time.
-        </div>
-        <div style="font-family: var(--font-mono); font-size: 12px; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.08em;">
-          Powered by DAML · Settled in USDC.x
-        </div>
-      </div>
+      <div class="footer-text">Built for Canton. One market at a time.</div>
+      <div class="footer-subtext">Powered by DAML · Settled in USDC.x</div>
     </div>
   </footer>
 
@@ -836,7 +801,7 @@
     });
 
     // Stake button interaction
-    document.querySelector('.stake-module .btn--primary').addEventListener('click', function() {
+    document.querySelector('.btn-stake').addEventListener('click', function() {
       const amount = document.querySelector('.stake-input').value;
       if (amount) {
         alert('Stake recorded: ' + amount + ' USDC.x');
