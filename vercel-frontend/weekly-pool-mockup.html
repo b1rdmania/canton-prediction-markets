@@ -228,7 +228,7 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .pool-legend-item {
@@ -249,6 +249,58 @@
 
     .pool-legend-dot.no {
       background: #E8846B;
+    }
+
+    /* Payout multipliers */
+    .payout-multipliers {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .multiplier-card {
+      flex: 1;
+      padding: 12px;
+      background: var(--color-background-secondary);
+      border: 1px solid var(--color-border-secondary);
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    .multiplier-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-tertiary);
+      margin-bottom: 4px;
+    }
+
+    .multiplier-value {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+    }
+
+    .multiplier-card.yes-card {
+      border-left: 3px solid #5B8FD4;
+    }
+
+    .multiplier-card.no-card {
+      border-left: 3px solid #E8846B;
+    }
+
+    .pool-explainer {
+      font-size: 10px;
+      color: var(--color-text-tertiary);
+      text-align: center;
+      font-style: italic;
+      padding: 8px 12px;
+      background: var(--color-background-secondary);
+      border-radius: 3px;
+      margin-bottom: 16px;
     }
 
     /* Stake Module */
@@ -633,9 +685,9 @@
 
         <!-- Column 1: Market Mood + Timeline -->
         <div class="col-panel">
-          <div class="panel-header">Market Mood</div>
+          <div class="panel-header">Live Pool Balance</div>
           <div style="flex: 1;">
-            <div style="font-size: 11px; color: var(--color-text-tertiary); margin-bottom: 12px;">Live pool balance</div>
+            <div style="font-size: 11px; color: var(--color-text-tertiary); margin-bottom: 12px;">Parimutuel pricing</div>
 
             <div class="pool-bar-compact">
               <div class="pool-bar-yes" style="width: 62%;">62%</div>
@@ -651,6 +703,22 @@
                 <span class="pool-legend-dot no"></span>
                 <span>No · 38%</span>
               </div>
+            </div>
+
+            <!-- Payout Multipliers -->
+            <div class="payout-multipliers">
+              <div class="multiplier-card yes-card">
+                <div class="multiplier-label">Stake Yes</div>
+                <div class="multiplier-value">1.61x</div>
+              </div>
+              <div class="multiplier-card no-card">
+                <div class="multiplier-label">Stake No</div>
+                <div class="multiplier-value">2.63x</div>
+              </div>
+            </div>
+
+            <div class="pool-explainer">
+              Payout multipliers shift as stakes come in
             </div>
 
             <!-- Weekly Timeline -->
