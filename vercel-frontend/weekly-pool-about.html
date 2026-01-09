@@ -80,71 +80,80 @@
 
     /* Content wrapper */
     .content {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 16px;
+      padding: 12px 24px;
     }
 
     /* Hero */
     .hero-about {
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
     .hero-label {
       font-family: var(--font-mono);
-      font-size: 9px;
+      font-size: 8px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--color-accent-primary);
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .hero-title {
       font-family: var(--font-mono);
-      font-size: 22px;
+      font-size: 18px;
       line-height: 1.1;
       text-transform: uppercase;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
       color: var(--color-text-primary);
     }
 
     .hero-description {
-      font-size: 13px;
-      line-height: 1.4;
+      font-size: 11px;
+      line-height: 1.3;
       color: var(--color-text-secondary);
+      margin-bottom: 8px;
+    }
+
+    /* Two column sections layout */
+    .sections-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 8px;
     }
 
     /* Section */
     .section {
-      margin-bottom: 12px;
+      margin-bottom: 0;
     }
 
     .section-header {
       font-family: var(--font-mono);
-      font-size: 11px;
+      font-size: 10px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--color-text-primary);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       padding-bottom: 2px;
       border-bottom: 1px solid var(--color-border-primary);
     }
 
     .section-content {
-      font-size: 13px;
-      line-height: 1.4;
+      font-size: 11px;
+      line-height: 1.3;
       color: var(--color-text-primary);
     }
 
     .section-content ul {
       list-style: none;
       padding: 0;
-      margin: 4px 0;
+      margin: 2px 0;
     }
 
     .section-content ul li {
-      margin-bottom: 4px;
-      padding-left: 12px;
+      margin-bottom: 2px;
+      padding-left: 10px;
       position: relative;
     }
 
@@ -154,7 +163,7 @@
       left: 0;
       color: var(--color-accent-primary);
       font-weight: bold;
-      font-size: 16px;
+      font-size: 14px;
     }
 
     .section-content strong {
@@ -164,44 +173,44 @@
     }
 
     .section-content p {
-      margin-bottom: 6px;
+      margin: 0;
     }
 
     /* Flow steps */
     .flow-steps {
-      margin: 6px 0;
+      margin: 4px 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      gap: 8px;
     }
 
     .flow-step {
-      padding: 8px;
+      padding: 6px;
       background: var(--color-background-primary);
-      border-left: 3px solid var(--color-accent-primary);
-      border-radius: 4px;
+      border-left: 2px solid var(--color-accent-primary);
+      border-radius: 3px;
     }
 
     .flow-step-number {
       font-family: var(--font-mono);
-      font-size: 9px;
+      font-size: 8px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--color-accent-primary);
-      margin-bottom: 3px;
+      margin-bottom: 2px;
     }
 
     .flow-step-title {
       font-family: var(--font-mono);
-      font-size: 12px;
+      font-size: 11px;
       text-transform: uppercase;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
       color: var(--color-text-primary);
     }
 
     .flow-step-description {
-      font-size: 12px;
-      line-height: 1.3;
+      font-size: 10px;
+      line-height: 1.2;
       color: var(--color-text-secondary);
     }
 
@@ -209,8 +218,8 @@
     .footer-compact {
       background: var(--color-accent-primary);
       border-top: 2px solid var(--color-border-primary);
-      padding: 12px 0;
-      margin-top: 16px;
+      padding: 10px 0;
+      margin-top: 12px;
       text-align: center;
     }
 
@@ -294,20 +303,31 @@
       </p>
     </div>
 
-    <!-- How it's built -->
-    <div class="section">
-      <div class="section-header">How it's built</div>
-      <div class="section-content">
-        <ul>
-          <li><strong>Contracts:</strong> DAML templates handle market creation, staking, resolution, and USDC.x settlement.</li>
-          <li><strong>Cadence:</strong> A new question is voted in each week; the DAML ledger advances from open → trading → resolution → settled.</li>
-          <li><strong>Frontend:</strong> A calm, focused page (hero + market mood + stake module + recap) connects to Canton via a lean API and reflects live pool data.</li>
-          <li><strong>Ops:</strong> Single market at a time cuts audit surface; resolver identity + source are shown for governance clarity.</li>
-        </ul>
+    <!-- Two column grid for first sections -->
+    <div class="sections-grid">
+      <!-- How it's built -->
+      <div class="section">
+        <div class="section-header">How it's built</div>
+        <div class="section-content">
+          <ul>
+            <li><strong>Contracts:</strong> DAML templates handle market creation, staking, resolution, and USDC.x settlement.</li>
+            <li><strong>Cadence:</strong> A new question is voted in each week; the DAML ledger advances from open → trading → resolution → settled.</li>
+            <li><strong>Frontend:</strong> A calm, focused page connects to Canton via a lean API and reflects live pool data.</li>
+            <li><strong>Ops:</strong> Single market at a time cuts audit surface; resolver identity + source shown for governance clarity.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Tone -->
+      <div class="section">
+        <div class="section-header">Tone</div>
+        <div class="section-content">
+          <p>Focus on "participants," "stakes," "pool," "resolution." Keep copy concise, restrained, and Canton-native—built to show a serious machine doing real work every week.</p>
+        </div>
       </div>
     </div>
 
-    <!-- Market flow -->
+    <!-- Market flow - full width -->
     <div class="section">
       <div class="section-header">Market flow</div>
       <div class="flow-steps">
@@ -315,7 +335,7 @@
           <div class="flow-step-number">Step 1</div>
           <div class="flow-step-title">Vote</div>
           <div class="flow-step-description">
-            Curated candidates are presented; the community chooses the Market of the Week.
+            Community chooses the Market of the Week.
           </div>
         </div>
 
@@ -323,7 +343,7 @@
           <div class="flow-step-number">Step 2</div>
           <div class="flow-step-title">Stake</div>
           <div class="flow-step-description">
-            Participants bet Yes/No into the parimutuel pool; the "market mood" bar updates as stakes arrive.
+            Participants bet Yes/No into the parimutuel pool; the "market mood" bar updates.
           </div>
         </div>
 
@@ -331,7 +351,7 @@
           <div class="flow-step-number">Step 3</div>
           <div class="flow-step-title">Resolve</div>
           <div class="flow-step-description">
-            At the scheduled time, the resolver executes on Canton. DAML flips state, drains the pot, pays winners in USDC.x, and emits a post-resolution recap card (question, outcome, pool size, payout, timestamp).
+            Resolver executes on Canton. DAML flips state, drains pot, pays winners in USDC.x.
           </div>
         </div>
 
@@ -339,17 +359,9 @@
           <div class="flow-step-number">Step 4</div>
           <div class="flow-step-title">Replay</div>
           <div class="flow-step-description">
-            The recap stays visible while the next week's vote opens, keeping the ritual going.
+            Recap stays visible while next week's vote opens.
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Tone -->
-    <div class="section">
-      <div class="section-header">Tone</div>
-      <div class="section-content">
-        <p>Focus on "participants," "stakes," "pool," "resolution." Keep copy concise, restrained, and Canton-native—built to show a serious machine doing real work every week.</p>
       </div>
     </div>
 
