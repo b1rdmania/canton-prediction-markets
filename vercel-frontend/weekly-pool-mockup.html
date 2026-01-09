@@ -70,6 +70,7 @@
     .nav-compact .btn-compact:hover {
       background: var(--color-background-primary);
       color: var(--color-text-primary);
+      border-color: var(--color-text-primary);
     }
 
     /* Main content area - fills remaining space */
@@ -325,7 +326,9 @@
     }
 
     .stake-toggle-btn:hover {
+      background: var(--color-background-primary);
       border-color: var(--color-text-primary);
+      color: var(--color-text-primary);
     }
 
     .stake-toggle-btn.active {
@@ -398,6 +401,7 @@
     .btn-stake:hover {
       background: var(--color-accent-primary);
       border-color: var(--color-accent-primary);
+      color: var(--color-text-primary);
     }
 
     /* Participants */
@@ -763,11 +767,6 @@
           <div class="stake-input-group">
             <label class="stake-label">Amount (USDC.x)</label>
             <input type="text" class="stake-input" placeholder="100.00" />
-          </div>
-
-          <div class="stake-input-group">
-            <label class="stake-label">Why you're staking (optional)</label>
-            <textarea class="stake-textarea" placeholder="Share your reasoning..."></textarea>
           </div>
 
           <button class="btn-stake">STAKE NOW</button>
