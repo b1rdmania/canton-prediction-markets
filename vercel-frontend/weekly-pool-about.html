@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="About Canton Market of the Week - One question. One pool. On Canton.">
+  <title>About - Canton Market of the Week</title>
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    /* Base layout */
+    body {
+      margin: 0;
+      background: var(--color-background-secondary);
+    }
+
+    /* Compact navigation */
+    .nav-compact {
+      background: var(--color-background-primary);
+      border-bottom: 2px solid var(--color-border-primary);
+      padding: 12px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-compact .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-compact .nav-logo {
+      font-family: var(--font-body);
+      font-size: 18px;
+      color: var(--color-text-primary);
+      text-decoration: none;
+    }
+
+    .nav-compact .nav-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-compact .nav-link {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+    }
+
+    .nav-compact .nav-link.active {
+      color: var(--color-text-primary);
+      font-weight: 600;
+    }
+
+    .nav-compact .btn-compact {
+      padding: 8px 16px;
+      background: #1B1C1C !important;
+      color: #FFFFFF !important;
+      border: 2px solid #1B1C1C !important;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: none !important;
+      text-decoration: none;
+    }
+
+    .nav-compact .btn-compact:hover {
+      background: #FFFFFF !important;
+      color: #1B1C1C !important;
+      border: 2px solid #1B1C1C !important;
+    }
+
+    /* Content wrapper */
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    /* Hero */
+    .hero-about {
+      margin-bottom: 48px;
+    }
+
+    .hero-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent-primary);
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-family: var(--font-mono);
+      font-size: 42px;
+      line-height: 1.1;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      color: var(--color-text-primary);
+    }
+
+    .hero-description {
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--color-text-secondary);
+      max-width: 700px;
+    }
+
+    /* Section */
+    .section {
+      margin-bottom: 48px;
+    }
+
+    .section-header {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--color-border-secondary);
+    }
+
+    .section-content {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--color-text-primary);
+    }
+
+    .section-content ul {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0;
+    }
+
+    .section-content ul li {
+      margin-bottom: 12px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .section-content ul li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: var(--color-accent-primary);
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .section-content strong {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--color-text-primary);
+    }
+
+    /* Flow steps */
+    .flow-steps {
+      margin: 24px 0;
+    }
+
+    .flow-step {
+      margin-bottom: 24px;
+      padding: 20px;
+      background: var(--color-background-primary);
+      border-left: 3px solid var(--color-accent-primary);
+      border-radius: 4px;
+    }
+
+    .flow-step-number {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent-primary);
+      margin-bottom: 8px;
+    }
+
+    .flow-step-title {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: var(--color-text-primary);
+    }
+
+    .flow-step-description {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--color-text-secondary);
+    }
+
+    /* Footer */
+    .footer-compact {
+      background: var(--color-accent-primary);
+      border-top: 2px solid var(--color-border-primary);
+      padding: 24px 0;
+      margin-top: 80px;
+      text-align: center;
+    }
+
+    .footer-text {
+      font-size: 12px;
+      color: var(--color-text-primary);
+      margin-bottom: 4px;
+    }
+
+    .footer-subtext {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      .content {
+        padding: 32px 16px;
+      }
+
+      .hero-title {
+        font-size: 28px;
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .section-content {
+        font-size: 15px;
+      }
+
+      .nav-compact .nav-links {
+        display: none;
+      }
+
+      .nav-compact .nav-logo {
+        font-size: 16px;
+      }
+
+      .nav-compact .btn-compact {
+        font-size: 10px;
+        padding: 6px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Compact Navigation -->
+  <nav class="nav-compact">
+    <div class="container">
+      <a href="weekly-pool-mockup.html" class="nav-logo">am validator</a>
+      <div class="nav-links">
+        <a href="weekly-pool-mockup.html" class="nav-link">MARKET</a>
+        <a href="weekly-pool-about.html" class="nav-link active">ABOUT</a>
+      </div>
+      <div class="nav-actions">
+        <a href="weekly-pool-mockup.html" class="btn-compact">CONNECT WALLET</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="content">
+
+    <!-- Hero -->
+    <div class="hero-about">
+      <div class="hero-label">About</div>
+      <h1 class="hero-title">CANTON MARKET<br>OF THE WEEK</h1>
+      <p class="hero-description">
+        A weekly Canton-native market that feels alive: one curated binary question, one community pool, one resolution moment. It shows Canton liveness (DAML + USDC.x) with minimal surface area—no orderbooks, no wallets, no crypto theatrics—just a visible ledger heartbeat senior validators can read at a glance.
+      </p>
+    </div>
+
+    <!-- How it's built -->
+    <div class="section">
+      <div class="section-header">How it's built</div>
+      <div class="section-content">
+        <ul>
+          <li><strong>Contracts:</strong> DAML templates handle market creation, staking, resolution, and USDC.x settlement.</li>
+          <li><strong>Cadence:</strong> A new question is voted in each week; the DAML ledger advances from open → trading → resolution → settled.</li>
+          <li><strong>Frontend:</strong> A calm, focused page (hero + market mood + stake module + recap) connects to Canton via a lean API and reflects live pool data.</li>
+          <li><strong>Ops:</strong> Single market at a time cuts audit surface; resolver identity + source are shown for governance clarity.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Market flow -->
+    <div class="section">
+      <div class="section-header">Market flow</div>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-step-number">Step 1</div>
+          <div class="flow-step-title">Vote</div>
+          <div class="flow-step-description">
+            Curated candidates are presented; the community chooses the Market of the Week.
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-step-number">Step 2</div>
+          <div class="flow-step-title">Stake</div>
+          <div class="flow-step-description">
+            Participants bet Yes/No into the parimutuel pool; the "market mood" bar updates as stakes arrive.
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-step-number">Step 3</div>
+          <div class="flow-step-title">Resolve</div>
+          <div class="flow-step-description">
+            At the scheduled time, the resolver executes on Canton. DAML flips state, drains the pot, pays winners in USDC.x, and emits a post-resolution recap card (question, outcome, pool size, payout, timestamp).
+          </div>
+        </div>
+
+        <div class="flow-step">
+          <div class="flow-step-number">Step 4</div>
+          <div class="flow-step-title">Replay</div>
+          <div class="flow-step-description">
+            The recap stays visible while the next week's vote opens, keeping the ritual going.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tone -->
+    <div class="section">
+      <div class="section-header">Tone</div>
+      <div class="section-content">
+        <p>Focus on "participants," "stakes," "pool," "resolution." Keep copy concise, restrained, and Canton-native—built to show a serious machine doing real work every week.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-compact">
+    <div class="footer-text">Built for Canton. One market at a time.</div>
+    <div class="footer-subtext">Powered by DAML · Settled in USDC.x</div>
+  </footer>
+
+</body>
+</html>
