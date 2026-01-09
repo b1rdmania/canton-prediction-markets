@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="Canton Market of the Week - One question. One pool. On Canton.">
   <title>Canton Market of the Week</title>
   <link rel="stylesheet" href="css/main.css">
@@ -622,6 +622,13 @@
       letter-spacing: 0.08em;
     }
 
+    /* iOS Safari viewport height fix */
+    @supports (-webkit-touch-callout: none) {
+      body {
+        height: -webkit-fill-available;
+      }
+    }
+
     /* Responsive adjustments */
     @media (max-width: 1400px) {
       .three-col-grid {
@@ -634,6 +641,20 @@
     }
 
     @media (max-width: 768px) {
+      body {
+        height: auto;
+        overflow-y: auto;
+      }
+
+      .main-content {
+        overflow-y: visible;
+        height: auto;
+      }
+
+      .content-wrapper {
+        padding: 12px;
+      }
+
       .three-col-grid {
         grid-template-columns: 1fr;
         height: auto;
@@ -641,14 +662,62 @@
 
       .col-panel {
         height: auto;
+        min-height: 200px;
       }
 
-      body {
-        overflow-y: auto;
+      /* Prevent iOS Safari zoom on input focus */
+      .stake-input,
+      .stake-textarea {
+        font-size: 16px;
       }
 
-      .main-content {
-        overflow-y: visible;
+      .stake-label {
+        font-size: 10px;
+      }
+
+      .stake-toggle-btn {
+        font-size: 13px;
+      }
+
+      /* Compact header for mobile */
+      .compact-header {
+        padding: 10px 16px;
+      }
+
+      .market-title {
+        font-size: 22px;
+      }
+
+      .market-question-compact {
+        font-size: 14px;
+      }
+
+      .countdown-time {
+        font-size: 16px;
+      }
+
+      /* Pool bar mobile */
+      .pool-bar-compact {
+        height: 50px;
+      }
+
+      .pool-bar-yes,
+      .pool-bar-no {
+        font-size: 24px;
+      }
+
+      /* Navigation mobile */
+      .nav-compact .nav-links {
+        display: none;
+      }
+
+      .nav-compact .nav-logo {
+        font-size: 16px;
+      }
+
+      .nav-compact .btn-compact {
+        font-size: 10px;
+        padding: 6px 12px;
       }
     }
   </style>
