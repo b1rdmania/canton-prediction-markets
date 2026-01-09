@@ -80,117 +80,66 @@
 
     /* Content wrapper */
     .content {
-      max-width: 1400px;
+      max-width: 800px;
       margin: 0 auto;
-      padding: 12px 24px;
+      padding: 20px;
     }
 
     /* Hero */
     .hero-about {
-      margin-bottom: 8px;
+      margin-bottom: 20px;
     }
 
     .hero-label {
       font-family: var(--font-mono);
-      font-size: 8px;
+      font-size: 10px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--color-accent-primary);
-      margin-bottom: 2px;
+      margin-bottom: 6px;
     }
 
     .hero-title {
       font-family: var(--font-mono);
-      font-size: 18px;
-      line-height: 1.1;
+      font-size: 24px;
+      line-height: 1.2;
       text-transform: uppercase;
-      margin-bottom: 6px;
+      margin-bottom: 10px;
       color: var(--color-text-primary);
-    }
-
-    /* Two column layout for sections */
-    .sections-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 8px;
     }
 
     /* Section */
     .section {
-      margin-bottom: 0;
+      margin-bottom: 18px;
     }
 
     .section-header {
       font-family: var(--font-mono);
-      font-size: 10px;
+      font-size: 11px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--color-text-primary);
-      margin-bottom: 4px;
-      padding-bottom: 2px;
+      margin-bottom: 8px;
+      padding-bottom: 4px;
       border-bottom: 1px solid var(--color-border-primary);
     }
 
     .section-content {
-      font-size: 11px;
-      line-height: 1.3;
+      font-size: 14px;
+      line-height: 1.5;
       color: var(--color-text-primary);
     }
 
     .section-content p {
-      margin-bottom: 2px;
-    }
-
-    .section-content ul {
-      list-style: none;
-      padding: 0;
-      margin: 2px 0;
-    }
-
-    .section-content ul li {
-      margin-bottom: 2px;
-      padding-left: 10px;
-      position: relative;
-    }
-
-    .section-content ul li::before {
-      content: "·";
-      position: absolute;
-      left: 0;
-      color: var(--color-accent-primary);
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .section-content strong {
-      font-family: var(--font-mono);
-      font-weight: 600;
-      color: var(--color-text-primary);
-    }
-
-    /* Highlight box */
-    .highlight-box {
-      background: var(--color-background-primary);
-      border-left: 2px solid var(--color-accent-primary);
-      padding: 6px;
-      margin: 4px 0;
-      border-radius: 3px;
-    }
-
-    .highlight-box p {
-      margin: 0;
-      font-size: 10px;
-      line-height: 1.2;
-      color: var(--color-text-secondary);
+      margin-bottom: 10px;
     }
 
     /* Footer */
     .footer-compact {
       background: var(--color-accent-primary);
       border-top: 2px solid var(--color-border-primary);
-      padding: 10px 0;
-      margin-top: 12px;
+      padding: 16px 0;
+      margin-top: 30px;
       text-align: center;
     }
 
@@ -215,19 +164,11 @@
       }
 
       .hero-title {
-        font-size: 16px;
-      }
-
-      .section-header {
-        font-size: 10px;
+        font-size: 20px;
       }
 
       .section-content {
-        font-size: 11px;
-      }
-
-      .sections-grid {
-        grid-template-columns: 1fr;
+        font-size: 13px;
       }
 
       .nav-compact .nav-links {
@@ -271,71 +212,43 @@
       <h1 class="hero-title">CANTON MARKET OF THE WEEK</h1>
     </div>
 
-    <!-- Two Column Grid -->
-    <div class="sections-grid">
-
-      <!-- Section 1 -->
-      <div class="section">
-        <div class="section-header">1. Market of the Week ritual</div>
-        <div class="section-content">
-          <ul>
-            <li>Each week one curated binary question (Yes/No). Community votes from 3–5 candidates; winner becomes "Canton Market of the Week."</li>
-            <li>Hero area shows live question, countdown to resolution, and note: "Deliberately minimal. Built to show real on-ledger flow."</li>
-            <li>Concentrated cadence keeps attention and makes the ledger feel alive.</li>
-          </ul>
-        </div>
+    <!-- Section 1 -->
+    <div class="section">
+      <div class="section-header">Weekly ritual</div>
+      <div class="section-content">
+        <p>Each week the community votes on one binary question from curated candidates. The winner becomes the Canton Market of the Week. This cadence keeps attention focused and the ledger feels alive.</p>
       </div>
-
-      <!-- Section 2 -->
-      <div class="section">
-        <div class="section-header">2. Stake into the parimutuel pool</div>
-        <div class="section-content">
-          <ul>
-            <li>Participants select Yes or No, enter USDC.x amount, and hit "Stake now." Stakes feed a single shared pot.</li>
-            <li>"Market mood" bar shows Yes/No split and updates as stakes arrive. Percentages translate to payout per share.</li>
-          </ul>
-          <div class="highlight-box">
-            <p>Terminology: <strong>participants</strong>, <strong>stakes</strong>, <strong>pools</strong>, <strong>resolution</strong>—no "bets," "orderbooks," or "gimmicks."</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Section 3 -->
-      <div class="section">
-        <div class="section-header">3. Resolution moment</div>
-        <div class="section-content">
-          <ul>
-            <li>At scheduled time designated resolver executes the DAML contract on Canton. Contract flips state, drains pot, pays winners in USDC.x.</li>
-            <li>UI updates instantly: status flips to "resolved," payouts display, recap card appears with question, outcome, pool size, payout, timestamp.</li>
-            <li>Footer line reads "Resolved on Canton · DAML execution complete" to make ledger event explicit.</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Section 4 -->
-      <div class="section">
-        <div class="section-header">4. Post-resolution recap</div>
-        <div class="section-content">
-          <ul>
-            <li>Recap card stays visible while next week's vote opens. Shows participants, pool size, outcome, payout timing.</li>
-            <li>Compact "Participants snapshot" highlights top 5 stakes (anonymized), signaling real people moving funds.</li>
-            <li>Ledger receipt turned into a story.</li>
-          </ul>
-        </div>
-      </div>
-
     </div>
 
-    <!-- Section 5 - Full Width -->
+    <!-- Section 2 -->
     <div class="section">
-      <div class="section-header">5. What this is not</div>
+      <div class="section-header">Stake into the pool</div>
       <div class="section-content">
-        <ul>
-          <li>Not an orderbook or multi-market dashboard.</li>
-          <li>Not a trading terminal with endless instruments.</li>
-          <li>No wallet onboarding, no auth gating, no AI hype.</li>
-          <li>One clean weekly ritual showing Canton's DAML + USDC.x heartbeat.</li>
-        </ul>
+        <p>Participants pick Yes or No and enter their USDC.x stake. All stakes feed one shared pool. The market mood bar shows the Yes/No split and updates live. The split determines each side's payout multiplier.</p>
+      </div>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="section">
+      <div class="section-header">Resolution</div>
+      <div class="section-content">
+        <p>At the scheduled time, the resolver executes the DAML contract on Canton. The contract settles, pays winners in USDC.x, and emits a resolution event. The UI updates instantly with payouts, pool size, and timestamp.</p>
+      </div>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="section">
+      <div class="section-header">Recap and repeat</div>
+      <div class="section-content">
+        <p>The resolved market stays visible with full details while the next week's vote opens. Participants can see the outcome, pool size, and payout timing. This turns the ledger receipt into a readable story.</p>
+      </div>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="section">
+      <div class="section-header">What this is not</div>
+      <div class="section-content">
+        <p>Not an orderbook. Not a multi-market dashboard. Not a trading terminal. No wallet onboarding. No auth gates. No AI hype. Just one clean weekly ritual showing Canton's DAML + USDC.x at work.</p>
       </div>
     </div>
 
