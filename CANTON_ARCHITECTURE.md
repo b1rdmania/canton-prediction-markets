@@ -46,9 +46,9 @@ Use this to explain the flow to Daml designers and backend devs:
 
 ```mermaid
 flowchart TD
-    A[Frontend (Vercel)] -- Reads hero/mood/data --> B[Backend API (FastAPI)]
-    B -- Queries ledger --> C[Canton DAML Ledger]
-    C -- Uses USDC.x token --> D[Resolver Identity]
+    A["Frontend (Vercel)"] -- Reads hero/mood/data --> B["Backend API (FastAPI)"]
+    B -- Queries ledger --> C["Canton DAML Ledger"]
+    C -- Uses USDC.x token --> D["Resolver Identity"]
     C -- Emits pool totals/payouts --> B
     B -- Calls Stake/Resolve --> C
     A -- Submits stake requests --> B
