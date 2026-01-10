@@ -1,9 +1,9 @@
 # Canton Architecture — DAML Weekly Pool
 
-> These are suggested architecture notes to help the dev team think through the build. They're not prescriptive—just a clear starting point.
+> Suggested architecture notes; not prescriptive but aligned to the weekly pool focus.
 
 ## Diagram (conceptual)
-Use this to explain the flow to DAML designers and backend devs.
+The flow for DAML designers and backend developers:
 
 ```mermaid
 flowchart TD
@@ -17,7 +17,7 @@ flowchart TD
     D --> C
 ```
 
-Add labels in presentations:
+Component responsibilities:
 
 - **Frontend**: hero question, market mood, stake module, resolver info, recap card.
 - **Backend API**: orchestrates DAML calls, provides REST surface, logs snapshots.
