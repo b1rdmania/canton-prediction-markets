@@ -1,5 +1,29 @@
 # Canton Architecture — DAML Weekly Pool
 
+> These are suggested architecture notes to help the dev team think through the build. They're not prescriptive—just a clear starting point.
+
+## Diagram (conceptual)
+Use this to explain the flow to DAML designers and backend devs.
+
+```mermaid
+flowchart TD
+    A["Frontend (Vercel)"] -- Reads hero/mood/data --> B["Backend API (FastAPI)"]
+    B -- Queries ledger --> C["Canton DAML Ledger"]
+    C -- Uses USDC.x token --> D["Resolver Identity"]
+    C -- Emits pool totals/payouts --> B
+    B -- Calls Stake/Resolve --> C
+    A -- Submits stake requests --> B
+    B -- Serves recap & snapshots --> A
+    D --> C
+```
+
+Add labels in presentations:
+
+- **Frontend**: hero question, market mood, stake module, resolver info, recap card.
+- **Backend API**: orchestrates DAML calls, provides REST surface, logs snapshots.
+- **Canton Ledger**: DAML templates enforce pool invariants; USDC.x transfers winnings.
+- **Resolver**: Canton identity (signer/oracle) triggers `Resolve`; UI surfaces identity/source.
+
 ## 1. Ledger & contract layer (DAML on Canton)
 - **Template**: `WeeklyMarket` tracks question, resolution time, Yes/No pools, resolver status, and settled flag.
 - **Choices**:
