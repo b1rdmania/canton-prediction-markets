@@ -119,8 +119,13 @@ docker compose up -d
 ## 📚 Documentation
 
 - **[Project Status](PROJECT_STATUS.md)** ← Current status & what we've built!
-- **[MVP Definition + Phase 2 Plan](MVP_IMPLEMENTATION.md)** ← Demo MVP v0 + archived Phase 2 Canton/DAML plan
+- **[MVP Definition + Phase 2 Plan](MVP_IMPLEMENTATION.md)** ← Demo MVP v0 + Phase 2 weekly pool plan (legacy roadmap archived)
+- **[Weekly Pool Brief](WEEKLY_POOL_BRIEF.md)** ← One-page Canton weekly pool spec
+- **[How It Works](HOW_IT_WORKS.md)** ← Ritualized user guide
+- **[Product Direction](PRODUCT_DIRECTION.md)** ← What we build vs what we do not
+- **[Mockup Copy](MOCKUP_COPY.md)** ← Content for the new front page
 - **[Demo MVP Handoff](HANDOFF_DEMO_MVP.md)** ← Runbook to keep the demo live
+- **[Legacy docs archive](archive/legacy/docs/)** ← Old design/research/backtest files (kept for reference)
 - [Deployment Guide](DEPLOYMENT.md)
 - [Docker Guide](DOCKER_GUIDE.md)
 - [Paper Trading Start](PAPER_TRADING_START.md)
